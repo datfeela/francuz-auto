@@ -1,0 +1,11 @@
+@import "reset.scss";
+@import "fonts.scss";
+@import "variables.scss";
+@import "page.scss";
+
+//header
+@import "blocks/header.scss";
+
+.main {
+    height: 2000px;
+}
