@@ -1,0 +1,32 @@
+.burger {
+    display: block;
+    position: relative;
+    z-index: 7;
+
+    &::before,
+    &::after {
+        content: "";
+        background-color: #000;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        left: 0;
+    }
+
+    &::before {
+        top: 0;
+    }
+
+    &::after {
+        bottom: 0;
+    }
+
+    & span {
+        position: absolute;
+        background-color: #000;
+        width: 100%;
+        height: 2px;
+        left: 0;
+        top: 9px;
+    }
+}

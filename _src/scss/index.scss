@@ -1,10 +1,16 @@
-@import "reset.scss";
 @import "fonts.scss";
+
+@import "reset.scss";
 @import "variables.scss";
 @import "page.scss";
+@import "common.scss";
+
+//common.blocks
+@import "../blocks/common.blocks/burger/burger.scss";
+@import "../blocks/common.blocks/button/button.scss";
 
 //header
-@import "blocks/header.scss";
+@import "../blocks/header/header.scss";
 
 .main {
     height: 2000px;
