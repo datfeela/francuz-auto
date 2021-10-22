@@ -1,1 +1,1 @@
-@@include('../blocks/header/header.js', {})
+@@include('../blocks/header/header.js', {});

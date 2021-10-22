@@ -6,5 +6,9 @@
         font-size: 20px;
         font-weight: 500;
         color: #fff;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(15px + 5 * (100vw - 320px) / (1230 - 320));
+        }
     }
 }
