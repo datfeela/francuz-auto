@@ -1,7 +1,8 @@
-const headerBurger = document.querySelector('.header__burger'),
+const header = document.querySelector(".header"),
+    headerBurger = document.querySelector('.header__burger'),
     headerCatalog = document.querySelector('.search-header__dropdown'),
-    headerSearch = document.querySelector('.search-header')
-headerSearchLowres = document.querySelector('.search-header__button_lowres'),
+    headerSearch = document.querySelector('.search-header'),
+    headerSearchLowres = document.querySelector('.search-header__button_lowres'),
     headerSearchForm = document.querySelector('.search-header__item');
 
 //открываю/закрываю меню по нажатию на бургер
@@ -72,6 +73,20 @@ document.addEventListener('click', (event) => {
         }
     }
 })
+
+//---//
+//observer за шапкой
+
+const callback = function (entries, observer) {
+    if (entries[0].isIntersecting) {
+        header.classList.remove("_scroll");
+    } else {
+        header.classList.add("_scroll");
+    }
+};
+
+const headerObserver = new IntersectionObserver(callback);
+headerObserver.observe(headerSearch);
 
 
 
