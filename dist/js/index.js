@@ -1,5 +1,5 @@
 const header = document.querySelector(".header"),
-    headerBurger = document.querySelector('.header__burger'),
+    headerBurger = document.querySelector('.search-header__burger'),
     headerCatalog = document.querySelector('.search-header__dropdown'),
     headerSearch = document.querySelector('.search-header'),
     headerSearchLowres = document.querySelector('.search-header__button_lowres'),
@@ -16,7 +16,7 @@ headerBurger.addEventListener('click', (event) => {
 //закрываю меню при нажатии вне меню/бургера
 document.addEventListener('click', (event) => {
     const targetElement = event.target;
-    if (!targetElement.closest('.header__burger') && !targetElement.closest('.search-header__dropdown')) {
+    if (!targetElement.closest('.search-header__burger') && !targetElement.closest('.search-header__dropdown')) {
         if (headerBurger.classList.contains('_active')) {
             Array.from(headerCatalog.firstElementChild.children).forEach((elem) => {
                 if (elem.classList.contains('_hover')) removeHoverCatalog(elem);
@@ -86,7 +86,7 @@ const callback = function (entries, observer) {
 };
 
 const headerObserver = new IntersectionObserver(callback);
-headerObserver.observe(headerSearch);
+headerObserver.observe(header);
 
 
 
