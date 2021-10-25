@@ -1,0 +1,99 @@
+.advantages {
+    // .advantages__body
+
+    &__body {
+        width: calc(100vw - 30px);
+        max-width: $maxContainerWidth;
+        margin: 0 auto;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media screen and (max-width: 600px) {
+            flex-direction: column;
+            padding: calc(5px + 5 * (100vw - 320px) / (600 - 320)) calc(8px + 7 * (100vw - 320px) / (600 - 320)) ;
+        }
+    }
+
+    // .advantages__item
+
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+
+        @media screen and (max-width: 600px) {
+            margin: 0px 0px 10px 0px;
+            width: 100%;
+        }
+    }
+
+    // .advantages__icon
+
+    &__icon {
+        height: 50px;
+        width: 50px;
+        margin-right: 20px;
+
+        @media screen and (max-width: 1230px) {
+            height: calc(30px + 20 * (100vw - 600px) / (1230 - 600));
+            width: calc(30px + 20 * (100vw - 600px) / (1230 - 600));
+            margin-right: calc(10px + 10 * (100vw - 600px) / (1230 - 600));
+        }
+
+        @media screen and (max-width: 600px) {
+            height: 30px;
+            width: 30px;
+            margin-right: calc(10px + 15 * (100vw - 320px) / (600 - 320));
+        }
+    }
+
+    // .advantages__content
+
+    &__content {
+        @media screen and (max-width: 600px) {
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        @media screen and (max-width: 420px) {
+            display: block;
+        }
+    }
+
+    // .advantages__title
+
+    &__title {
+        font-size: 24px;
+        line-height: 125%;
+        font-weight: 500;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(18px + 6 * (100vw - 600px) / (1230 - 600));
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 18px;
+            margin-right: 20px;
+            flex: 0 0 185px;
+        }
+    }
+
+    // .advantages__text
+
+    &__text {
+        display: block;
+        font-size: 18px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(14px + 4 * (100vw - 600px) / (1230 - 600));
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 14px;
+            flex: 1 1 auto;
+        }
+    }
+}

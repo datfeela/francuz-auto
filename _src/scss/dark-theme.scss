@@ -1,0 +1,65 @@
+body.dark-theme {
+    color: #fff;
+
+    .header {
+        &._scroll {
+            .header__container {
+                background-color: rgba($color: #30384f, $alpha: 0.92);
+
+                &:hover {
+                    background-color: $darkBlueColor;
+                }
+            }
+        }
+
+        &__container {
+            background-color: $darkBlueColor;
+        }
+
+        &__contacts {
+            color: #fff;
+        }
+    }
+
+    .logo__text {
+        color: #fff;
+    }
+
+    .search-header {
+        @media screen and (max-width: 720px) {
+            &__icon {
+                fill: #fff;
+
+                &_close{
+                    fill: $greyColor;
+                }
+            }
+
+            &__burger {
+                &._active {
+                    &::before,
+                    &::after,
+                    & span {
+                        background-color: $redColor;
+                    }
+                }
+
+                &::before,
+                &::after,
+                & span {
+                    background-color: #fff;
+                }
+            }
+        }
+    }
+
+    .page-slider-main__content {
+        @media screen and (max-width: 600px) {
+            background-color: rgba($color: #30384f, $alpha: 0.8);
+        }
+    }
+
+    .controls-slider-main__icon {
+        stroke: #fff;
+    }
+}

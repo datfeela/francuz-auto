@@ -1,0 +1,36 @@
+.brands {
+    // .brands__body
+
+    &__body {
+        width: calc(100vw - 30px);
+        max-width: $maxContainerWidth;
+        margin: 0 auto;
+        padding: 10px 15px 0px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        @media screen and (max-width: 720px) {
+            padding: 5px 0px 0px 0px;
+        }
+    }
+
+    // .brands__item
+
+    &__item {
+        display: flex;
+        justify-content: center;
+    }
+
+    // .brands__image
+
+    &__image {
+        @media screen and (min-width: 721px) and (max-width: 1230px) {
+            height: calc(100px + 20 * (100vw - 720px) / (1230 - 720));
+        }
+
+        @media screen and (max-width: 720px) {
+            height: calc(50px + 50 * (100vw - 320px) / (720 - 320));
+        }
+    }
+}

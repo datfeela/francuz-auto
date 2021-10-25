@@ -131,7 +131,7 @@ function images() {
         .pipe(
             imagemin([
                 webp({
-                    quality: 75
+                    quality: 100
                 })
             ])
         )
@@ -148,7 +148,7 @@ function images() {
                 progressive: true,
                 svgoPlugins: [{ removeViewBox: false }],
                 interlaced: true,
-                optimizationLevel: 2 // 0 to 7
+                optimizationLevel: 0 // 0 to 7
             })
         )
         .pipe(dest(path.build.images))

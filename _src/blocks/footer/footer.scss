@@ -1,0 +1,15 @@
+.footer {
+    background-color: #e5e5e5;
+
+    //.footer__wrapper
+
+    &__wrapper {
+        max-width: $maxContainerWidth;
+        padding: 0px 15px;
+        margin: 0 auto;
+    }
+
+    &__body {
+        height: 500px;
+    }
+}

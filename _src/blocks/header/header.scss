@@ -21,6 +21,8 @@
             }
 
             &__body {
+                max-width: $maxContainerWidth;
+                margin: 0 auto;
                 grid-template-columns: auto 1fr;
                 padding: 10px 15px;
                 justify-items: normal;
@@ -46,7 +48,7 @@
 
             &__text {
                 font-size: 30px;
-                margin: 10px 0px 0px 10px;
+                margin: 0px 0px 0px 10px;
 
                 @media screen and (max-width: 720px) {
                     font-size: calc(20px + 5 * (100vw - 320px) / (720 - 320));
