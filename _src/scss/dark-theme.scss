@@ -1,6 +1,5 @@
 body.dark-theme {
-    color: #fff;
-
+    background-color: #30384f;
     .header {
         &._scroll {
             .header__container {
@@ -53,6 +52,8 @@ body.dark-theme {
         }
     }
 
+    //slider
+
     .page-slider-main__content {
         @media screen and (max-width: 600px) {
             background-color: rgba($color: #30384f, $alpha: 0.8);
@@ -61,5 +62,19 @@ body.dark-theme {
 
     .controls-slider-main__icon {
         stroke: #fff;
+    }
+
+    //advantages
+
+    .advantages {
+        background-color: $darkBlueColor;
+
+        &__icon{
+            fill: #fff;
+        }
+
+        &__content{
+            color: #fff;
+        }
     }
 }

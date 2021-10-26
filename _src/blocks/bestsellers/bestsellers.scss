@@ -1,0 +1,73 @@
+.bestsellers {
+    margin: 45px auto;
+    max-width: calc($maxContainerWidth - 30px);
+    background-color: $yellowColor;
+
+    // .bestsellers__title
+
+    &__title {
+        text-align: center;
+        color: $redColor;
+        padding: 22px 0px;
+    }
+
+		// .bestsellers__body
+
+		&__body {
+            padding: 15px;
+		}
+
+		// .bestsellers__wrapper
+
+		&__wrapper {
+		}
+
+		// .bestsellers__item
+
+		&__item {
+		}
+
+		// .bestsellers__controls
+
+		&__controls {
+		}
+}
+.product {
+
+		// .product__image
+
+		&__image {
+		}
+
+		// .product__price
+
+		&__price {
+		}
+
+		// .product__description
+
+		&__description {
+		}
+}
+.controls-bestsellers {
+
+		// .controls-bestsellers__button
+
+		&__button {
+
+			// .controls-bestsellers__button_next
+
+			&_next {
+			}
+
+			// .controls-bestsellers__button_prev
+
+			&_prev {
+			}
+		}
+
+		// .controls-bestsellers__icon
+
+		&__icon {
+		}
+}

@@ -4,15 +4,18 @@
     &__body {
         width: calc(100vw - 30px);
         max-width: $maxContainerWidth;
-        margin: 0 auto;
-        padding: 10px 15px;
+        margin: 0px auto;
+        padding: 20px 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
+        @media screen and (max-width: 900px) {
+            padding: calc(5px + 15 * (100vw - 320px) / (900 - 320)) calc(8px + 7 * (100vw - 320px) / (900 - 320));
+        }
+
         @media screen and (max-width: 600px) {
             flex-direction: column;
-            padding: calc(5px + 5 * (100vw - 320px) / (600 - 320)) calc(8px + 7 * (100vw - 320px) / (600 - 320)) ;
         }
     }
 
@@ -35,6 +38,7 @@
         height: 50px;
         width: 50px;
         margin-right: 20px;
+        fill: #000;
 
         @media screen and (max-width: 1230px) {
             height: calc(30px + 20 * (100vw - 600px) / (1230 - 600));

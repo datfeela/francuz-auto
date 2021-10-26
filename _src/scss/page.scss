@@ -36,7 +36,7 @@ body {
     font-weight: 700;
     line-height: 120%;
 
-    @media screen and (max-width: 900px) {
-        font-size: calc(24px + 16 * (100vw - 320px) / (900 - 320));
+    @media screen and (max-width: 1230px) {
+        font-size: calc(20px + 20 * (100vw - 320px) / (1230 - 320));
     }
 }
