@@ -91,10 +91,9 @@ headerObserver.observe(header);
 
 
 ;
-
 document.addEventListener("DOMContentLoaded", (event) => {
     const swiperMain = new Swiper('.slider-main__body', {
-        speed: 2000,
+        speed: 800,
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
@@ -107,14 +106,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
             delay: 6000,
             waitForTransition: true
         },
+        breakpoints: {
+            600: {
+                speed: 1200,
+            },
+            900: {
+                speed: 1600,
+            }
+        }
     });
 });;
-
 document.addEventListener("DOMContentLoaded", (event) => {
     const swiperMain = new Swiper('.bestsellers__body', {
         speed: 400,
-        slidesPerView: 6,
-        spaceBetween: 30,
+        slidesPerView: 1,
+        spaceBetween: 40,
         loop: false,
         navigation: {
             nextEl: '.controls-bestsellers__button_prev',
@@ -124,5 +130,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
         //     delay: 6000,
         //     waitForTransition: true
         // },
+
+        breakpoints: {
+            525: {
+                slidesPerView: 2
+            },
+            735: {
+                slidesPerView: 3
+            },
+            950: {
+                slidesPerView: 4
+            },
+            1150: {
+                slidesPerView: 5
+            },
+
+        }
     });
 });;

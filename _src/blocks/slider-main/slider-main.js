@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", (event) => {
     const swiperMain = new Swiper('.slider-main__body', {
-        speed: 2000,
+        speed: 800,
         slidesPerView: 1,
         spaceBetween: 20,
         loop: true,
@@ -13,5 +13,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
             delay: 6000,
             waitForTransition: true
         },
+        breakpoints: {
+            600: {
+                speed: 1200,
+            },
+            900: {
+                speed: 1600,
+            }
+        }
     });
 });

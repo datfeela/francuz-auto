@@ -17,6 +17,7 @@
 @import "../blocks/advantages/advantages.scss";
 @import "../blocks/popular/popular.scss";
 @import "../blocks/bestsellers/bestsellers.scss";
+@import "../blocks/map-main/map-main.scss";
 
 //footer
 @import "../blocks/footer/footer.scss";
@@ -25,8 +26,6 @@
 @import "dark-theme.scss";
 
 .main {
-    height: 2000px;
-
     margin-top: 91px;
 
     @media screen and (min-width: 721px) and (max-width: 1230px) {
@@ -64,5 +63,10 @@
     // .main__bestsellers
 
     &__bestsellers {
+    }
+
+    // .main__map
+
+    &__map {
     }
 }
