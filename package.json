@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "index.html",
-    "homepage": "https://datfeela.github.io/funiro/",
+    "homepage": "https://datfeela.github.io/francuz-auto/",
     "scripts": {
         "deploy": "gulp build && gh-pages -d dist"
     },

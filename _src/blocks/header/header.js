@@ -37,9 +37,9 @@ headerCatalog.addEventListener('mouseover', (event) => {
             if (targetElement.closest('.catalog__item') != elem && elem.classList.contains('_hover')) {
                 removeHoverCatalog(elem);
             }
-        })
+        });
     }
-})
+});
 
 //снимаю лишние ховеры при скрытии
 function removeHoverCatalog(elem) {
@@ -50,7 +50,7 @@ function removeHoverCatalog(elem) {
                 removeHoverCatalog(elemChild);
                 elemChild.classList.remove('_hover');
             }
-        })
+        });
     }
 }
 
@@ -61,7 +61,7 @@ headerSearch.addEventListener('click', (event) => {
         headerSearchLowres.classList.toggle('_active');
         headerSearchForm.classList.toggle('_active');
     }
-})
+});
 
 //закрываю поиск при нажатии вне кнопки/поля
 document.addEventListener('click', (event) => {
@@ -72,7 +72,7 @@ document.addEventListener('click', (event) => {
             headerSearchForm.classList.remove('_active');
         }
     }
-})
+});
 
 //---//
 //observer за шапкой
@@ -86,7 +86,4 @@ const callback = function (entries, observer) {
 };
 
 const headerObserver = new IntersectionObserver(callback);
-headerObserver.observe(header);
-
-
-
+headerObserver.observe(header)

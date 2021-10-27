@@ -37,9 +37,9 @@ headerCatalog.addEventListener('mouseover', (event) => {
             if (targetElement.closest('.catalog__item') != elem && elem.classList.contains('_hover')) {
                 removeHoverCatalog(elem);
             }
-        })
+        });
     }
-})
+});
 
 //снимаю лишние ховеры при скрытии
 function removeHoverCatalog(elem) {
@@ -50,7 +50,7 @@ function removeHoverCatalog(elem) {
                 removeHoverCatalog(elemChild);
                 elemChild.classList.remove('_hover');
             }
-        })
+        });
     }
 }
 
@@ -61,7 +61,7 @@ headerSearch.addEventListener('click', (event) => {
         headerSearchLowres.classList.toggle('_active');
         headerSearchForm.classList.toggle('_active');
     }
-})
+});
 
 //закрываю поиск при нажатии вне кнопки/поля
 document.addEventListener('click', (event) => {
@@ -72,7 +72,7 @@ document.addEventListener('click', (event) => {
             headerSearchForm.classList.remove('_active');
         }
     }
-})
+});
 
 //---//
 //observer за шапкой
@@ -88,9 +88,6 @@ const callback = function (entries, observer) {
 const headerObserver = new IntersectionObserver(callback);
 headerObserver.observe(header);
 
-
-
-;
 document.addEventListener("DOMContentLoaded", (event) => {
     const swiperMain = new Swiper('.slider-main__body', {
         speed: 800,
@@ -148,3 +145,36 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 });;
+
+//спойлеры на <= 560px
+document.addEventListener("DOMContentLoaded", (event) => {
+    $(".title-footer").click(function () {
+        if (document.documentElement.clientWidth <= 560) {
+            $(this).next().slideToggle();
+            if ($(this).next().hasClass("contacts-footer__wrapper")) {
+                $(this).next().css("display", "flex");
+            }
+            $(this).toggleClass("_active");
+        }
+    });
+});
+
+$(window).resize(function () {
+    //делаю видимыми свернутые спойлеры и убираю их при изменении разрешения
+    if (document.documentElement.clientWidth > 560) {
+        $(".title-footer").next().css("display", "block");
+        if ($(".title-footer").next().hasClass("contacts-footer__wrapper")) {
+            $(".contacts-footer__wrapper").css("display", "flex");
+        }
+        if ($(".title-footer").hasClass("_active")) {
+            $(".title-footer").removeClass("_active");
+        }
+    }
+    if (document.documentElement.clientWidth <= 560) {
+        if (!$(".title-footer").hasClass("_active")) {
+            $(".title-footer").next().css("display", "none");
+        }
+    }
+});
+
+;
