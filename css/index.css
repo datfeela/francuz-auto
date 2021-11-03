@@ -133,11 +133,27 @@ h6 {
   background-color: #f8d5bb;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   color: #3a3a3a;
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  line-height: 125%;
+  line-height: 135%;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .title {
@@ -181,6 +197,20 @@ body {
 
 .button {
   background-color: #ca212c;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #ffc328;
+  -webkit-box-shadow: 5px 10px 30px rgba(51, 51, 51, 0.25);
+  box-shadow: 5px 10px 30px rgba(51, 51, 51, 0.25);
 }
 
 .button__text {
@@ -287,7 +317,8 @@ body {
 }
 
 .contacts-header {
-  font-size: 14px;
+  font-size: 16px;
+  line-height: 150%;
 }
 
 .contacts-header__phone-numbers {
@@ -396,6 +427,10 @@ body {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 200px;
   flex: 0 0 200px;
+}
+
+.search-header__button_search:hover {
+  background-color: #dd0e1c;
 }
 
 .search-header__button_lowres {
@@ -752,6 +787,29 @@ body {
 .advantages__text {
   display: block;
   font-size: 18px;
+}
+
+.vin-request-proposal__body {
+  width: calc(100vw - 30px);
+  max-width: 1230px;
+  margin: 0px auto;
+  padding: 0px 15px 30px 15px;
+  text-align: center;
+}
+
+.vin-request-proposal__title {
+  margin-bottom: 20px;
+}
+
+.vin-request-proposal__text {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.vin-request-proposal__button {
+  font-size: 21px;
+  padding: 15px 30px;
 }
 
 .popular {
@@ -1175,12 +1233,20 @@ body.dark-theme .advantages__content {
 }
 
 @media screen and (max-width: 1230px) {
+  body {
+    font-size: calc(14px + 2 * (100vw - 320px) / 910);
+  }
+
   .title {
     font-size: calc(20px + 20 * (100vw - 320px) / 910);
   }
 
   .button__text {
     font-size: calc(15px + 5 * (100vw - 320px) / 910);
+  }
+
+  .contacts-header {
+    font-size: calc(14px + 2 * (100vw - 320px) / 910);
   }
 
   .logo__icon {
@@ -1235,6 +1301,14 @@ body.dark-theme .advantages__content {
 
   .advantages__text {
     font-size: calc(14px + 4 * (100vw - 600px) / 630);
+  }
+
+  .vin-request-proposal__text {
+    font-size: calc(16px + 4 * (100vw - 320px) / 910);
+  }
+
+  .vin-request-proposal__button {
+    font-size: calc(16px + 5 * (100vw - 320px) / 910);
   }
 
   .category__description {
@@ -1385,6 +1459,10 @@ body.dark-theme .advantages__content {
 }
 
 @media screen and (max-width: 720px) {
+  .button {
+    padding: 10px calc(8px + 5 * (100vw - 320px) / 400);
+  }
+
   .header {
     height: 75px;
   }
@@ -1570,8 +1648,8 @@ body.dark-theme .advantages__content {
   .search-header__input {
     padding: 0px 15px 0px 30px;
     border-radius: 5px 0px 0px 5px;
-    -webkit-box-shadow: 4px 10px 25px rgba(0, 0, 0, 0.3);
-    box-shadow: 4px 10px 25px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 5px 10px 30px rgba(51, 51, 51, 0.3);
+    box-shadow: 5px 10px 30px rgba(51, 51, 51, 0.3);
     font-size: 14px;
   }
 
@@ -1598,6 +1676,10 @@ body.dark-theme .advantages__content {
 
   .brands__image {
     height: calc(50px + 50 * (100vw - 320px) / 400);
+  }
+
+  .vin-request-proposal__button {
+    padding: 15px calc(12px + 8 * (100vw - 320px) / 400);
   }
 
   body.dark-theme .search-header__icon {
