@@ -8,24 +8,23 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <!-- слайдер -->
+        <!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" /> -->
         <!-- основные стили -->
-        <link rel="stylesheet" href="css/search-index.min.css" />
+        <link rel="stylesheet" href="css/catalog-index.min.css" />
         <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
     </head>
 
     <body>
         <!--  class="dark-theme" -->
         @@include('_icons.html',{})
-        <div class="wrapper">
         @@include('blocks/header/_header.html',{})
         <main class="main">
-            @@include('blocks/search-result/_search-result.html',{})
+            <iframe class="main__catalog" id="acat-frame" src="https://feela.acat.online"></iframe>
         </main>
         @@include('blocks/footer/_footer.html',{})
-        </div>
-
         <!-- jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="js/search-index.min.js"></script>
+        <script src="js/catalog-index.min.js"></script>
     </body>
 </html>

@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru">
-@@include('_head.html',{})
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Француз Авто</title>
+    <!-- шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- слайдер -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!-- основные стили -->
+    <link rel="stylesheet" href="css/index.min.css" />
+    <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
+</head>
 
 <body> <!--  class="dark-theme" -->
     @@include('_icons.html',{})
@@ -11,6 +24,7 @@
         @@include('blocks/advantages/_advantages.html',{})
         @@include('blocks/popular/_popular.html',{})
         @@include('blocks/bestsellers/_bestsellers.html',{})
+        @@include('blocks/vin-request-proposal/_vin-request-proposal.html',{})
         @@include('blocks/map-main/_map-main.html',{})
         
     </main>

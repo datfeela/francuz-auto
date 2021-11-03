@@ -1,0 +1,119 @@
+.vin-request-form {
+    // .vin-request-form__body
+
+    &__body {
+        width: calc(100vw - 60px);
+        max-width: $maxContainerWidth;
+        margin: 0 auto;
+        padding: 10px 30px;
+
+        @media screen and (max-width: 1230px) {
+            padding: 10px calc(15px + 15 * (100vw - 720px) / (1230 - 720));
+            width: calc(100vw - (30px + 30 * (100vw - 720px) / (1230 - 720)));
+        }
+
+        @media screen and (max-width: 720px) {
+            padding: 10px 15px;
+            width: calc(100vw - 30px);
+        }
+    }
+
+    // .vin-request-form__title
+
+    &__title {
+        margin-bottom: 20px;
+    }
+
+    // .vin-request-form__form
+
+    &__form {
+    }
+}
+
+.form-vin-request {
+    // .form-vin-request__title
+
+    &__title {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(19px + 3 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    // .form-vin-request__info
+
+    &__info {
+    }
+
+    // .form-vin-request__subtitle
+
+    &__subtitle {
+        font-size: 19px;
+        font-weight: 500;
+        margin-bottom: 5px;
+        color: $greyColor;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(17px + 2 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    // .form-vin-request__text
+
+    &__text {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    // .form-vin-request__input-group
+
+    &__input-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+
+    // .form-vin-request__input
+
+    &__input {
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        border: 1px solid $greyColor;
+        border-radius: 5px;
+
+        // .form-vin-request__input_big
+
+        &_big {
+            width: 100%;
+            resize: none;
+        }
+
+        &::placeholder {
+            font-size: 16px;
+        }
+    }
+
+    // .form-vin-request__button
+
+    &__button{
+        font-size: 16px;
+        display: block;
+        margin: 0px 0px 10px auto;
+        padding: 10px 20px;
+        border-radius: 16px;
+        color: #fff;
+        font-weight: 500;
+        text-align: center;
+
+        @media screen and (max-width: 720px) {
+            padding: 10px calc(8px + 5 * (100vw - 320px) / (720 - 320));
+        }
+
+        @media screen and (max-width: 400px) {
+            margin: 0px 0px 10px 0px;
+        }
+    }
+}

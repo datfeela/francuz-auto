@@ -1,0 +1,259 @@
+.search-result {
+    &._active {
+        .search-result__data {
+            display: block;
+        }
+
+        .search-result__fail {
+            display: none;
+        }
+    }
+
+    // .search-result__body
+
+    &__body {
+        width: 100vw;
+        max-width: $maxContainerWidth;
+        margin: 0px auto;
+        padding: 20px 30px;
+
+        @media screen and (max-width: 1230px) {
+            padding: calc(15px + 5 * (100vw - 720px) / (1230 - 720)) calc(10px + 20 * (100vw - 720px) / (1230 - 720));
+        }
+
+        @media screen and (max-width: 720px) {
+            padding: 15px 10px;
+        }
+    }
+
+    // .search-result__title
+
+    &__title {
+        margin-bottom: 25px;
+        padding: 0px 10px;
+
+        @media screen and (max-width: 1230px) {
+            margin-bottom: calc(10px + 15 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    // .search-result__data
+
+    &__data {
+    }
+
+    // .search-result__fail
+
+    &__fail {
+    }
+}
+.search-data {
+    display: none;
+
+    @media screen and (max-width: 1230px) {
+        font-size: calc(14px + 2 * (100vw - 900px) / (1230 - 900));
+    }
+
+    @media screen and (max-width: 900px) {
+        font-size: 14px;
+    }
+
+    @media screen and (max-width: 600px) {
+        font-size: 12px;
+    }
+
+    // .search-data__row
+
+    &__row {
+        display: grid;
+        grid-template-columns: 1fr 160px 90px 90px;
+        grid-template-areas:
+            "BRAND ARTICLE PRICE QUANTITY"
+            "DESCRIPTION ARTICLE PRICE QUANTITY";
+        padding: 7px 10px;
+        border-top: 1px solid $greyColor;
+
+        @media screen and (max-width: 1230px) {
+            grid-template-columns: 1fr calc(120px + 40 * (100vw - 900px) / (1230 - 900)) 80px 80px;
+        }
+
+        @media screen and (max-width: 900px) {
+            grid-template-columns: 1fr calc(90px + 30 * (100vw - 320px) / (900 - 320)) calc(50px + 30 * (100vw - 320px) / (900 - 320)) 75px;
+        }
+
+        @media screen and (max-width: 600px) {
+            grid-template-columns: 2fr 2fr 1fr 0.8fr;
+            grid-template-areas:
+                "BRAND ARTICLE PRICE QUANTITY"
+                "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION";
+        }
+
+        &:hover {
+            background-color: rgb(231, 231, 231);
+        }
+
+        // .search-data__row_header
+
+        &_header {
+            border: none;
+            margin-bottom: 5px;
+
+            &:hover {
+                background-color: #fff;
+            }
+        }
+    }
+
+    // .search-data__block
+
+    &__block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        // .search-data__block_brand
+
+        &_brand {
+            grid-area: BRAND;
+        }
+
+        // .search-data__block_description
+
+        &_description {
+            grid-area: DESCRIPTION;
+        }
+
+        // .search-data__block_article-number
+
+        &_article-number {
+            grid-area: ARTICLE;
+        }
+
+        // .search-data__block_price
+
+        &_price {
+            grid-area: PRICE;
+        }
+
+        // .search-data__block_quantity
+
+        &_quantity {
+            grid-area: QUANTITY;
+        }
+    }
+
+    // .search-data__title
+
+    &__title {
+        font-size: 19px;
+        font-weight: 500;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(17px + 2 * (100vw - 900px) / (1230 - 900));
+        }
+
+        @media screen and (max-width: 900px) {
+            font-size: 15px;
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 12px;
+        }
+
+        &_brand {
+            align-self: start;
+        }
+    }
+
+    // .search-data__text
+
+    &__text {
+        // .search-data__text_brand
+
+        &_brand {
+            align-self: start;
+            font-size: 17px;
+            font-weight: 500;
+
+            @media screen and (max-width: 1230px) {
+                font-size: calc(15px + 2 * (100vw - 900px) / (1230 - 900));
+            }
+
+            @media screen and (max-width: 900px) {
+                font-size: 15px;
+            }
+        }
+
+        // .search-data__text_description
+
+        &_description {
+            padding-top: 15px;
+            align-self: start;
+        }
+
+        // .search-data__text_article-number
+
+        &_article-number {
+        }
+
+        // .search-data__text_price
+
+        &_price {
+        }
+
+        // .search-data__text_quantity
+
+        &_quantity {
+        }
+    }
+}
+
+.fail-search {
+    // .fail-search__title
+
+    &__title {
+        font-size: 22px;
+        line-height: 150%;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(17px + 5 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    // .fail-search__block
+
+    &__block {
+        margin: 25px 0px;
+        display: flex;
+        align-items: center;
+
+        @media screen and (max-width: 1230px) {
+            margin: calc(10px + 15 * (100vw - 320px) / (1230 - 320)) 0px;
+        }
+    }
+
+    // .fail-search__text
+
+    &__text {
+        flex: 1 1 auto;
+        min-width: 135px;
+        font-size: 20px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(15px + 5 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    // .fail-search__link
+
+    &__link {
+        flex: 0 0 210px;
+        margin: 0 15px;
+
+        @media screen and (max-width: 720px) {
+            flex: 0 0 125px;
+            margin: 0 calc(10px + 5 * (100vw - 320px) / (720 - 320));
+        }
+    }
+}

@@ -15,6 +15,7 @@
 @import "../blocks/brands/brands.scss";
 @import "../blocks/slider-main/slider-main.scss";
 @import "../blocks/advantages/advantages.scss";
+@import "../blocks/vin-request-proposal/vin-request-proposal.scss";
 @import "../blocks/popular/popular.scss";
 @import "../blocks/bestsellers/bestsellers.scss";
 @import "../blocks/map-main/map-main.scss";
@@ -53,6 +54,11 @@
     // .main__advantages
 
     &__advantages {
+    }
+
+    // .main__vin-request-proposal
+
+    &__vin-request-proposal {
     }
 
     // .main__popular

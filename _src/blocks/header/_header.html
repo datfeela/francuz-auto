@@ -26,22 +26,25 @@
                         <use xlink:href="#search"></use>
                     </svg>
                 </button>
-                <form action="#" class="search-header__item">
+                <form action="search.html" class="search-header__item">
                     <svg class="search-header__icon search-header__icon_default">
                         <use xlink:href="#search"></use>
                     </svg>
                     <svg class="search-header__icon search-header__icon_close">
                         <use xlink:href="#close"></use>
                     </svg>
-                    <input type="text" placeholder="Код запчасти или VIN" maxlength="60" autocomplete="off" class="search-header__input" />
-                    <button type="button" class="search-header__button search-header__button_search button">
+                    <input type="text" name="search" placeholder="Код запчасти или производитель" maxlength="60" autocomplete="off" class="search-header__input" />
+                    <button type="submit" class="search-header__button search-header__button_search button">
                         <span class="button__text">Найти</span>
                     </button>
                 </form>
                 <div class="search-header__dropdown catalog">
                     <ul class="catalog__list">
                         <li class="catalog__item">
-                            <a href="search.html" class="catalog__link catalog__link_main">Каталог запчастей</a> <!--!!!-->
+                            <a href="catalog.html" class="catalog__link catalog__link_main">Каталог запчастей</a> <!--!!!-->
+                        </li>
+                        <li class="catalog__item">
+                            <a href="vin-request.html" class="catalog__link catalog__link_main">VIN-запрос</a>
                         </li>
                         <li class="catalog__item catalog__item_level-1">
                             <a href="" class="catalog__link">Lorem, ipsum.</a>

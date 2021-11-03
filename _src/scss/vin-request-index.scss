@@ -12,13 +12,10 @@
 @import "../blocks/header/header.scss";
 
 //main
-@import "../blocks/search-result/search-result.scss";
+@import "../blocks/vin-request-form/vin-requst-form.scss";
 
 //footer
 @import "../blocks/footer/footer.scss";
-
-.body{
-}
 
 .main {
     margin-top: 91px;
@@ -36,8 +33,8 @@
         margin-top: calc(35px + 8 * (100vw - 320px) / (480 - 320));
     }
 
-    // .main__search-result
+    // .main__vin-request-form
 
-    &__search-result {
+    &__vin-request-form {
     }
 }

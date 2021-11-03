@@ -1,0 +1,44 @@
+.vin-request-proposal {
+    // .vin-request-proposal__body
+
+    &__body {
+        width: calc(100vw - 30px);
+        max-width: $maxContainerWidth;
+        margin: 0px auto;
+        padding: 0px 15px 30px 15px;
+        text-align: center;
+    }
+
+    // .vin-request-proposal__title
+
+    &__title {
+        margin-bottom: 20px;
+    }
+
+    // .vin-request-proposal__text
+
+    &__text {
+        font-size: 20px;
+        display: block;
+        margin-bottom: 40px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(16px + 4 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    // .vin-request-proposal__button
+
+    &__button {
+        font-size: 21px;
+        padding: 15px 30px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(16px + 5 * (100vw - 320px) / (1230 - 320));
+        }
+
+        @media screen and (max-width: 720px) {
+            padding: 15px calc(12px + 8 * (100vw - 320px) / (720 - 320));
+        }
+    }
+}
