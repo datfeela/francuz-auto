@@ -16,25 +16,3 @@
 
 //footer
 @import "../blocks/footer/footer.scss";
-
-.main {
-    margin-top: 91px;
-    flex: 1 1 auto;
-
-    @media screen and (min-width: 721px) and (max-width: 1230px) {
-        margin-top: calc(45px + 46 * (100vw - 720px) / (1230 - 720));
-    }
-
-    @media screen and (min-width: 481px) and (max-width: 720px) {
-        margin-top: calc(25px + 30 * (100vw - 480px) / (720 - 480));
-    }
-
-    @media screen and (max-width: 480px) {
-        margin-top: calc(35px + 8 * (100vw - 320px) / (480 - 320));
-    }
-
-    // .main__vin-request-form
-
-    &__vin-request-form {
-    }
-}

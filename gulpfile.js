@@ -29,7 +29,7 @@ const path = {
         js: project_folder + "/js/",
         css: project_folder + "/css/",
         images: project_folder + "/img/",
-        icons: project_folder + "/icons/",
+        // icons: project_folder + "/icons/",
         fonts: project_folder + "/fonts/",
         json: project_folder + "/json/",
     },
@@ -38,7 +38,7 @@ const path = {
         js: [source_folder + "/js/*.js", source_folder + "/js/vendors.js"],
         css: source_folder + "/scss/*index.scss",
         images: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}", // ["!**/favicon.*"]
-        icons: source_folder + "/icons/*.svg",
+        // icons: source_folder + "/icons/*.svg",
         fonts: source_folder + "/fonts/*.ttf",
         json: source_folder + "/json/*.json",
     },
@@ -47,7 +47,7 @@ const path = {
         js: source_folder + "/**/*.js",
         css: source_folder + "/**/*.scss",
         images: source_folder + "/img/**/*.{jpg,png,svg,gif,ico,webp}",
-        icons: source_folder + "/icons/*.svg",
+        // icons: source_folder + "/icons/*.svg",
     },
     clean: "./" + project_folder + "/",
 
@@ -155,10 +155,10 @@ function images() {
 }
 
 
-function icons() {
-    return src(path.src.icons)
-        .pipe(dest(path.build.icons))
-}
+// function icons() {
+//     return src(path.src.icons)
+//         .pipe(dest(path.build.icons))
+// }
 
 function fonts() {
     src(path.src.fonts)
@@ -182,21 +182,21 @@ function watchFiles() {
     gulp.watch([path.watch.css], css);
     gulp.watch([path.watch.js], js);
     gulp.watch([path.watch.images], images);
-    gulp.watch([path.watch.icons], icons);
+    // gulp.watch([path.watch.icons], icons);
 }
 
 function clean() {
     return del(path.clean);
 }
 
-let build = gulp.series(clean, gulp.parallel(html, css, js, images, icons, fonts, json));
+let build = gulp.series(clean, gulp.parallel(html, css, js, images, fonts, json)); //, icons
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.html = html;
 exports.css = css;
 exports.js = js;
 exports.images = images;
-exports.icons = icons;
+// exports.icons = icons;
 exports.fonts = fonts;
 exports.json = json;
 exports.build = build;

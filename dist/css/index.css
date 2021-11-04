@@ -156,6 +156,13 @@ body {
   flex-direction: column;
 }
 
+.main {
+  margin-top: 91px;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+}
+
 .title {
   font-size: 40px;
   font-weight: 700;
@@ -317,7 +324,7 @@ body {
 }
 
 .contacts-header {
-  font-size: 16px;
+  font-size: 16px !important;
   line-height: 150%;
 }
 
@@ -1212,10 +1219,6 @@ body.dark-theme .advantages__content {
   color: #fff;
 }
 
-.main {
-  margin-top: 91px;
-}
-
 @supports (-webkit-appearance:none) {
 
 }
@@ -1866,6 +1869,10 @@ body.dark-theme .advantages__content {
 }
 
 @media screen and (max-width: 480px) {
+  .main {
+    margin-top: calc(35px + 8 * (100vw - 320px) / 160);
+  }
+
   .header {
     height: 10px;
   }
@@ -1895,10 +1902,6 @@ body.dark-theme .advantages__content {
     right: 35px;
   }
 
-  .main {
-    margin-top: calc(35px + 8 * (100vw - 320px) / 160);
-  }
-
 @supports (-webkit-appearance:none) {
 
 }
@@ -1907,6 +1910,30 @@ body.dark-theme .advantages__content {
 @media screen and (max-width: 420px) {
   .advantages__content {
     display: block;
+  }
+
+@supports (-webkit-appearance:none) {
+
+}
+}
+
+@media screen and (min-width: 721px) and (max-width: 1230px) {
+  .main {
+    margin-top: calc(45px + 46 * (100vw - 720px) / 510);
+  }
+
+  .brands__image {
+    height: calc(100px + 20 * (100vw - 720px) / 510);
+  }
+
+@supports (-webkit-appearance:none) {
+
+}
+}
+
+@media screen and (min-width: 481px) and (max-width: 720px) {
+  .main {
+    margin-top: calc(25px + 30 * (100vw - 480px) / 240);
   }
 
 @supports (-webkit-appearance:none) {
@@ -1923,30 +1950,6 @@ body.dark-theme .advantages__content {
 
   .header._scroll .search-header__item {
     width: calc(320px + 480 * (100vw - 720px) / 630);
-  }
-
-@supports (-webkit-appearance:none) {
-
-}
-}
-
-@media screen and (min-width: 721px) and (max-width: 1230px) {
-  .brands__image {
-    height: calc(100px + 20 * (100vw - 720px) / 510);
-  }
-
-  .main {
-    margin-top: calc(45px + 46 * (100vw - 720px) / 510);
-  }
-
-@supports (-webkit-appearance:none) {
-
-}
-}
-
-@media screen and (min-width: 481px) and (max-width: 720px) {
-  .main {
-    margin-top: calc(25px + 30 * (100vw - 480px) / 240);
   }
 
 @supports (-webkit-appearance:none) {
