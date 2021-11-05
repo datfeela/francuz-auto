@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     //functions
     async function getData() {
-        const file = "https://datfeela.github.io/francuz-auto/json/data.json";
+        const file = "json/data.json";
         let response = await fetch(file, { method: "GET" });
         if (response.ok) {
             let result = await response.json();

@@ -1,7 +1,7 @@
 <section class="main__vin-request-form vin-request-form">
     <div class="vin-request-form__body">
         <h1 class="vin-request-form__title title">Сделать запрос по VIN</h1>
-        <form class="vin-request-form__form form-vin-request">
+        <form class="vin-request-form__form form-vin-request" method="POST" action="php/vin-request-form.php">
             <h2 class="form-vin-request__title">Информация об автомобиле</h2>
             <div class="form-vin-request__info">
                 <h3 class="form-vin-request__subtitle">Что такое VIN?</h3>
@@ -30,14 +30,8 @@
                 placeholder="Опишите необходимые запчасти: Артикул, бренд, название, количество"
                 rows="5"
                 required
-            ></textarea>
-            <!-- <input
-                class="form-vin-request__input form-vin-request__input_big"
-                type="text"
-                name="spare-parts"
-                placeholder="Опишите необходимые запчасти: Артикул, бренд, название, количество"
-                autocomplete="off"
-            /> -->
+            >
+            </textarea>
             <h2 class="form-vin-request__title">Контактные данные</h2>
             <div class="form-vin-request__input-group">
                 <input class="form-vin-request__input" type="text" name="name" placeholder="Ваше имя *" autocomplete="off" required />
@@ -52,7 +46,7 @@
                     oninvalid="setCustomValidity('Пожалуйста, введите номер телефона в формате +7900-000-00-00')"
                     oninput="setCustomValidity('')"
                 />
-                <input class="form-vin-request__input" type="email" name="e-mail" placeholder="E-mail" autocomplete="off"/>
+                <input class="form-vin-request__input" type="text" name="e-mail" placeholder="E-mail" autocomplete="off" />
             </div>
             <button class="form-vin-request__button form-vin-request__button_submit button" type="submit">Отправить запрос</button>
         </form>

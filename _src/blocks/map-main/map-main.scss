@@ -20,6 +20,10 @@
         width: 100%;
         box-shadow: 0px 10px 41px 7px #0000002f;
 
+        @media screen and (max-width: 1230px) {
+        margin: calc(15px + 20 * (100vw - 320px) / (900 - 320)) 0px;
+        }
+
         & > ymaps {
             @media screen and (max-width: 900px) {
                 height: 400px !important;

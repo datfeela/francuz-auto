@@ -3,6 +3,10 @@
     max-width: calc($maxContainerWidth - 30px);
     background-color: $yellowColor;
 
+    @media screen and (max-width: 1230px) {
+        margin: calc(20px + 25 * (100vw - 320px) / (1230 - 320)) auto;
+    }
+
     // .bestsellers__title
 
     &__title {

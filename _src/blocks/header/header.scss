@@ -1,12 +1,29 @@
 .header {
-    height: 250px;
+    height: 310px;
+    transition: all 0.4s ease 0s;
 
     @media screen and (max-width: 720px) {
-        height: 75px;
+        height: 115px;
     }
 
     @media screen and (max-width: 480px) {
-        height: 10px;
+        height: 60px;
+    }
+
+    &._no-announcement {
+        height: 250px;
+
+        @media screen and (max-width: 720px) {
+            height: 70px;
+        }
+
+        @media screen and (max-width: 480px) {
+            height: 10px;
+        }
+
+        .header__contacts {
+            top: 15px;
+        }
     }
 
     &._scroll {
@@ -18,6 +35,10 @@
                 &:hover {
                     background-color: $yellowColor;
                 }
+            }
+
+            &__announcement {
+                display: none;
             }
 
             &__body {
@@ -124,16 +145,14 @@
 
     &__contacts {
         position: absolute;
-        padding: 15px 32px 0px 20px;
-        width: 100vw;
-        color: $greyColor;
+        top: 75px;
+        left: 32px;
+        transition: all 0.4s ease 0s;
+    }
 
-        display: flex;
-        justify-content: space-between;
+    // .header__announcement
 
-        @media screen and (max-width: 720px) {
-            display: none;
-        }
+    &__announcement {
     }
 
     // .header__body
@@ -163,17 +182,105 @@
     }
 }
 
-.contacts-header {
-    font-size: 16px !important;
-    line-height: 150%;
+.header {
+    // .header__announcement
 
-    @media screen and (max-width: 1230px) {
-        font-size: calc(14px + 2 * (100vw - 320px) / (1230 - 320));
+    &__announcement {
+    }
+}
+
+.announcement-header {
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $redColor;
+    transition: all 0.4s ease 0s;
+
+    @media screen and (max-width: 720px) {
+        height: 40px;
     }
 
-    // .contacts-header__adress
+    @media screen and (max-width: 480px) {
+        height: 50px;
+        padding-left: 10px;
+        justify-content: start;
+    }
 
-    &__adress {
+    &._hidden {
+        transform: translateY(-35px);
+        height: 0px;
+    }
+
+    // .announcement-header__container
+
+    &__container {
+        color: #fff;
+        font-size: 20px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(14px + 6 * (100vw - 480px) / (1230 - 480));
+        }
+    }
+
+    // .announcement-header__title
+
+    &__title {
+        @media screen and (max-width: 480px) {
+            display: block;
+        }
+    }
+
+    // .announcement-header__text
+
+    &__text {
+    }
+
+    // .announcement-header__close-button
+
+    &__close-button {
+        position: absolute;
+        right: 10px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    // .announcement-header__icon
+
+    &__icon {
+        height: 35px;
+        width: 35px;
+        fill: #fff;
+
+        @media screen and (max-width: 720px) {
+            height: 25px;
+            width: 25px;
+        }
+    }
+}
+
+.contacts-header {
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 150%;
+    color: $greyColor;
+    width: calc(100vw - 64px);
+    display: flex;
+    justify-content: space-between;
+
+    @media screen and (max-width: 1230px) {
+        font-size: calc(14px + 3 * (100vw - 320px) / (1230 - 320));
+    }
+
+    @media screen and (max-width: 720px) {
+        display: none;
+    }
+
+    // .contacts-header__working-hours
+
+    &__working-hours {
     }
 
     // .contacts-header__phone-numbers
@@ -369,7 +476,7 @@
                 }
             }
 
-            &:hover{
+            &:hover {
                 background-color: #dd0e1c;
             }
         }
@@ -498,7 +605,7 @@
         @media screen and (max-width: 720px) {
             padding: 0px 15px 0px 30px;
             border-radius: 5px 0px 0px 5px;
-            box-shadow: 5px 10px 30px rgba(51,51,51,.3);
+            box-shadow: 5px 10px 30px rgba(51, 51, 51, 0.3);
             font-size: 14px;
         }
 

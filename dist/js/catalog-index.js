@@ -21,6 +21,16 @@ headerObserver.observe(header)
 
 //------------------------------------//
 
+//закрываю announcement по нажатию на svg
+
+const closeButton = document.querySelector('.announcement-header__close-button');
+closeButton.addEventListener('click', (event) => {
+    console.log(closeButton.parentNode);
+    closeButton.parentNode.classList.add('_hidden');
+    header.classList.add('_no-announcement');
+})
+
+
 //открываю/закрываю меню по нажатию на бургер
 headerBurger.addEventListener('click', (event) => {
     Array.from(headerCatalog.firstElementChild.children).forEach((elem) => {
@@ -57,7 +67,7 @@ headerCatalog.addEventListener('mouseover', (event) => {
     }
 });
 
-//снимаю лишние ховеры при скрытии
+//снимаю ._hover с каталог итемов при скрытии
 function removeHoverCatalog(elem) {
     elem.classList.remove('_hover');
     if (elem.lastElementChild.classList.contains('catalog__sublist')) {
