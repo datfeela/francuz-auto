@@ -1,18 +1,28 @@
 body.dark-theme {
     background-color: #30384f;
+    color: #fff;
+
+    .title {
+        color: #fff;
+    }
+
+    h3 {
+        color: #fff !important;
+    }
+
     .header {
         &._scroll {
             .header__container {
-                background-color: rgba($color: #30384f, $alpha: 0.92);
+                background-color: rgba($color: #2d3449, $alpha: 0.92);
 
                 &:hover {
-                    background-color: $darkBlueColor;
+                    background-color: #2d3449;
                 }
             }
         }
 
         &__container {
-            background-color: $darkBlueColor;
+            background-color: #2d3449;
         }
 
         &__contacts {
@@ -29,7 +39,7 @@ body.dark-theme {
             &__icon {
                 fill: #fff;
 
-                &_close{
+                &_close {
                     fill: $greyColor;
                 }
             }
@@ -49,6 +59,32 @@ body.dark-theme {
                     background-color: #fff;
                 }
             }
+
+            &__dropdown {
+                background-color: #2b2b31;
+                color: #fff;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        &__icon {
+            fill: #fff;
+        }
+
+        &__list {
+            background-color: #2b2b31;
+        }
+
+        &__item {
+            background-color: #2b2b31;
+            &._hover {
+                background-color: $redColor;
+            }
+        }
+
+        &__link {
+            color: #fff !important;
         }
     }
 
@@ -69,12 +105,77 @@ body.dark-theme {
     .advantages {
         background-color: $darkBlueColor;
 
-        &__icon{
+        &__icon {
             fill: #fff;
         }
 
-        &__content{
+        &__content {
             color: #fff;
         }
+    }
+
+    //popular
+
+    .popular {
+        &__title {
+            background-color: $redColor;
+        }
+
+        &__body::after {
+            background-color: $redColor;
+        }
+    }
+
+    .category {
+        &__image {
+            opacity: 1;
+        }
+
+        &__description {
+            color: #fff;
+        }
+    }
+
+    //bestsellers
+
+    .bestsellers {
+        background-color: $darkBlueColor;
+    }
+
+    .product {
+        &__info {
+            color: #fff;
+        }
+    }
+
+    .controls-bestsellers__icon {
+        stroke: #fff;
+    }
+
+    //vin-request
+
+    .vin-request-proposal__text {
+        color: #fff;
+    }
+
+    //search-results
+
+    .search-data__row:hover {
+        background-color: #2b2b31;
+    }
+
+    //footer
+
+    footer {
+        background-color: #2b2b31; //#242429;
+        color: #fff;
+
+        & a {
+            color: #fff;
+        }
+    }
+
+    .contacts-footer__icon {
+        fill: #fff;
     }
 }

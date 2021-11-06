@@ -1,6 +1,7 @@
-const header = document.querySelector(".header"),
+const body = document.querySelector('body');
+header = document.querySelector(".header"),
     headerBurger = document.querySelector('.search-header__burger'),
-    headerCatalog = document.querySelector('.search-header__dropdown'),
+    headerDropdownMenu = document.querySelector('.search-header__dropdown'),
     headerSearch = document.querySelector('.search-header'),
     headerSearchLowres = document.querySelector('.search-header__button_lowres'),
     headerSearchForm = document.querySelector('.search-header__item'),
@@ -21,7 +22,7 @@ headerObserver.observe(header)
 
 //------------------------------------//
 
-//закрываю announcement по нажатию на svg
+//закрываю announcement по нажатию на кнопку
 
 const closeButton = document.querySelector('.announcement-header__close-button');
 closeButton.addEventListener('click', (event) => {
@@ -30,50 +31,69 @@ closeButton.addEventListener('click', (event) => {
     header.classList.add('_no-announcement');
 })
 
+//---------------------BURGER-DROPDOWN---------------------------//
 
 //открываю/закрываю меню по нажатию на бургер
 headerBurger.addEventListener('click', (event) => {
-    Array.from(headerCatalog.firstElementChild.children).forEach((elem) => {
-        if (elem.classList.contains('_hover')) removeHoverCatalog(elem);
+    Array.from(headerDropdownMenu.querySelector('.dropdown-menu__list').children).forEach((elem) => {
+        if (elem.classList.contains('_hover')) removeHoverDropdownMenu(elem);
     })
     headerBurger.classList.toggle('_active');
+    if (document.documentElement.clientWidth <= 720) {
+        body.classList.add('_no-scroll');
+    }
 })
 
 //закрываю меню при нажатии вне меню/бургера
 document.addEventListener('click', (event) => {
     const targetElement = event.target;
-    if (!targetElement.closest('.search-header__burger') && !targetElement.closest('.search-header__dropdown')) {
+    if ((!targetElement.closest('.search-header__burger') && !targetElement.closest('.search-header__dropdown')) || targetElement.closest('.dropdown-menu__free-space-cover') || targetElement.closest('.dropdown-menu__close-button')) {
         if (headerBurger.classList.contains('_active')) {
-            Array.from(headerCatalog.firstElementChild.children).forEach((elem) => {
-                if (elem.classList.contains('_hover')) removeHoverCatalog(elem);
+            Array.from(headerDropdownMenu.querySelector('.dropdown-menu__list').children).forEach((elem) => {
+                if (elem.classList.contains('_hover')) removeHoverDropdownMenu(elem);
             })
             headerBurger.classList.remove('_active');
+            if (document.documentElement.clientWidth <= 720) {
+                body.classList.remove('_no-scroll');
+            }
         }
     }
 })
 
+// if (document.documentElement.clientWidth <= 720) {
+//     body.classList.remove('_no-scroll');
+// }
+
+//снимаю с body no-scroll при изменении разрешения на > 720
+window.addEventListener('resize', (event) => {
+    if (document.documentElement.clientWidth > 720) {
+        if (body.classList.contains('_no-scroll')) body.classList.remove('_no-scroll');
+    }
+})
+
+
 //вешаю на каталог итемы ._hover
-headerCatalog.addEventListener('mouseover', (event) => {
+headerDropdownMenu.addEventListener('mouseover', (event) => {
     const targetElement = event.target;
     let hoverElemSiblings;
-    if (targetElement.closest('.catalog__item')) {
-        targetElement.closest('.catalog__item').classList.add('_hover');
-        hoverElemSiblings = Array.from(targetElement.closest('.catalog__item').parentNode.children);
+    if (targetElement.closest('.dropdown-menu__item')) {
+        targetElement.closest('.dropdown-menu__item').classList.add('_hover');
+        hoverElemSiblings = Array.from(targetElement.closest('.dropdown-menu__item').parentNode.children);
         hoverElemSiblings.forEach((elem) => {
-            if (targetElement.closest('.catalog__item') != elem && elem.classList.contains('_hover')) {
-                removeHoverCatalog(elem);
+            if (targetElement.closest('.dropdown-menu__item') != elem && elem.classList.contains('_hover')) {
+                removeHoverDropdownMenu(elem);
             }
         });
     }
 });
 
 //снимаю ._hover с каталог итемов при скрытии
-function removeHoverCatalog(elem) {
+function removeHoverDropdownMenu(elem) {
     elem.classList.remove('_hover');
-    if (elem.lastElementChild.classList.contains('catalog__sublist')) {
+    if (elem.lastElementChild.classList.contains('dropdown-menu__sublist')) {
         Array.from(elem.lastElementChild.children).forEach((elemChild) => {
             if (elemChild.classList.contains('_hover')) {
-                removeHoverCatalog(elemChild);
+                removeHoverDropdownMenu(elemChild);
                 elemChild.classList.remove('_hover');
             }
         });
