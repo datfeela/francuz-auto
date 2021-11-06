@@ -174,63 +174,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 })
 ;
 document.addEventListener("DOMContentLoaded", (event) => {
-    const swiperMain = new Swiper('.slider-main__body', {
-        speed: 800,
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        grabCursor: true,
-        navigation: {
-            nextEl: '.controls-slider-main__button_prev',
-            prevEl: '.controls-slider-main__button_next',
-        },
-        autoplay: {
-            delay: 6000,
-            waitForTransition: true
-        },
-        breakpoints: {
-            600: {
-                speed: 1200,
-            },
-            900: {
-                speed: 1600,
-            }
-        }
-    });
-});;
-document.addEventListener("DOMContentLoaded", (event) => {
-    const swiperMain = new Swiper('.bestsellers__body', {
-        speed: 400,
-        slidesPerView: 1,
-        spaceBetween: 40,
-        loop: false,
-        navigation: {
-            nextEl: '.controls-bestsellers__button_prev',
-            prevEl: '.controls-bestsellers__button_next',
-        },
-        // autoplay: {
-        //     delay: 6000,
-        //     waitForTransition: true
-        // },
-
-        breakpoints: {
-            525: {
-                slidesPerView: 2
-            },
-            735: {
-                slidesPerView: 3
-            },
-            950: {
-                slidesPerView: 4
-            },
-            1150: {
-                slidesPerView: 5
-            },
-
-        }
-    });
-});;
-document.addEventListener("DOMContentLoaded", (event) => {
     //спойлеры на <= 560px
     document.addEventListener("DOMContentLoaded", (event) => {
         $(".title-footer").click(function () {

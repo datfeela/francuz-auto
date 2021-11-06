@@ -730,6 +730,73 @@ body {
   z-index: 1;
 }
 
+.theme-changer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.theme-changer._hover .theme-changer__button._active::after {
+  background-color: #575757;
+}
+
+.theme-changer__text {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.theme-changer__button {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-left: 10px;
+  border-radius: 12px;
+  background: #e7e7e7;
+  cursor: pointer;
+  position: relative;
+  top: 0px;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  z-index: 200;
+}
+
+.theme-changer__button._active {
+  background: #fff;
+  -webkit-box-shadow: inset 0 0 10px 0 #999999;
+  box-shadow: inset 0 0 10px 0 #999999;
+}
+
+.theme-changer__button._active::after {
+  left: 21px;
+  background-color: #ca212c;
+  -webkit-box-shadow: 0 0 10px 0 #616161;
+  box-shadow: 0 0 10px 0 #616161;
+}
+
+.theme-changer__button::after {
+  content: "";
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-transition: all 0.4s ease 0s;
+  -o-transition: all 0.4s ease 0s;
+  transition: all 0.4s ease 0s;
+  -webkit-box-shadow: 0 0 10px 0 #999999;
+  box-shadow: 0 0 10px 0 #999999;
+  position: absolute;
+  z-index: 201;
+  top: 0;
+  left: 0;
+}
+
 .contacts-dropdown {
   display: none;
   padding: 10px 25px;
@@ -806,6 +873,7 @@ body {
   margin-bottom: 10px;
   border: 1px solid #5f5f5f;
   border-radius: 5px;
+  font-size: 16px;
 }
 
 .form-vin-request__input_big {
@@ -1043,7 +1111,7 @@ body.dark-theme .dropdown-menu__list {
   background-color: #2b2b31;
 }
 
-body.dark-theme .dropdown-menu__item {
+body.dark-theme .dropdown-menu__sublist {
   background-color: #2b2b31;
 }
 
@@ -1087,6 +1155,12 @@ body.dark-theme .category__description {
   color: #fff;
 }
 
+body.dark-theme .category:hover {
+  background-color: #3b446180;
+  -webkit-box-shadow: 15px 15px 30px rgba(25, 28, 39, 0.4);
+  box-shadow: 15px 15px 30px rgba(25, 28, 39, 0.4);
+}
+
 body.dark-theme .bestsellers {
   background-color: #30384F;
 }
@@ -1100,6 +1174,11 @@ body.dark-theme .controls-bestsellers__icon {
 }
 
 body.dark-theme .vin-request-proposal__text {
+  color: #fff;
+}
+
+body.dark-theme .form-vin-request__input {
+  background-color: #222224;
   color: #fff;
 }
 

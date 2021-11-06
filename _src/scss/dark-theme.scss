@@ -76,8 +76,11 @@ body.dark-theme {
             background-color: #2b2b31;
         }
 
-        &__item {
+        &__sublist {
             background-color: #2b2b31;
+        }
+
+        &__item {
             &._hover {
                 background-color: $redColor;
             }
@@ -134,6 +137,11 @@ body.dark-theme {
         &__description {
             color: #fff;
         }
+
+        &:hover {
+            background-color: #3b446180;
+            box-shadow: 15px 15px 30px rgba($color: #191c2780, $alpha: 0.4);
+        }
     }
 
     //bestsellers
@@ -155,6 +163,11 @@ body.dark-theme {
     //vin-request
 
     .vin-request-proposal__text {
+        color: #fff;
+    }
+
+    .form-vin-request__input {
+        background-color: #222224;
         color: #fff;
     }
 
