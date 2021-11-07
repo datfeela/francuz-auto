@@ -66,7 +66,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const closeButton = document.querySelector('.announcement-header__close-button');
     closeButton.addEventListener('click', (event) => {
-        console.log(closeButton.parentNode);
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
     })
@@ -163,28 +162,27 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //dark-theme
     themeChangerButton.addEventListener('click', (event) => {
         if (body.classList.contains('dark-theme')) {
-            setCookie('theme', 'bright', { secure: true, expires:'Tue, 19 Jan 2038 03: 14: 07 GMT'});
+            setCookie('theme', 'bright', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
         }
         else {
-            setCookie('theme', 'dark', { secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+            setCookie('theme', 'dark', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
         }
         themeChangerButton.classList.toggle('_active');
         body.classList.toggle('dark-theme');
     })
 })
 ;
+
+//спойлеры на <= 560px
 document.addEventListener("DOMContentLoaded", (event) => {
-    //спойлеры на <= 560px
-    document.addEventListener("DOMContentLoaded", (event) => {
-        $(".title-footer").click(function () {
-            if (document.documentElement.clientWidth <= 560) {
-                $(this).next().slideToggle();
-                if ($(this).next().hasClass("contacts-footer__wrapper")) {
-                    $(this).next().css("display", "flex");
-                }
-                $(this).toggleClass("_active");
+    $(".title-footer").click(function () {
+        if (document.documentElement.clientWidth <= 560) {
+            $(this).next().slideToggle();
+            if ($(this).next().hasClass("contacts-footer__wrapper")) {
+                $(this).next().css("display", "flex");
             }
-        });
+            $(this).toggleClass("_active");
+        }
     });
 
     $(window).resize(function () {
@@ -205,4 +203,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 });
+
+
 ;

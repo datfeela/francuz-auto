@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         let productFound = false;
 
         data.forEach(element => {
-            if ((element.col1 != '') && (element.col2 == searchRequest || element.col2 == searchRequest || element.col3.includes(searchRequest))) {
+            if ((element.col1 != '') && (searchRequest.length > 5) && (element.col2 == searchRequest || element.col2 == searchRequest || element.col3.includes(searchRequest))) {
                 productFound = true;
                 const productBrand = element.col1;
                 const productName = element.col4;

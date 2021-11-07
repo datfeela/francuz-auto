@@ -799,9 +799,10 @@ body {
 
 .contacts-dropdown {
   display: none;
-  padding: 10px 25px;
+  padding: 10px 25px 50px 25px;
   font-size: 17px;
   line-height: 130%;
+  text-align: center;
 }
 
 .contacts-dropdown::before {
@@ -1816,7 +1817,7 @@ body.dark-theme .contacts-footer__icon {
   }
 
   body.dark-theme .page-slider-main__content {
-    background-color: rgba(48, 56, 79, 0.8);
+    background-color: rgba(43, 43, 49, 0.5);
   }
 
 @supports (-webkit-appearance:none) {

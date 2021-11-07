@@ -890,9 +890,10 @@
 
 .contacts-dropdown {
     display: none;
-    padding: 10px 25px;
+    padding: 10px 25px 50px 25px;
     font-size: 17px;
     line-height: 130%;
+    text-align: center;
 
     &::before {
         content: "";

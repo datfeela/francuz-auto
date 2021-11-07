@@ -1,15 +1,14 @@
+
+//спойлеры на <= 560px
 document.addEventListener("DOMContentLoaded", (event) => {
-    //спойлеры на <= 560px
-    document.addEventListener("DOMContentLoaded", (event) => {
-        $(".title-footer").click(function () {
-            if (document.documentElement.clientWidth <= 560) {
-                $(this).next().slideToggle();
-                if ($(this).next().hasClass("contacts-footer__wrapper")) {
-                    $(this).next().css("display", "flex");
-                }
-                $(this).toggleClass("_active");
+    $(".title-footer").click(function () {
+        if (document.documentElement.clientWidth <= 560) {
+            $(this).next().slideToggle();
+            if ($(this).next().hasClass("contacts-footer__wrapper")) {
+                $(this).next().css("display", "flex");
             }
-        });
+            $(this).toggleClass("_active");
+        }
     });
 
     $(window).resize(function () {
@@ -30,3 +29,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 });
+
+

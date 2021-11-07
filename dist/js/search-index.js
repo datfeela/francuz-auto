@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelector('.theme-changer__button').classList.add('_active');
     }
 });;
+
 document.addEventListener("DOMContentLoaded", (event) => {
     const body = document.querySelector('body');
     header = document.querySelector(".header"),
@@ -66,7 +67,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const closeButton = document.querySelector('.announcement-header__close-button');
     closeButton.addEventListener('click', (event) => {
-        console.log(closeButton.parentNode);
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
     })
@@ -163,16 +163,17 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //dark-theme
     themeChangerButton.addEventListener('click', (event) => {
         if (body.classList.contains('dark-theme')) {
-            setCookie('theme', 'bright', { secure: true, expires:'Tue, 19 Jan 2038 03: 14: 07 GMT'});
+            setCookie('theme', 'bright', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
         }
         else {
-            setCookie('theme', 'dark', { secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+            setCookie('theme', 'dark', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
         }
         themeChangerButton.classList.toggle('_active');
         body.classList.toggle('dark-theme');
     })
 })
 ;
+
 document.addEventListener("DOMContentLoaded", (event) => {
     let searchRequest = location.search.slice(8).toUpperCase();
     const mainBlock = document.querySelector('.main__search-result');
@@ -198,7 +199,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         let productFound = false;
 
         data.forEach(element => {
-            if ((element.col1 != '') && (element.col2 == searchRequest || element.col2 == searchRequest || element.col3.includes(searchRequest))) {
+            if ((element.col1 != '') && (searchRequest.length > 5) && (element.col2 == searchRequest || element.col2 == searchRequest || element.col3.includes(searchRequest))) {
                 productFound = true;
                 const productBrand = element.col1;
                 const productName = element.col4;
@@ -232,18 +233,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
         if (productFound == true) mainBlock.classList.add('_active');
     }
 });
+
+
+//спойлеры на <= 560px
 document.addEventListener("DOMContentLoaded", (event) => {
-    //спойлеры на <= 560px
-    document.addEventListener("DOMContentLoaded", (event) => {
-        $(".title-footer").click(function () {
-            if (document.documentElement.clientWidth <= 560) {
-                $(this).next().slideToggle();
-                if ($(this).next().hasClass("contacts-footer__wrapper")) {
-                    $(this).next().css("display", "flex");
-                }
-                $(this).toggleClass("_active");
+    $(".title-footer").click(function () {
+        if (document.documentElement.clientWidth <= 560) {
+            $(this).next().slideToggle();
+            if ($(this).next().hasClass("contacts-footer__wrapper")) {
+                $(this).next().css("display", "flex");
             }
-        });
+            $(this).toggleClass("_active");
+        }
     });
 
     $(window).resize(function () {
@@ -264,4 +265,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 });
+
+
 ;

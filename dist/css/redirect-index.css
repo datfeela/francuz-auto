@@ -829,88 +829,14 @@ body {
   margin-bottom: 5px;
 }
 
-.vin-request-form__body {
-  width: calc(100vw - 60px);
-  max-width: 1230px;
-  margin: 0 auto;
-  padding: 10px 30px;
-}
-
-.vin-request-form__title {
-  margin-bottom: 20px;
-}
-
-.form-vin-request__title {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-
-.form-vin-request__subtitle {
-  font-size: 19px;
-  font-weight: 500;
-  margin-bottom: 5px;
-  color: #5f5f5f;
-}
-
-.form-vin-request__text {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.form-vin-request__input-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
-
-.form-vin-request__input {
-  padding: 10px 20px;
-  margin-bottom: 10px;
-  border: 1px solid #5f5f5f;
-  border-radius: 5px;
-  font-size: 16px;
-}
-
-.form-vin-request__input_big {
-  width: 100%;
-  resize: none;
-}
-
-.form-vin-request__input::-webkit-input-placeholder {
-  font-size: 16px;
-}
-
-.form-vin-request__input::-moz-placeholder {
-  font-size: 16px;
-}
-
-.form-vin-request__input:-ms-input-placeholder {
-  font-size: 16px;
-}
-
-.form-vin-request__input::-ms-input-placeholder {
-  font-size: 16px;
-}
-
-.form-vin-request__input::placeholder {
-  font-size: 16px;
-}
-
-.form-vin-request__button {
-  font-size: 16px;
-  display: block;
-  margin: 0px 0px 10px auto;
-  padding: 10px 20px;
-  border-radius: 16px;
-  color: #fff;
-  font-weight: 500;
+.main {
+  font-size: 20px;
   text-align: center;
+  padding-top: 20px;
+}
+
+.main__info {
+  display: none;
 }
 
 .footer {
@@ -1256,17 +1182,8 @@ body.dark-theme .contacts-footer__icon {
     width: calc(350px + 450 * (100vw - 320px) / 910);
   }
 
-  .vin-request-form__body {
-    padding: 10px calc(15px + 15 * (100vw - 720px) / 510);
-    width: calc(100vw - (30px + 30 * (100vw - 720px) / 510));
-  }
-
-  .form-vin-request__title {
-    font-size: calc(19px + 3 * (100vw - 320px) / 910);
-  }
-
-  .form-vin-request__subtitle {
-    font-size: calc(17px + 2 * (100vw - 320px) / 910);
+  .main {
+    font-size: calc(16px + 4 * (100vw - 320px) / 910);
   }
 
   .footer {
@@ -1616,15 +1533,6 @@ body.dark-theme .contacts-footer__icon {
     display: block;
   }
 
-  .vin-request-form__body {
-    padding: 10px 15px;
-    width: calc(100vw - 30px);
-  }
-
-  .form-vin-request__button {
-    padding: 10px calc(8px + 5 * (100vw - 320px) / 400);
-  }
-
   body.dark-theme .search-header__icon {
     fill: #fff;
   }
@@ -1787,16 +1695,6 @@ body.dark-theme .contacts-footer__icon {
 
   .dropdown-menu__list {
     height: calc(100vh - 50px);
-  }
-
-@supports (-webkit-appearance:none) {
-
-}
-}
-
-@media screen and (max-width: 400px) {
-  .form-vin-request__button {
-    margin: 0px 0px 10px 0px;
   }
 
 @supports (-webkit-appearance:none) {
