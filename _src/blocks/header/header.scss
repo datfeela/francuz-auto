@@ -1,3 +1,86 @@
+body.dark-theme {
+    .header {
+        &._scroll {
+            .header__container {
+                background-color: rgba($color: #2d3449, $alpha: 0.92);
+
+                &:hover {
+                    background-color: #2d3449;
+                }
+            }
+        }
+
+        &__container {
+            background-color: #2d3449;
+        }
+
+        &__contacts {
+            color: #fff;
+        }
+    }
+
+    .logo__text {
+        color: #fff;
+    }
+
+    .search-header {
+        @media screen and (max-width: 720px) {
+            &__icon {
+                fill: #fff;
+
+                &_close {
+                    fill: $greyColor;
+                }
+            }
+
+            &__burger {
+                &._active {
+                    &::before,
+                    &::after,
+                    & span {
+                        background-color: $redColor;
+                    }
+                }
+
+                &::before,
+                &::after,
+                & span {
+                    background-color: #fff;
+                }
+            }
+
+            &__dropdown {
+                background-color: #2b2b31;
+                color: #fff;
+            }
+        }
+    }
+
+    .dropdown-menu {
+        &__icon {
+            fill: #fff;
+        }
+
+        &__list {
+            background-color: #2b2b31;
+        }
+
+        &__sublist {
+            background-color: #2b2b31;
+        }
+
+        &__item {
+            &._hover {
+                background-color: $redColor;
+            }
+        }
+
+        &__link {
+            color: #fff !important;
+        }
+    }
+}
+
 .header {
     height: 310px;
     transition: all 0.4s ease 0s;
@@ -835,8 +918,8 @@
     justify-content: center;
     // .theme-changer__text
 
-    &._hover{
-        .theme-changer__button._active::after{
+    &._hover {
+        .theme-changer__button._active::after {
             background-color: rgb(87, 87, 87);
         }
     }
@@ -890,7 +973,7 @@
 
 .contacts-dropdown {
     display: none;
-    padding: 10px 25px 50px 25px;
+    margin: 10px 25px 100px 25px;
     font-size: 17px;
     line-height: 130%;
     text-align: center;

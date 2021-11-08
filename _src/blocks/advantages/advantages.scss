@@ -1,3 +1,17 @@
+body.dark-theme {
+    .advantages {
+        background-color: $darkBlueColor;
+
+        &__icon {
+            fill: #fff;
+        }
+
+        &__content {
+            color: #fff;
+        }
+    }
+}
+
 .advantages {
     // .advantages__body
 

@@ -1,27 +1,71 @@
 <section class="main__search-result search-result">
     <div class="search-result__body">
-        <h1 class="search-result__title title">Товары в наличии:</h1>
-        <div class="search-result__data search-data">
-            <div class="search-data__row search-data__row_header">
-                <div class="search-data__block search-data__block_brand">
-                    <h2 class="search-data__title search-data__title_brand">Производитель</h2>
-                </div>
-                <!-- <div class="search-data__block search-data__block_description">
-                    <h2 class="search-data__title">Описание</h2>
+        <div class="search-result__success">
+            <span class="search-result__text">Результаты поиска по номеру детали</span>
+            <h1 class="search-result__title title"></h1>
+            <h2 class="search-result__subtitle">Искомый товар:</h2>
+            <div id="search-result-product" class="search-result__data search-data">
+                <div class="search-data__row search-data__row_header">
+                    <div class="search-data__block search-data__block_brand">
+                        <h3 class="search-data__title search-data__title_brand">Производитель</h3>
+                    </div>
+                    <!-- <div class="search-data__block search-data__block_description">
+                    <h3 class="search-data__title">Описание</h3> 
                 </div> -->
-                <div class="search-data__block search-data__block_article-number">
-                    <h2 class="search-data__title">Артикул</h2>
+                    <div class="search-data__block search-data__block_article-number">
+                        <h3 class="search-data__title">Артикул</h3>
+                    </div>
+                    <div class="search-data__block search-data__block_price">
+                        <h3 class="search-data__title">Цена</h3>
+                    </div>
+                    <div class="search-data__block search-data__block_quantity">
+                        <h3 class="search-data__title">Наличие</h3>
+                    </div>
                 </div>
-                <div class="search-data__block search-data__block_price">
-                    <h2 class="search-data__title">Цена</h2>
+            </div>
+            <h2 class="search-result__subtitle">Аналоги товара:</h2>
+            <div id="search-result-analogs" class="search-result__data search-data">
+                <div class="search-data__row search-data__row_header">
+                    <div class="search-data__block search-data__block_brand">
+                        <h3 class="search-data__title search-data__title_brand">Производитель</h3>
+                    </div>
+                    <!-- <div class="search-data__block search-data__block_description">
+                    <h3 class="search-data__title">Описание</h3> 
+                </div> -->
+                    <div class="search-data__block search-data__block_article-number">
+                        <h3 class="search-data__title">Артикул</h3>
+                    </div>
+                    <div class="search-data__block search-data__block_price">
+                        <h3 class="search-data__title">Цена</h3>
+                    </div>
+                    <div class="search-data__block search-data__block_quantity">
+                        <h3 class="search-data__title">Наличие</h3>
+                    </div>
                 </div>
-                <div class="search-data__block search-data__block_quantity">
-                    <h2 class="search-data__title">Наличие</h2>
+            </div>
+            <h2 class="search-result__subtitle">Данный товар входит в комплекты:</h2>
+            <div id="search-result-complects" class="search-result__data search-data">
+                <div class="search-data__row search-data__row_header">
+                    <div class="search-data__block search-data__block_brand">
+                        <h3 class="search-data__title search-data__title_brand">Производитель</h3>
+                    </div>
+                    <!-- <div class="search-data__block search-data__block_description">
+                    <h3 class="search-data__title">Описание</h3> 
+                </div> -->
+                    <div class="search-data__block search-data__block_article-number">
+                        <h3 class="search-data__title">Артикул</h3>
+                    </div>
+                    <div class="search-data__block search-data__block_price">
+                        <h3 class="search-data__title">Цена</h3>
+                    </div>
+                    <div class="search-data__block search-data__block_quantity">
+                        <h3 class="search-data__title">Наличие</h3>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="search-result__fail fail-search">
-            <h2 class="fail-search__title">К сожалению, в наличии ничего не найдено.</h2>
+            <h3 class="fail-search__title">К сожалению, в наличии ничего не найдено.</h3>
             <div class="fail-search__block">
                 <span class="fail-search__text">Вы можете воспользоваться полным каталогом запчастей под заказ: </span>
                 <a href="catalog.html" class="fail-search__link button">В каталог</a>

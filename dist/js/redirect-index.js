@@ -37,8 +37,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });;
 document.addEventListener("DOMContentLoaded", (event) => {
-    const requestSuccessInfo = document.querySelector('.main__info_success'),
-        requestFailInfo = document.querySelector('.main__info_fail');
+    const requestSuccessInfo = document.querySelector('.redirect-info__text_success'),
+        requestFailInfo = document.querySelector('.redirect-info__text_fail');
     let redirectUrl = 'http://datfee3c.beget.tech';
 
     switch (location.hash) {

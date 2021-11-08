@@ -1,6 +1,16 @@
+body.dark-theme {
+    .search-data__row {
+        color: #fff;
+
+        &:hover {
+            background-color: #2b2b31;
+        }
+    }
+}
+
 .search-result {
     &._active {
-        .search-result__data {
+        .search-result__success {
             display: block;
         }
 
@@ -15,10 +25,10 @@
         width: 100vw;
         max-width: $maxContainerWidth;
         margin: 0px auto;
-        padding: 20px 30px;
+        padding: 40px 30px;
 
         @media screen and (max-width: 1230px) {
-            padding: calc(15px + 5 * (100vw - 720px) / (1230 - 720)) calc(10px + 20 * (100vw - 720px) / (1230 - 720));
+            padding: calc(15px + 25 * (100vw - 720px) / (1230 - 720)) calc(10px + 20 * (100vw - 720px) / (1230 - 720));
         }
 
         @media screen and (max-width: 720px) {
@@ -26,20 +36,58 @@
         }
     }
 
+    //.search-result__success
+
+    &__success{
+        display: none;
+    }
+
+    //.search-result__text
+
+    &__text{
+        display: block;
+        padding: 0px 10px;
+        margin-bottom: 10px;
+    }
+
     // .search-result__title
 
     &__title {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         padding: 0px 10px;
 
         @media screen and (max-width: 1230px) {
-            margin-bottom: calc(10px + 15 * (100vw - 320px) / (1230 - 320));
+            margin-bottom: calc(10px + 10 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    //.search-result__subtitle
+
+    &__subtitle {
+        display: none;
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 135%;
+        padding: 0px 10px;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(18px + 12 * (100vw - 320px) / (1230 - 320));
+        }
+
+        &._active{
+            display: block;
         }
     }
 
     // .search-result__data
 
     &__data {
+        margin-bottom: 50px;
+
+        @media screen and (max-width: 1230px) {
+            margin-bottom: calc(25px + 25 * (100vw - 320px) / (1230 - 320));
+        }
     }
 
     // .search-result__fail
@@ -47,9 +95,8 @@
     &__fail {
     }
 }
-.search-data {
-    display: none;
 
+.search-data {
     @media screen and (max-width: 1230px) {
         font-size: calc(14px + 2 * (100vw - 900px) / (1230 - 900));
     }
@@ -72,6 +119,7 @@
             "DESCRIPTION ARTICLE PRICE QUANTITY";
         padding: 7px 10px;
         border-top: 1px solid $greyColor;
+        color: $mainFontColor;
 
         @media screen and (max-width: 1230px) {
             grid-template-columns: 1fr calc(120px + 40 * (100vw - 900px) / (1230 - 900)) 80px 80px;
@@ -255,5 +303,29 @@
             flex: 0 0 125px;
             margin: 0 calc(10px + 5 * (100vw - 320px) / (720 - 320));
         }
+    }
+}
+
+#search-result-product{
+    display: none;
+
+    &._active{
+        display: block;
+    }
+}
+
+#search-result-analogs{
+    display: none;
+
+    &._active{
+        display: block;
+    }
+}
+
+#search-result-complects{
+    display: none;
+
+    &._active{
+        display: block;
     }
 }

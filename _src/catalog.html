@@ -3,20 +3,26 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Француз Авто</title>
+        <title>Каталог | Француз-Авто</title>
+        <meta
+            name="description"
+            content="Каталог автозапчастей Француз-Авто. Заказывайте запчасти для иномарок и отечественных автомобилей интернет-магазине Француз-Авто с доставкой по Челябинску и области!"
+        />
+        <meta name="robots" content="all" />
+        <meta name="yandex" content="all" />
+        <meta name="author" content="Крюкова Марина Игоревна" />
+        <meta name="copyright" lang="ru" content="Француз-Авто" />
         <!-- шрифты -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <!-- слайдер -->
-        <!-- <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" /> -->
         <!-- основные стили -->
-        <link rel="stylesheet" href="css/catalog-index.min.css" />
-        <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
+        <link rel="stylesheet" href="css/catalog-index.min.css?v1.0" />
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /> -->
     </head>
 
     <body>
-        @@include('_icons.html',{})
+        @@include('_icons.html',{}) 
         @@include('blocks/header/_header.html',{})
         <main class="main">
             <iframe class="main__catalog" id="acat-frame" src="https://feela.acat.online"></iframe>
@@ -24,6 +30,6 @@
         @@include('blocks/footer/_footer.html',{})
         <!-- jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="js/catalog-index.min.js"></script>
+        <script src="js/catalog-index.min.js?v1.0>"></script>
     </body>
 </html>

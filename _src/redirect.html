@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Француз-Авто | Перенаправление...</title>
+        <meta name="robots" content="none" />
+        <meta name="yandex" content="none" />
+        <!-- шрифты -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        <!-- основные стили -->
+        <link rel="stylesheet" href="css/redirect-index.min.css?v1.0>" />
+        <!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /> -->
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Француз Авто</title>
-    <!-- шрифты -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <!-- основные стили -->
-    <link rel="stylesheet" href="css/redirect-index.min.css" />
-    <!-- <link rel="shortcut icon" href="favicon.ico" /> -->
-</head>
-
-<body>
-    @@include('_icons.html',{})
-    <div class="wrapper">
-        @@include('blocks/header/_header.html',{})
-        <main class="main">
-            <span class="main__info main__info_success">
-                Запрос успешно отправлен! Вы будете перенаправлены на главную страницу через 5с...
-            </span>
-            <span class="main__info main__info_fail">
-                Что-то пошло не так, запрос не отправлен. Вы будете перенаправлены на страницу VIN-запроса через 5с...
-            </span>
-        </main>
-        @@include('blocks/footer/_footer.html',{})
-    </div>
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/redirect-index.min.js"></script>
-</body>
-
+    <body>
+        @@include('_icons.html',{})
+        <div class="wrapper">
+            @@include('blocks/header/_header.html',{})
+            <main class="main">@@include('blocks/redirect-info/_redirect-info.html',{})</main>
+            @@include('blocks/footer/_footer.html',{})
+        </div>
+        <!-- jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/redirect-index.min.js?v1.0>"></script>
+    </body>
 </html>

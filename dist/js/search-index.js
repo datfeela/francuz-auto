@@ -176,11 +176,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 document.addEventListener("DOMContentLoaded", (event) => {
     let searchRequest = location.search.slice(8).toUpperCase();
-    const mainBlock = document.querySelector('.main__search-result');
-
+    const mainBlock = document.querySelector('.main__search-result'),
+        heading = document.querySelector('.search-result__title');
+    heading.insertAdjacentText('beforeend', searchRequest);
     getData();
-
-    // document.cookie = "user=John";
 
     //functions
     async function getData() {
@@ -195,20 +194,25 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 
     function loadData(data) {
-        const ProductsSearchBlock = document.querySelector('.search-result__data');
-        let productFound = false;
+        const productsSearchBlock = document.querySelector('#search-result-product'),
+            productSearchAnalogs = document.querySelector('#search-result-analogs'),
+            productSearchComplects = document.querySelector('#search-result-complects');
+        const ComplectsKeyword = "КОМПЛЕКТ";
+        let productFound = false,
+            productFoundMain = false,
+            productFoundAnalogs = false,
+            productFoundComplects = false;
 
         data.forEach(element => {
-            if ((element.col1 != '') && (searchRequest.length > 5) && (element.col2 == searchRequest || element.col2 == searchRequest || element.col3.includes(searchRequest))) {
-                productFound = true;
+            if ((element.col1 != '') && (searchRequest.length > 3) && (element.col2 == searchRequest || element.col3.includes(searchRequest))) {
                 const productBrand = element.col1;
                 const productName = element.col4;
                 const productArticleNumber = element.col2;
                 const productPrice = element.col6;
                 const productQuantity = element.col8;
-                
+
                 let productTemplate = `
-                <div class="search-data__row">
+                <a href="product.html#id=${productArticleNumber}" class="search-data__row">
                     <div class="search-data__block search-data__block_brand">
                         <span class="search-data__text search-data__text_brand">${productBrand}</span>
                     </div>
@@ -224,13 +228,37 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     <div class="search-data__block search-data__block_quantity">
                         <span class="search-data__text search-data__text_quantity">${productQuantity}</span>
                     </div>
-                </div>
+                </a>
                 `;
-                ProductsSearchBlock.insertAdjacentHTML("beforeend", productTemplate);
+                if (element.col2 == searchRequest) {
+                    productFoundMain = true;
+                    productsSearchBlock.insertAdjacentHTML("beforeend", productTemplate);
+                }
+                else if (element.col3.includes(searchRequest + ' ')) {
+                    if (element.col4.includes(ComplectsKeyword)) {
+                        productFoundComplects = true;
+                        productSearchComplects.insertAdjacentHTML("beforeend", productTemplate);
+                    }
+                    else {
+                        productFoundAnalogs = true;
+                        productSearchAnalogs.insertAdjacentHTML("beforeend", productTemplate);
+                    }
+                }
             }
         });
-
-        if (productFound == true) mainBlock.classList.add('_active');
+        if (productFoundMain == true || productFoundAnalogs == true || productFoundComplects == true) mainBlock.classList.add('_active');
+        if (productFoundMain == true) {
+            productsSearchBlock.classList.add('_active');
+            productsSearchBlock.previousElementSibling.classList.add('_active');
+        }
+        if (productFoundAnalogs == true) {
+            productSearchAnalogs.classList.add('_active');
+            productSearchAnalogs.previousElementSibling.classList.add('_active');
+        }
+        if (productFoundComplects == true) {
+            productSearchComplects.classList.add('_active');
+            productSearchComplects.previousElementSibling.classList.add('_active');
+        }
     }
 });
 

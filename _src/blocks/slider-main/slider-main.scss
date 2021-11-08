@@ -1,3 +1,15 @@
+body.dark-theme {
+    .page-slider-main__content {
+        @media screen and (max-width: 600px) {
+            background-color: rgba($color: #2b2b31, $alpha: 0.5);
+        }
+    }
+
+    .controls-slider-main__icon {
+        stroke: #fff;
+    }
+}
+
 .slider-main {
     // .slider-main__body
 

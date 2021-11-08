@@ -1,3 +1,30 @@
+body.dark-theme {
+    .popular {
+        &__title {
+            background-color: $redColor;
+        }
+
+        &__body::after {
+            background-color: $redColor;
+        }
+    }
+
+    .category {
+        &__image {
+            opacity: 1;
+        }
+
+        &__description {
+            color: #fff;
+        }
+
+        &:hover {
+            background-color: #3b446180;
+            box-shadow: 15px 15px 30px rgba($color: #191c2780, $alpha: 0.4);
+        }
+    }
+}
+
 .popular {
     margin: 15px auto;
     max-width: $maxContainerWidth;

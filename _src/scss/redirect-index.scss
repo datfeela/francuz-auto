@@ -12,19 +12,7 @@
 @import "../blocks/header/header.scss";
 
 //main
-.main{
-    font-size: 20px;
-    text-align: center;
-    padding-top: 20px;
-
-    @media screen and (max-width: 1230px) {
-        font-size: calc(16px + 4 * (100vw - 320px) / (1230 - 320));
-    }
-
-    &__info{
-        display: none;
-    }
-}
+@import "../blocks/redirect-info/redirect-info.scss";
 
 //footer
 @import "../blocks/footer/footer.scss";

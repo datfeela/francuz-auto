@@ -1,3 +1,19 @@
+body.dark-theme {
+    .bestsellers {
+        background-color: $darkBlueColor;
+    }
+
+    .product {
+        &__info {
+            color: #fff;
+        }
+    }
+
+    .controls-bestsellers__icon {
+        stroke: #fff;
+    }
+}
+
 .bestsellers {
     margin: 45px auto;
     max-width: calc($maxContainerWidth - 30px);
@@ -96,7 +112,7 @@
 
         @media screen and(max-width: 1230px) {
             font-size: calc(15px + 3 * (100vw - 320px) / (1230 - 320));
-        } 
+        }
     }
 
     // .product__description
@@ -104,7 +120,7 @@
     &__description {
         @media screen and(max-width: 1230px) {
             font-size: calc(14px + 2 * (100vw - 320px) / (1230 - 320));
-        } 
+        }
     }
 }
 .controls-bestsellers {
@@ -121,8 +137,8 @@
         cursor: pointer;
         z-index: 10;
 
-        &:hover{
-            .controls-bestsellers__icon{
+        &:hover {
+            .controls-bestsellers__icon {
                 stroke: $redColor;
             }
         }
