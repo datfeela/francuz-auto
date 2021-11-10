@@ -1,0 +1,104 @@
+.payment {
+    width: calc(100vw - 30px);
+    max-width: $maxContainerWidth;
+    margin: 0px auto;
+    padding: 20px 30px;
+
+    @media screen and (max-width: 720px) {
+        width: 100vw;
+        padding: 20px 20px;
+    }
+
+    // .payment__title
+
+    &__title {
+        margin-bottom: 20px;
+
+        @media screen and (max-width: 720px) {
+            margin-bottom: 10px;
+        }
+    }
+
+    // .payment__subtitle
+
+    &__subtitle {
+        margin-bottom: 20px;
+
+        @media screen and (max-width: 720px) {
+            margin-bottom: 10px;
+        }
+    }
+
+    // .payment__list
+
+    &__list {
+        margin-bottom: 30px;
+        padding-left: 25px;
+
+        @media screen and (max-width: 720px) {
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+    }
+
+    // .payment__list-item
+
+    &__list-item {
+        margin-bottom: 10px;
+        list-style: decimal;
+    }
+
+    // .payment__text
+
+    &__text {
+        display: block;
+        margin-bottom: 20px;
+
+        @media screen and (max-width: 720px) {
+            margin-bottom: 10px;
+        }
+    }
+
+    // .payment__logos
+
+    &__logos {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+
+        @media screen and (max-width: 720px) {
+            margin-top: 10px;
+        }
+    }
+
+    // .payment__icon
+
+    &__icon {
+        // .payment__icon_visa
+
+        &_visa {
+            height: 40px;
+            width: 130px;
+        }
+
+        // .payment__icon_mastercard
+
+        &_mastercard {
+            height: 64px;
+            width: 96px;
+            margin: 0px 30px;
+        }
+
+        // .payment__icon_mir
+
+        &_mir {
+            height: 40px;
+            width: 150px;
+        }
+    }
+}
+
+.mastercard-text._white{
+    fill: #fff;
+}

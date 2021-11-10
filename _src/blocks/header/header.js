@@ -1,6 +1,6 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
-    header = document.querySelector(".header"),
+    header = document.querySelector('.header'),
         headerBurger = document.querySelector('.search-header__burger'),
         headerDropdownMenu = document.querySelector('.search-header__dropdown'),
         headerSearch = document.querySelector('.search-header'),
@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const callback = function (entries, observer) {
         if (entries[0].isIntersecting) {
-            header.classList.remove("_scroll");
+            header.classList.remove('_scroll');
         } else {
-            header.classList.add("_scroll");
+            header.classList.add('_scroll');
         }
     };
 
@@ -25,12 +25,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //------------------------------------//
 
     //закрываю announcement по нажатию на кнопку
-
     const closeButton = document.querySelector('.announcement-header__close-button');
-    closeButton.addEventListener('click', (event) => {
+
+    if (getCookie('announcement') == 'hidden') {
+        closeButton.parentNode.style.transition = 'none';
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
+    }
+
+    closeButton.addEventListener('click', () => {
+        closeButton.parentNode.classList.add('_hidden');
+        header.classList.add('_no-announcement');
+        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
+
+    // window.addEventListener('unload', () => {
+    //     setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true, expires:'Thu, 01 Jan 1970 00: 00: 00 GMT'});
+    // });
 
     //---------------------BURGER-DROPDOWN---------------------------//
 

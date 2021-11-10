@@ -83,7 +83,6 @@ body.dark-theme {
 
 .header {
     height: 310px;
-    transition: all 0.4s ease 0s;
 
     @media screen and (max-width: 720px) {
         height: 115px;
@@ -230,7 +229,6 @@ body.dark-theme {
         position: absolute;
         top: 75px;
         left: 32px;
-        transition: all 0.4s ease 0s;
     }
 
     // .header__announcement

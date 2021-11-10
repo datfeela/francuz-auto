@@ -1,11 +1,28 @@
 body.dark-theme {
     .bestsellers {
-        background-color: $darkBlueColor;
+        background-color: #2d3449;
+
+        &__title {
+            background-color: $redColor;
+            padding: 10px 0px;
+        }
+
+        &__body {
+            padding: 40px;
+
+            @media screen and (max-width: 1230px) {
+                padding: calc(20px + 20 * (100vw - 320px) / (1230 - 320)) 40px;
+            }
+        }
     }
 
     .product {
         &__info {
             color: #fff;
+
+            &::before {
+                background-color: $greyColor;
+            }
         }
     }
 
@@ -15,8 +32,9 @@ body.dark-theme {
 }
 
 .bestsellers {
-    margin: 45px auto;
+    width: calc(100vw - 30px);
     max-width: calc($maxContainerWidth - 30px);
+    margin: 45px auto;
     background-color: $yellowColor;
 
     @media screen and (max-width: 1230px) {
@@ -26,9 +44,9 @@ body.dark-theme {
     // .bestsellers__title
 
     &__title {
+        padding: 22px 0px;
         text-align: center;
         color: $redColor;
-        padding: 22px 0px;
 
         @media screen and (max-width: 900px) {
             padding: calc(11px + 11 * (100vw - 320px) / (900 - 320)) 0px;
@@ -70,13 +88,14 @@ body.dark-theme {
     }
 }
 .product {
-    height: 330px;
     display: flex;
     flex-direction: column;
     align-items: center;
     // .product__image
 
     &__image {
+        width: 100%;
+        max-width: 300px;
     }
 
     // .product__info
@@ -84,23 +103,22 @@ body.dark-theme {
     &__info {
         position: relative;
         height: 100%;
-        width: 170px;
-        padding: 15px;
+        width: 100%;
+        max-width: 300px;
+        padding-top: 35px;
         display: flex;
         flex-direction: column;
-        // justify-content: space-between;
-        // background-color: #fff;
         color: $mainFontColor;
 
-        // &::before{
-        //     content: "";
-        //     position: absolute;
-        //     top: 5px;
-        //     left: 0px;
-        //     width: 100%;
-        //     height: 1px;
-        //     background-color: rgba($color: #000000, $alpha: 0.2);
-        // }
+        &::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 0px;
+            width: 100%;
+            height: 1px;
+            background-color: rgba($color: #000000, $alpha: 0.2);
+        }
     }
 
     // .product__price
@@ -115,9 +133,9 @@ body.dark-theme {
         }
     }
 
-    // .product__description
+    // .product__name
 
-    &__description {
+    &__name {
         @media screen and(max-width: 1230px) {
             font-size: calc(14px + 2 * (100vw - 320px) / (1230 - 320));
         }

@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(8).toUpperCase();
     const mainBlock = document.querySelector('.main__search-result'),
         heading = document.querySelector('.search-result__title');
@@ -7,23 +7,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     //functions
     async function getData() {
-        const file = "json/data.json";
-        let response = await fetch(file, { method: "GET" });
+        const file = 'json/data.json';
+        let response = await fetch(file, { method: 'GET' });
         if (response.ok) {
             let result = await response.json();
             loadData(result);
         } else {
-            alert("something went wrong...");
+            alert('something went wrong...');
         }
     }
 
     function loadData(data) {
         const productsSearchBlock = document.querySelector('#search-result-product'),
             productSearchAnalogs = document.querySelector('#search-result-analogs'),
-            productSearchComplects = document.querySelector('#search-result-complects');
-        const ComplectsKeyword = "КОМПЛЕКТ";
-        let productFound = false,
-            productFoundMain = false,
+            productSearchComplects = document.querySelector('#search-result-complects'),
+            searchResultCover = document.querySelector('.search-result__cover');
+        const ComplectsKeyword = 'КОМПЛЕКТ';
+        let productFoundMain = false,
             productFoundAnalogs = false,
             productFoundComplects = false;
 
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 const productQuantity = element.col8;
 
                 let productTemplate = `
-                <a href="product.html#id=${productArticleNumber}" class="search-data__row">
+                <a href="product.html?id=${productBrand}_${productArticleNumber}" class="search-data__row">
                     <div class="search-data__block search-data__block_brand">
                         <span class="search-data__text search-data__text_brand">${productBrand}</span>
                     </div>
@@ -56,16 +56,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 `;
                 if (element.col2 == searchRequest) {
                     productFoundMain = true;
-                    productsSearchBlock.insertAdjacentHTML("beforeend", productTemplate);
+                    productsSearchBlock.insertAdjacentHTML('beforeend', productTemplate);
                 }
                 else if (element.col3.includes(searchRequest + ' ')) {
                     if (element.col4.includes(ComplectsKeyword)) {
                         productFoundComplects = true;
-                        productSearchComplects.insertAdjacentHTML("beforeend", productTemplate);
+                        productSearchComplects.insertAdjacentHTML('beforeend', productTemplate);
                     }
                     else {
                         productFoundAnalogs = true;
-                        productSearchAnalogs.insertAdjacentHTML("beforeend", productTemplate);
+                        productSearchAnalogs.insertAdjacentHTML('beforeend', productTemplate);
                     }
                 }
             }
@@ -83,5 +83,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             productSearchComplects.classList.add('_active');
             productSearchComplects.previousElementSibling.classList.add('_active');
         }
+        searchResultCover.style.display = 'none';
     }
 })

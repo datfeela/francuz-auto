@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("message", function (e) {
         try {
             var data = JSON.parse(e.data);

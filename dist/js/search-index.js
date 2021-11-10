@@ -37,9 +37,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });;
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
-    header = document.querySelector(".header"),
+    header = document.querySelector('.header'),
         headerBurger = document.querySelector('.search-header__burger'),
         headerDropdownMenu = document.querySelector('.search-header__dropdown'),
         headerSearch = document.querySelector('.search-header'),
@@ -52,9 +52,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const callback = function (entries, observer) {
         if (entries[0].isIntersecting) {
-            header.classList.remove("_scroll");
+            header.classList.remove('_scroll');
         } else {
-            header.classList.add("_scroll");
+            header.classList.add('_scroll');
         }
     };
 
@@ -64,12 +64,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //------------------------------------//
 
     //закрываю announcement по нажатию на кнопку
-
     const closeButton = document.querySelector('.announcement-header__close-button');
-    closeButton.addEventListener('click', (event) => {
+
+    if (getCookie('announcement') == 'hidden') {
+        closeButton.parentNode.style.transition = 'none';
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
+    }
+
+    closeButton.addEventListener('click', () => {
+        closeButton.parentNode.classList.add('_hidden');
+        header.classList.add('_no-announcement');
+        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
+
+    // window.addEventListener('unload', () => {
+    //     setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true, expires:'Thu, 01 Jan 1970 00: 00: 00 GMT'});
+    // });
 
     //---------------------BURGER-DROPDOWN---------------------------//
 
@@ -174,7 +185,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 })
 ;
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(8).toUpperCase();
     const mainBlock = document.querySelector('.main__search-result'),
         heading = document.querySelector('.search-result__title');
@@ -183,23 +194,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     //functions
     async function getData() {
-        const file = "json/data.json";
-        let response = await fetch(file, { method: "GET" });
+        const file = 'json/data.json';
+        let response = await fetch(file, { method: 'GET' });
         if (response.ok) {
             let result = await response.json();
             loadData(result);
         } else {
-            alert("something went wrong...");
+            alert('something went wrong...');
         }
     }
 
     function loadData(data) {
         const productsSearchBlock = document.querySelector('#search-result-product'),
             productSearchAnalogs = document.querySelector('#search-result-analogs'),
-            productSearchComplects = document.querySelector('#search-result-complects');
-        const ComplectsKeyword = "КОМПЛЕКТ";
-        let productFound = false,
-            productFoundMain = false,
+            productSearchComplects = document.querySelector('#search-result-complects'),
+            searchResultCover = document.querySelector('.search-result__cover');
+        const ComplectsKeyword = 'КОМПЛЕКТ';
+        let productFoundMain = false,
             productFoundAnalogs = false,
             productFoundComplects = false;
 
@@ -212,7 +223,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 const productQuantity = element.col8;
 
                 let productTemplate = `
-                <a href="product.html#id=${productArticleNumber}" class="search-data__row">
+                <a href="product.html?id=${productBrand}_${productArticleNumber}" class="search-data__row">
                     <div class="search-data__block search-data__block_brand">
                         <span class="search-data__text search-data__text_brand">${productBrand}</span>
                     </div>
@@ -232,16 +243,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 `;
                 if (element.col2 == searchRequest) {
                     productFoundMain = true;
-                    productsSearchBlock.insertAdjacentHTML("beforeend", productTemplate);
+                    productsSearchBlock.insertAdjacentHTML('beforeend', productTemplate);
                 }
                 else if (element.col3.includes(searchRequest + ' ')) {
                     if (element.col4.includes(ComplectsKeyword)) {
                         productFoundComplects = true;
-                        productSearchComplects.insertAdjacentHTML("beforeend", productTemplate);
+                        productSearchComplects.insertAdjacentHTML('beforeend', productTemplate);
                     }
                     else {
                         productFoundAnalogs = true;
-                        productSearchAnalogs.insertAdjacentHTML("beforeend", productTemplate);
+                        productSearchAnalogs.insertAdjacentHTML('beforeend', productTemplate);
                     }
                 }
             }
@@ -259,36 +270,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
             productSearchComplects.classList.add('_active');
             productSearchComplects.previousElementSibling.classList.add('_active');
         }
+        searchResultCover.style.display = 'none';
     }
 });
 
-
-//спойлеры на <= 560px
-document.addEventListener("DOMContentLoaded", (event) => {
-    $(".title-footer").click(function () {
+document.addEventListener('DOMContentLoaded', () => {
+    $('.title-footer').click(function () {
         if (document.documentElement.clientWidth <= 560) {
             $(this).next().slideToggle();
-            if ($(this).next().hasClass("contacts-footer__wrapper")) {
-                $(this).next().css("display", "flex");
+            if ($(this).next().hasClass('contacts-footer__wrapper')) {
+                $(this).next().css('display', 'flex');
             }
-            $(this).toggleClass("_active");
+            $(this).toggleClass('_active');
         }
     });
 
     $(window).resize(function () {
         //делаю видимыми свернутые спойлеры и убираю их при изменении разрешения
         if (document.documentElement.clientWidth > 560) {
-            $(".title-footer").next().css("display", "block");
-            if ($(".title-footer").next().hasClass("contacts-footer__wrapper")) {
-                $(".contacts-footer__wrapper").css("display", "flex");
+            $('.title-footer').next().css('display', 'block');
+            if ($('.title-footer').next().hasClass('contacts-footer__wrapper')) {
+                $('.contacts-footer__wrapper').css('display', 'flex');
             }
-            if ($(".title-footer").hasClass("_active")) {
-                $(".title-footer").removeClass("_active");
+            if ($('.title-footer').hasClass('_active')) {
+                $('.title-footer').removeClass('_active');
             }
         }
         if (document.documentElement.clientWidth <= 560) {
-            if (!$(".title-footer").hasClass("_active")) {
-                $(".title-footer").next().css("display", "none");
+            if (!$('.title-footer').hasClass('_active')) {
+                $('.title-footer').next().css('display', 'none');
             }
         }
     });

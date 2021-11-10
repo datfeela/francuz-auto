@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const swiperMain = new Swiper('.slider-main__body', {
         speed: 800,
         slidesPerView: 1,

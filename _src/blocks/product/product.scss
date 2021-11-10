@@ -37,16 +37,16 @@ body.dark-theme {
 
     &__info {
         display: grid;
-        grid-template-columns: 250px 2fr 1fr;
+        grid-template-columns: 270px 2fr 1fr;
         align-items: center;
         background-color: #ececec;
 
         @media screen and (max-width: 1230px) {
-            grid-template-columns: calc(125px + 125 * (100vw - 320px) / (1230 - 320)) 2fr 1fr;
+            grid-template-columns: calc(135px + 135 * (100vw - 320px) / (1230 - 320)) 2fr 1fr;
         }
 
         @media screen and (max-width: 650px) {
-            grid-template-columns: calc(125px + 125 * (100vw - 320px) / (1230 - 320)) 1fr;
+            grid-template-columns: calc(135px + 135 * (100vw - 320px) / (1230 - 320)) 1fr;
             grid-template-areas:
                 "IMAGE PRICE"
                 "CHAR CHAR";
@@ -56,10 +56,13 @@ body.dark-theme {
     // .product__image
 
     &__image {
-        height: 230px;
+        padding: 20px;
+        height: 250px;
+        width: 250px;
 
         @media screen and (max-width: 1230px) {
-            height: calc(115px + 115 * (100vw - 320px) / (1230 - 320));
+            height: calc(125px + 125 * (100vw - 320px) / (1230 - 320));
+            width: calc(125px + 125 * (100vw - 320px) / (1230 - 320));
         }
 
         @media screen and (max-width: 650px) {

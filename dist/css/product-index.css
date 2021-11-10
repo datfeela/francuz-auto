@@ -164,7 +164,13 @@ body {
 .title {
   font-size: 40px;
   font-weight: 700;
-  line-height: 120%;
+  line-height: 125%;
+}
+
+.subtitle {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 125%;
 }
 
 .burger {
@@ -266,9 +272,6 @@ body.dark-theme .dropdown-menu__link {
 
 .header {
   height: 310px;
-  -webkit-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
 }
 
 .header._no-announcement {
@@ -357,9 +360,6 @@ body.dark-theme .dropdown-menu__link {
   position: absolute;
   top: 75px;
   left: 32px;
-  -webkit-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
 }
 
 .header__body {
@@ -892,8 +892,8 @@ body.dark-theme .product__brand {
 .product__info {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 250px 2fr 1fr;
-  grid-template-columns: 250px 2fr 1fr;
+  -ms-grid-columns: 270px 2fr 1fr;
+  grid-template-columns: 270px 2fr 1fr;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -901,7 +901,9 @@ body.dark-theme .product__brand {
 }
 
 .product__image {
-  height: 230px;
+  padding: 20px;
+  height: 250px;
+  width: 250px;
 }
 
 .product__characteristic {
@@ -1152,6 +1154,10 @@ body.dark-theme ::selection {
     font-size: calc(20px + 20 * (100vw - 320px) / 910);
   }
 
+  .subtitle {
+    font-size: calc(17px + 8 * (100vw - 320px) / 910);
+  }
+
   .button__text {
     font-size: calc(15px + 5 * (100vw - 320px) / 910);
   }
@@ -1189,12 +1195,13 @@ body.dark-theme ::selection {
   }
 
   .product__info {
-    -ms-grid-columns: calc(125px + 125 * (100vw - 320px) / 910) 2fr 1fr;
-    grid-template-columns: calc(125px + 125 * (100vw - 320px) / 910) 2fr 1fr;
+    -ms-grid-columns: calc(135px + 135 * (100vw - 320px) / 910) 2fr 1fr;
+    grid-template-columns: calc(135px + 135 * (100vw - 320px) / 910) 2fr 1fr;
   }
 
   .product__image {
-    height: calc(115px + 115 * (100vw - 320px) / 910);
+    height: calc(125px + 125 * (100vw - 320px) / 910);
+    width: calc(125px + 125 * (100vw - 320px) / 910);
   }
 
   .product__subtitle {
@@ -1589,8 +1596,8 @@ body.dark-theme ::selection {
 
 @media screen and (max-width: 650px) {
   .product__info {
-    -ms-grid-columns: calc(125px + 125 * (100vw - 320px) / 910) 1fr;
-    grid-template-columns: calc(125px + 125 * (100vw - 320px) / 910) 1fr;
+    -ms-grid-columns: calc(135px + 135 * (100vw - 320px) / 910) 1fr;
+    grid-template-columns: calc(135px + 135 * (100vw - 320px) / 910) 1fr;
     grid-template-areas: "IMAGE PRICE" "CHAR CHAR";
   }
 

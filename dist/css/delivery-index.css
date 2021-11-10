@@ -164,7 +164,13 @@ body {
 .title {
   font-size: 40px;
   font-weight: 700;
-  line-height: 120%;
+  line-height: 125%;
+}
+
+.subtitle {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 125%;
 }
 
 .burger {
@@ -266,9 +272,6 @@ body.dark-theme .dropdown-menu__link {
 
 .header {
   height: 310px;
-  -webkit-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
 }
 
 .header._no-announcement {
@@ -357,9 +360,6 @@ body.dark-theme .dropdown-menu__link {
   position: absolute;
   top: 75px;
   left: 32px;
-  -webkit-transition: all 0.4s ease 0s;
-  -o-transition: all 0.4s ease 0s;
-  transition: all 0.4s ease 0s;
 }
 
 .header__body {
@@ -867,6 +867,42 @@ body.dark-theme .dropdown-menu__link {
   margin-bottom: 5px;
 }
 
+.delivery {
+  width: calc(100vw - 30px);
+  max-width: 1230px;
+  margin: 0px auto;
+  padding: 20px 30px;
+}
+
+.delivery__title {
+  margin-bottom: 20px;
+}
+
+.delivery__subtitle {
+  margin-bottom: 20px;
+}
+
+.delivery__text {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.delivery__list {
+  margin-bottom: 30px;
+  padding-left: 30px;
+}
+
+.delivery__list-item {
+  margin-bottom: 5px;
+  list-style: disc;
+}
+
+.delivery__list-subtitle {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 body.dark-theme footer {
   background-color: #2b2b31;
   color: #fff;
@@ -1086,6 +1122,10 @@ body.dark-theme ::selection {
     font-size: calc(20px + 20 * (100vw - 320px) / 910);
   }
 
+  .subtitle {
+    font-size: calc(17px + 8 * (100vw - 320px) / 910);
+  }
+
   .button__text {
     font-size: calc(15px + 5 * (100vw - 320px) / 910);
   }
@@ -1115,6 +1155,10 @@ body.dark-theme ::selection {
 
   .search-header__item {
     width: calc(350px + 450 * (100vw - 320px) / 910);
+  }
+
+  .delivery__list-subtitle {
+    font-size: calc(16px + 2 * (100vw - 320px) / 910);
   }
 
   .footer {
@@ -1487,6 +1531,32 @@ body.dark-theme ::selection {
 
   .contacts-dropdown {
     display: block;
+  }
+
+  .delivery {
+    width: 100vw;
+    padding: 20px 20px;
+  }
+
+  .delivery__title {
+    margin-bottom: 10px;
+  }
+
+  .delivery__subtitle {
+    margin-bottom: 10px;
+  }
+
+  .delivery__text {
+    margin-bottom: 10px;
+  }
+
+  .delivery__list {
+    margin-bottom: 15px;
+    padding-left: 20px;
+  }
+
+  .delivery__list-subtitle {
+    margin-bottom: 5px;
   }
 
 @supports (-webkit-appearance:none) {

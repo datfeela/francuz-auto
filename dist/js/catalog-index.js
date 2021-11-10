@@ -36,9 +36,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelector('.theme-changer__button').classList.add('_active');
     }
 });;
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
-    header = document.querySelector(".header"),
+    header = document.querySelector('.header'),
         headerBurger = document.querySelector('.search-header__burger'),
         headerDropdownMenu = document.querySelector('.search-header__dropdown'),
         headerSearch = document.querySelector('.search-header'),
@@ -51,9 +51,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const callback = function (entries, observer) {
         if (entries[0].isIntersecting) {
-            header.classList.remove("_scroll");
+            header.classList.remove('_scroll');
         } else {
-            header.classList.add("_scroll");
+            header.classList.add('_scroll');
         }
     };
 
@@ -63,12 +63,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //------------------------------------//
 
     //закрываю announcement по нажатию на кнопку
-
     const closeButton = document.querySelector('.announcement-header__close-button');
-    closeButton.addEventListener('click', (event) => {
+
+    if (getCookie('announcement') == 'hidden') {
+        closeButton.parentNode.style.transition = 'none';
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
+    }
+
+    closeButton.addEventListener('click', () => {
+        closeButton.parentNode.classList.add('_hidden');
+        header.classList.add('_no-announcement');
+        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
+
+    // window.addEventListener('unload', () => {
+    //     setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true, expires:'Thu, 01 Jan 1970 00: 00: 00 GMT'});
+    // });
 
     //---------------------BURGER-DROPDOWN---------------------------//
 
@@ -172,7 +183,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     })
 })
 ;
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("message", function (e) {
         try {
             var data = JSON.parse(e.data);
@@ -186,33 +197,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
 })
 
 ;
-
-//спойлеры на <= 560px
-document.addEventListener("DOMContentLoaded", (event) => {
-    $(".title-footer").click(function () {
+document.addEventListener('DOMContentLoaded', () => {
+    $('.title-footer').click(function () {
         if (document.documentElement.clientWidth <= 560) {
             $(this).next().slideToggle();
-            if ($(this).next().hasClass("contacts-footer__wrapper")) {
-                $(this).next().css("display", "flex");
+            if ($(this).next().hasClass('contacts-footer__wrapper')) {
+                $(this).next().css('display', 'flex');
             }
-            $(this).toggleClass("_active");
+            $(this).toggleClass('_active');
         }
     });
 
     $(window).resize(function () {
         //делаю видимыми свернутые спойлеры и убираю их при изменении разрешения
         if (document.documentElement.clientWidth > 560) {
-            $(".title-footer").next().css("display", "block");
-            if ($(".title-footer").next().hasClass("contacts-footer__wrapper")) {
-                $(".contacts-footer__wrapper").css("display", "flex");
+            $('.title-footer').next().css('display', 'block');
+            if ($('.title-footer').next().hasClass('contacts-footer__wrapper')) {
+                $('.contacts-footer__wrapper').css('display', 'flex');
             }
-            if ($(".title-footer").hasClass("_active")) {
-                $(".title-footer").removeClass("_active");
+            if ($('.title-footer').hasClass('_active')) {
+                $('.title-footer').removeClass('_active');
             }
         }
         if (document.documentElement.clientWidth <= 560) {
-            if (!$(".title-footer").hasClass("_active")) {
-                $(".title-footer").next().css("display", "none");
+            if (!$('.title-footer').hasClass('_active')) {
+                $('.title-footer').next().css('display', 'none');
             }
         }
     });
