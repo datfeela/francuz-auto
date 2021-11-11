@@ -30,6 +30,25 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+function deleteCookie(name) {
+    setCookie(name, "", {
+        'max-age': -1
+    })
+}
+
+function changeCookie(targetElement, closestLinkElem) {
+    let productID = targetElement.closest(closestLinkElem).href.split('id=')[1];
+    changeQuantity(productID);
+    changeQuantity('totalQuantity');
+}
+
+function changeQuantity(cookie) {
+    if (getCookie(cookie) == undefined) {
+        setCookie(cookie, 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+    }
+    else setCookie(cookie, +getCookie(cookie) + 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     if (getCookie('theme') == 'dark') {
         document.querySelector('body').classList.add('dark-theme');

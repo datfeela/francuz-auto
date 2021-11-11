@@ -30,6 +30,25 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+function deleteCookie(name) {
+    setCookie(name, "", {
+        'max-age': -1
+    })
+}
+
+function changeCookie(targetElement, closestLinkElem) {
+    let productID = targetElement.closest(closestLinkElem).href.split('id=')[1];
+    changeQuantity(productID);
+    changeQuantity('totalQuantity');
+}
+
+function changeQuantity(cookie) {
+    if (getCookie(cookie) == undefined) {
+        setCookie(cookie, 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+    }
+    else setCookie(cookie, +getCookie(cookie) + 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     if (getCookie('theme') == 'dark') {
         document.querySelector('body').classList.add('dark-theme');
@@ -60,9 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerObserver = new IntersectionObserver(callback);
     headerObserver.observe(header)
 
-    //------------------------------------//
-
     //закрываю announcement по нажатию на кнопку
+
     const closeButton = document.querySelector('.announcement-header__close-button');
 
     if (getCookie('announcement') == 'hidden') {
@@ -77,9 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
 
-    // window.addEventListener('unload', () => {
-    //     setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true, expires:'Thu, 01 Jan 1970 00: 00: 00 GMT'});
-    // });
+    //----------------------------CART-------------------------------//
+
+    let cartCounter = document.querySelector('.search-header__counter');
+    if (getCookie('totalQuantity') != undefined) {
+        cartCounter.innerHTML = getCookie('totalQuantity')
+    }
+    if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
 
     //---------------------BURGER-DROPDOWN---------------------------//
 
@@ -185,13 +207,25 @@ document.addEventListener('DOMContentLoaded', () => {
 ;
 document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(4);
-    const productBlock = document.querySelector('.main__product');
-    const head = document.querySelector('head');
-    const title = document.querySelector('title');
-    const searchRequestBrand = searchRequest.split('_')[0];
-    const searchRequestArticle = searchRequest.split('_')[1];
+    const productBlock = document.querySelector('.main__product'),
+        head = document.querySelector('head'),
+        title = document.querySelector('title'),
+        searchRequestBrand = searchRequest.split('_')[0],
+        searchRequestArticle = searchRequest.split('_')[1];
+    let cartCounter = document.querySelector('.search-header__counter');
 
     getData();
+
+    productBlock.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement.closest('.button-buy')) {
+            event.preventDefault();
+            changeQuantity(searchRequest);
+            changeQuantity('totalQuantity');
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
 
     //functions
     async function getData() {
@@ -247,6 +281,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="product__availibility">
                                 <span class="product__price">${productPrice}₽</span>
                                 <span class="product__quantity">В наличии ${productQuantity} шт.</span>
+                                <button class="product__button button-buy button" type="button">
+                                    <svg class="button-buy__icon">
+                                        <use xlink:href="#cart"></use>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     `;

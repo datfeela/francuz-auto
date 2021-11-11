@@ -30,6 +30,25 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+function deleteCookie(name) {
+    setCookie(name, "", {
+        'max-age': -1
+    })
+}
+
+function changeCookie(targetElement, closestLinkElem) {
+    let productID = targetElement.closest(closestLinkElem).href.split('id=')[1];
+    changeQuantity(productID);
+    changeQuantity('totalQuantity');
+}
+
+function changeQuantity(cookie) {
+    if (getCookie(cookie) == undefined) {
+        setCookie(cookie, 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+    }
+    else setCookie(cookie, +getCookie(cookie) + 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     if (getCookie('theme') == 'dark') {
         document.querySelector('body').classList.add('dark-theme');
@@ -61,9 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerObserver = new IntersectionObserver(callback);
     headerObserver.observe(header)
 
-    //------------------------------------//
-
     //закрываю announcement по нажатию на кнопку
+
     const closeButton = document.querySelector('.announcement-header__close-button');
 
     if (getCookie('announcement') == 'hidden') {
@@ -78,9 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
 
-    // window.addEventListener('unload', () => {
-    //     setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true, expires:'Thu, 01 Jan 1970 00: 00: 00 GMT'});
-    // });
+    //----------------------------CART-------------------------------//
+
+    let cartCounter = document.querySelector('.search-header__counter');
+    if (getCookie('totalQuantity') != undefined) {
+        cartCounter.innerHTML = getCookie('totalQuantity')
+    }
+    if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
 
     //---------------------BURGER-DROPDOWN---------------------------//
 
@@ -189,8 +211,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(8).toUpperCase();
     const mainBlock = document.querySelector('.main__search-result'),
         heading = document.querySelector('.search-result__title');
+    let cartCounter = document.querySelector('.search-header__counter');
     heading.insertAdjacentText('beforeend', searchRequest);
+
     getData();
+    // deleteCookie('products');
+    // deleteCookie('DAYCO_94785');
+    // deleteCookie('TORR_DV1431');
+    // deleteCookie('totalQuantity');
+    // deleteCookie('GATES_K015473XS');
+
+    mainBlock.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement.closest('.search-data__button_buy')) {
+            event.preventDefault();
+            changeCookie(targetElement, '.search-data__row')
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
 
     //functions
     async function getData() {
@@ -220,7 +259,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productName = element.col4;
                 const productArticleNumber = element.col2;
                 const productPrice = element.col6;
-                const productQuantity = element.col8;
+                let productQuantity;
+                if (element.col8 == 0) productQuantity = 'Под заказ';
+                else productQuantity = element.col8;
 
                 let productTemplate = `
                 <a href="product.html?id=${productBrand}_${productArticleNumber}" class="search-data__row">
@@ -239,6 +280,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="search-data__block search-data__block_quantity">
                         <span class="search-data__text search-data__text_quantity">${productQuantity}</span>
                     </div>
+                    <button class="search-data__button search-data__button_buy button" type="button">
+                        <span class="search-data__button-text button__text">В корзину</span>
+                    </button>
                 </a>
                 `;
                 if (element.col2 == searchRequest) {

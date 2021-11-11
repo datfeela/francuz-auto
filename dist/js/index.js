@@ -30,6 +30,25 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+function deleteCookie(name) {
+    setCookie(name, "", {
+        'max-age': -1
+    })
+}
+
+function changeCookie(targetElement, closestLinkElem) {
+    let productID = targetElement.closest(closestLinkElem).href.split('id=')[1];
+    changeQuantity(productID);
+    changeQuantity('totalQuantity');
+}
+
+function changeQuantity(cookie) {
+    if (getCookie(cookie) == undefined) {
+        setCookie(cookie, 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+    }
+    else setCookie(cookie, +getCookie(cookie) + 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     if (getCookie('theme') == 'dark') {
         document.querySelector('body').classList.add('dark-theme');
@@ -60,9 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerObserver = new IntersectionObserver(callback);
     headerObserver.observe(header)
 
-    //------------------------------------//
-
     //закрываю announcement по нажатию на кнопку
+
     const closeButton = document.querySelector('.announcement-header__close-button');
 
     if (getCookie('announcement') == 'hidden') {
@@ -77,9 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
 
-    // window.addEventListener('unload', () => {
-    //     setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true, expires:'Thu, 01 Jan 1970 00: 00: 00 GMT'});
-    // });
+    //----------------------------CART-------------------------------//
+
+    let cartCounter = document.querySelector('.search-header__counter');
+    if (getCookie('totalQuantity') != undefined) {
+        cartCounter.innerHTML = getCookie('totalQuantity')
+    }
+    if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
 
     //---------------------BURGER-DROPDOWN---------------------------//
 
@@ -209,33 +231,62 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });;
 document.addEventListener('DOMContentLoaded', () => {
-    const swiperMain = new Swiper('.bestsellers__body', {
-        speed: 500,
-        slidesPerView: 1,
-        spaceBetween: 50,
-        loop: true,
-        navigation: {
-            nextEl: '.controls-bestsellers__button_prev',
-            prevEl: '.controls-bestsellers__button_next',
-        },
-        autoplay: {
-            delay: 6000,
-            waitForTransition: true
-        },
+    const body = document.querySelector('.bestsellers__body'),
+        swiperMain = new Swiper(body, {
+            speed: 500,
+            slidesPerView: 1,
+            spaceBetween: 50,
+            loop: true,
+            navigation: {
+                nextEl: '.controls-bestsellers__button_prev',
+                prevEl: '.controls-bestsellers__button_next',
+            },
+            autoplay: {
+                delay: 6000,
+                waitForTransition: true,
+                pauseOnMouseEnter: true
+            },
 
-        breakpoints: {
-            576: {
-                slidesPerView: 2
-            },
-            800: {
-                slidesPerView: 3
-            },
-            1050: {
-                slidesPerView: 4
-            },
+            breakpoints: {
+                576: {
+                    slidesPerView: 2
+                },
+                800: {
+                    slidesPerView: 3
+                },
+                1050: {
+                    slidesPerView: 4
+                },
+            }
+        });
+    let cartCounter = document.querySelector('.search-header__counter');
+    
+    body.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        let activeProduct = document.querySelector(".product__image-container._active");
+
+        if (targetElement.closest('.product__image-container')) {
+            event.preventDefault();
+            if (activeProduct != null) activeProduct.classList.remove("_active");
+            targetElement.closest('.product__image-container').classList.add('_active');
         }
-    });
-});;
+
+        if (targetElement.closest('.product__button_buy')) {
+            event.preventDefault();
+            changeCookie(targetElement, '.bestsellers__item');
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
+
+    //снимаю product__popup при клике вне
+    document.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        let activeProduct = document.querySelector(".product__image-container._active");
+        if (!targetElement.closest('.product__image-container._active') && activeProduct != null) activeProduct.classList.remove('_active')
+    })
+});
+;
 document.addEventListener('DOMContentLoaded', () => {
     $('.title-footer').click(function () {
         if (document.documentElement.clientWidth <= 560) {

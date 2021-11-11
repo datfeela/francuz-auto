@@ -1,12 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(4);
-    const productBlock = document.querySelector('.main__product');
-    const head = document.querySelector('head');
-    const title = document.querySelector('title');
-    const searchRequestBrand = searchRequest.split('_')[0];
-    const searchRequestArticle = searchRequest.split('_')[1];
+    const productBlock = document.querySelector('.main__product'),
+        head = document.querySelector('head'),
+        title = document.querySelector('title'),
+        searchRequestBrand = searchRequest.split('_')[0],
+        searchRequestArticle = searchRequest.split('_')[1];
+    let cartCounter = document.querySelector('.search-header__counter');
 
     getData();
+
+    productBlock.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement.closest('.button-buy')) {
+            event.preventDefault();
+            changeQuantity(searchRequest);
+            changeQuantity('totalQuantity');
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
 
     //functions
     async function getData() {
@@ -62,6 +74,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="product__availibility">
                                 <span class="product__price">${productPrice}₽</span>
                                 <span class="product__quantity">В наличии ${productQuantity} шт.</span>
+                                <button class="product__button button-buy button" type="button">
+                                    <svg class="button-buy__icon">
+                                        <use xlink:href="#cart"></use>
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     `;

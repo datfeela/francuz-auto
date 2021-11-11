@@ -22,9 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerObserver = new IntersectionObserver(callback);
     headerObserver.observe(header)
 
-    //------------------------------------//
-
     //закрываю announcement по нажатию на кнопку
+
     const closeButton = document.querySelector('.announcement-header__close-button');
 
     if (getCookie('announcement') == 'hidden') {
@@ -39,9 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
         setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
 
-    // window.addEventListener('unload', () => {
-    //     setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true, expires:'Thu, 01 Jan 1970 00: 00: 00 GMT'});
-    // });
+    //----------------------------CART-------------------------------//
+
+    let cartCounter = document.querySelector('.search-header__counter');
+    if (getCookie('totalQuantity') != undefined) {
+        cartCounter.innerHTML = getCookie('totalQuantity')
+    }
+    if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
 
     //---------------------BURGER-DROPDOWN---------------------------//
 

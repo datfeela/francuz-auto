@@ -2,8 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(8).toUpperCase();
     const mainBlock = document.querySelector('.main__search-result'),
         heading = document.querySelector('.search-result__title');
+    let cartCounter = document.querySelector('.search-header__counter');
     heading.insertAdjacentText('beforeend', searchRequest);
+
     getData();
+    // deleteCookie('products');
+    // deleteCookie('DAYCO_94785');
+    // deleteCookie('TORR_DV1431');
+    // deleteCookie('totalQuantity');
+    // deleteCookie('GATES_K015473XS');
+
+    mainBlock.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement.closest('.search-data__button_buy')) {
+            event.preventDefault();
+            changeCookie(targetElement, '.search-data__row')
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
 
     //functions
     async function getData() {
@@ -33,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productName = element.col4;
                 const productArticleNumber = element.col2;
                 const productPrice = element.col6;
-                const productQuantity = element.col8;
+                let productQuantity;
+                if (element.col8 == 0) productQuantity = 'Под заказ';
+                else productQuantity = element.col8;
 
                 let productTemplate = `
                 <a href="product.html?id=${productBrand}_${productArticleNumber}" class="search-data__row">
@@ -52,6 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="search-data__block search-data__block_quantity">
                         <span class="search-data__text search-data__text_quantity">${productQuantity}</span>
                     </div>
+                    <button class="search-data__button search-data__button_buy button" type="button">
+                        <span class="search-data__button-text button__text">В корзину</span>
+                    </button>
                 </a>
                 `;
                 if (element.col2 == searchRequest) {

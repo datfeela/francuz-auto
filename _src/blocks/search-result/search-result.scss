@@ -142,27 +142,29 @@ body.dark-theme {
 
     &__row {
         display: grid;
-        grid-template-columns: 1fr 160px 90px 90px;
+        grid-template-columns: 1fr 160px 90px 150px; //90
         grid-template-areas:
             "BRAND ARTICLE PRICE QUANTITY"
-            "DESCRIPTION ARTICLE PRICE QUANTITY";
+            "DESCRIPTION ARTICLE PRICE QUANTITY"
+            "DESCRIPTION    .    BUTTON BUTTON";
         padding: 7px 10px;
         border-top: 1px solid $greyColor;
         color: $mainFontColor;
 
         @media screen and (max-width: 1230px) {
-            grid-template-columns: 1fr calc(120px + 40 * (100vw - 900px) / (1230 - 900)) 80px 80px;
+            grid-template-columns: 1fr calc(120px + 40 * (100vw - 900px) / (1230 - 900)) 80px 140px;
         }
 
         @media screen and (max-width: 900px) {
-            grid-template-columns: 1fr calc(90px + 30 * (100vw - 320px) / (900 - 320)) calc(50px + 30 * (100vw - 320px) / (900 - 320)) 75px;
+            grid-template-columns: 1fr calc(90px + 30 * (100vw - 320px) / (900 - 320)) calc(50px + 30 * (100vw - 320px) / (900 - 320)) 120px;
         }
 
         @media screen and (max-width: 600px) {
-            grid-template-columns: 2fr 2fr 1fr 0.8fr;
+            grid-template-columns: 2fr 2fr 1fr 1fr;
             grid-template-areas:
                 "BRAND ARTICLE PRICE QUANTITY"
-                "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION";
+                "DESCRIPTION DESCRIPTION DESCRIPTION DESCRIPTION"
+                "BUTTON BUTTON BUTTON BUTTON";
         }
 
         &:hover {
@@ -216,6 +218,7 @@ body.dark-theme {
         // .search-data__block_quantity
 
         &_quantity {
+            text-align: center;
             grid-area: QUANTITY;
         }
     }
@@ -277,11 +280,47 @@ body.dark-theme {
         // .search-data__text_price
 
         &_price {
+            padding: 0px 10px;
         }
 
         // .search-data__text_quantity
 
         &_quantity {
+        }
+    }
+
+    //.search-data__button
+
+    &__button {
+        width: 140px;
+        margin-top: 20px;
+        padding: 7px 10px;
+        justify-self: end;
+        grid-area: BUTTON;
+
+        @media screen and (max-width: 900px) {
+            width: 120px;
+        }
+        @media screen and (max-width: 600px) {
+            margin-top: 10px;
+            padding: 7px 6px;
+            width: 100px;
+        }
+    }
+
+    //.search-data__button-text
+
+    &__button-text {
+        font-size: 16px;
+        @media screen and (max-width: 1230px) {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 900px) {
+            font-size: 14px;
+        }
+        @media screen and (max-width: 600px) {
+            font-size: 12px;
         }
     }
 }
