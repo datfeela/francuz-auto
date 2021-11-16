@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
-        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
+        setCookie('announcement', 'hidden');
     })
 
     //----------------------------CART-------------------------------//

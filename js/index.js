@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
-        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
+        setCookie('announcement', 'hidden');
     })
 
     //----------------------------CART-------------------------------//
@@ -232,6 +232,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    const sliderBody = document.querySelector('.slider-main__body');
+
+    sliderBody.addEventListener('click', () => {
+        sliderBody.classList.add('_hover');
+    })
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.slider-main__body')) sliderBody.classList.remove('_hover');
+    })
 });;
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('.bestsellers__body'),
@@ -239,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speed: 500,
             slidesPerView: 1,
             spaceBetween: 50,
-            shortSwipes: false,
+            threshold: 30,
             loop: true,
             navigation: {
                 nextEl: '.controls-bestsellers__button_prev',
