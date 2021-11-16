@@ -2638,11 +2638,6 @@ body.dark-theme ::selection {
     visibility: visible;
   }
 
-  .product__button.onclick {
-    -webkit-box-shadow: 0px -3.8992593288px 3.8992593288px 0px #ffffff59 inset, 0px 3.8992593288px 3.8992593288px 0px #be301daf inset;
-    box-shadow: 0px -3.8992593288px 3.8992593288px 0px #ffffff59 inset, 0px 3.8992593288px 3.8992593288px 0px #be301daf inset;
-  }
-
 @supports (-webkit-appearance:none) {
 
 }
