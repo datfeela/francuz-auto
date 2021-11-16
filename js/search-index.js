@@ -30,6 +30,28 @@ function getCookie(name) {
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
+function deleteCookie(name) {
+    setCookie(name, "", {
+        'max-age': -1
+    })
+}
+
+function changeCookie(targetElement, closestLinkElem, amount) {
+    let productID = targetElement.closest(closestLinkElem).href.split('id=')[1];
+    changeQuantity(productID, amount);
+    changeQuantity('totalQuantity', amount);
+}
+
+function changeQuantity(cookie, amount) {
+    if (getCookie(cookie) == undefined) {
+        setCookie(cookie, amount, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+    }
+    else {
+        setCookie(cookie, +getCookie(cookie) + amount, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+        if (getCookie(cookie) == 0) deleteCookie(cookie);
+    }
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     if (getCookie('theme') == 'dark') {
         document.querySelector('body').classList.add('dark-theme');
@@ -37,9 +59,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
     }
 });;
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
-    header = document.querySelector(".header"),
+    header = document.querySelector('.header'),
         headerBurger = document.querySelector('.search-header__burger'),
         headerDropdownMenu = document.querySelector('.search-header__dropdown'),
         headerSearch = document.querySelector('.search-header'),
@@ -52,24 +74,38 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     const callback = function (entries, observer) {
         if (entries[0].isIntersecting) {
-            header.classList.remove("_scroll");
+            header.classList.remove('_scroll');
         } else {
-            header.classList.add("_scroll");
+            header.classList.add('_scroll');
         }
     };
 
     const headerObserver = new IntersectionObserver(callback);
     headerObserver.observe(header)
 
-    //------------------------------------//
-
     //закрываю announcement по нажатию на кнопку
 
     const closeButton = document.querySelector('.announcement-header__close-button');
-    closeButton.addEventListener('click', (event) => {
+
+    if (getCookie('announcement') == 'hidden') {
+        closeButton.parentNode.style.transition = 'none';
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
+    }
+
+    closeButton.addEventListener('click', () => {
+        closeButton.parentNode.classList.add('_hidden');
+        header.classList.add('_no-announcement');
+        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
     })
+
+    //----------------------------CART-------------------------------//
+
+    let cartCounter = document.querySelector('.search-header__counter');
+    if (getCookie('totalQuantity') != undefined) {
+        cartCounter.innerHTML = getCookie('totalQuantity')
+    }
+    if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
 
     //---------------------BURGER-DROPDOWN---------------------------//
 
@@ -163,10 +199,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     //dark-theme
     themeChangerButton.addEventListener('click', (event) => {
         if (body.classList.contains('dark-theme')) {
-            setCookie('theme', 'bright', {sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
+            setCookie('theme', 'bright', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
         }
         else {
-            setCookie('theme', 'dark', {sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+            setCookie('theme', 'dark', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
         }
         themeChangerButton.classList.toggle('_active');
         body.classList.toggle('dark-theme');
@@ -174,41 +210,63 @@ document.addEventListener("DOMContentLoaded", (event) => {
 })
 ;
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(8).toUpperCase();
-    const mainBlock = document.querySelector('.main__search-result');
+    const mainBlock = document.querySelector('.main__search-result'),
+        heading = document.querySelector('.search-result__title');
+    let cartCounter = document.querySelector('.search-header__counter');
+    heading.insertAdjacentText('beforeend', searchRequest);
 
     getData();
 
-    // document.cookie = "user=John";
+    mainBlock.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement.closest('.search-data__button_buy')) {
+            event.preventDefault();
+            targetElement.closest('.search-data__button_buy').classList.add('onclick')
+            setTimeout(() => {
+                targetElement.closest('.search-data__button_buy').classList.remove('onclick');
+            }, 200);
+            changeCookie(targetElement, '.search-data__row', 1) 
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
 
     //functions
     async function getData() {
-        const file = "json/data.json";
-        let response = await fetch(file, { method: "GET" });
+        const file = 'json/data.json';
+        let response = await fetch(file, { method: 'GET' });
         if (response.ok) {
             let result = await response.json();
             loadData(result);
         } else {
-            alert("something went wrong...");
+            alert('something went wrong...');
         }
     }
 
     function loadData(data) {
-        const ProductsSearchBlock = document.querySelector('.search-result__data');
-        let productFound = false;
+        const productsSearchBlock = document.querySelector('#search-result-product'),
+            productSearchAnalogs = document.querySelector('#search-result-analogs'),
+            productSearchComplects = document.querySelector('#search-result-complects'),
+            searchResultCover = document.querySelector('.search-result__cover');
+        const ComplectsKeyword = 'КОМПЛЕКТ';
+        let productFoundMain = false,
+            productFoundAnalogs = false,
+            productFoundComplects = false;
 
         data.forEach(element => {
-            if ((element.col1 != '') && (searchRequest != '') && (element.col2 == searchRequest || element.col2 == searchRequest || element.col3.includes(searchRequest))) {
-                productFound = true;
+            if ((element.col1 != '') && (searchRequest.length > 3) && (element.col2 == searchRequest || element.col3.includes(searchRequest))) {
                 const productBrand = element.col1;
                 const productName = element.col4;
                 const productArticleNumber = element.col2;
                 const productPrice = element.col6;
-                const productQuantity = element.col8;
-                
+                let productQuantity;
+                if (element.col8 == 0) productQuantity = 'Под заказ';
+                else productQuantity = element.col8;
+
                 let productTemplate = `
-                <div class="search-data__row">
+                <a href="product.html?id=${productBrand}_${productArticleNumber}" class="search-data__row">
                     <div class="search-data__block search-data__block_brand">
                         <span class="search-data__text search-data__text_brand">${productBrand}</span>
                     </div>
@@ -224,43 +282,69 @@ document.addEventListener("DOMContentLoaded", (event) => {
                     <div class="search-data__block search-data__block_quantity">
                         <span class="search-data__text search-data__text_quantity">${productQuantity}</span>
                     </div>
-                </div>
+                    <button class="search-data__button search-data__button_buy button" type="button">
+                        <span class="search-data__button-text button__text">В корзину</span>
+                    </button>
+                </a>
                 `;
-                ProductsSearchBlock.insertAdjacentHTML("beforeend", productTemplate);
+                if (element.col2 == searchRequest) {
+                    productFoundMain = true;
+                    productsSearchBlock.insertAdjacentHTML('beforeend', productTemplate);
+                }
+                else if (element.col3.includes(searchRequest + ' ')) {
+                    if (element.col4.includes(ComplectsKeyword)) {
+                        productFoundComplects = true;
+                        productSearchComplects.insertAdjacentHTML('beforeend', productTemplate);
+                    }
+                    else {
+                        productFoundAnalogs = true;
+                        productSearchAnalogs.insertAdjacentHTML('beforeend', productTemplate);
+                    }
+                }
             }
         });
-
-        if (productFound == true) mainBlock.classList.add('_active');
+        if (productFoundMain == true || productFoundAnalogs == true || productFoundComplects == true) mainBlock.classList.add('_active');
+        if (productFoundMain == true) {
+            productsSearchBlock.classList.add('_active');
+            productsSearchBlock.previousElementSibling.classList.add('_active');
+        }
+        if (productFoundAnalogs == true) {
+            productSearchAnalogs.classList.add('_active');
+            productSearchAnalogs.previousElementSibling.classList.add('_active');
+        }
+        if (productFoundComplects == true) {
+            productSearchComplects.classList.add('_active');
+            productSearchComplects.previousElementSibling.classList.add('_active');
+        }
+        searchResultCover.style.display = 'none';
     }
 });
 
-
-//спойлеры на <= 560px
-document.addEventListener("DOMContentLoaded", (event) => {
-    $(".title-footer").click(function () {
+document.addEventListener('DOMContentLoaded', () => {
+    $('.title-footer').click(function () {
         if (document.documentElement.clientWidth <= 560) {
             $(this).next().slideToggle();
-            if ($(this).next().hasClass("contacts-footer__wrapper")) {
-                $(this).next().css("display", "flex");
+            if ($(this).next().hasClass('contacts-footer__wrapper')) {
+                $(this).next().css('display', 'flex');
             }
-            $(this).toggleClass("_active");
+            $(this).toggleClass('_active');
         }
     });
 
     $(window).resize(function () {
         //делаю видимыми свернутые спойлеры и убираю их при изменении разрешения
         if (document.documentElement.clientWidth > 560) {
-            $(".title-footer").next().css("display", "block");
-            if ($(".title-footer").next().hasClass("contacts-footer__wrapper")) {
-                $(".contacts-footer__wrapper").css("display", "flex");
+            $('.title-footer').next().css('display', 'block');
+            if ($('.title-footer').next().hasClass('contacts-footer__wrapper')) {
+                $('.contacts-footer__wrapper').css('display', 'flex');
             }
-            if ($(".title-footer").hasClass("_active")) {
-                $(".title-footer").removeClass("_active");
+            if ($('.title-footer').hasClass('_active')) {
+                $('.title-footer').removeClass('_active');
             }
         }
         if (document.documentElement.clientWidth <= 560) {
-            if (!$(".title-footer").hasClass("_active")) {
-                $(".title-footer").next().css("display", "none");
+            if (!$('.title-footer').hasClass('_active')) {
+                $('.title-footer').next().css('display', 'none');
             }
         }
     });
