@@ -2,7 +2,6 @@ function setCookie(name, value, options = {}) {
 
     options = {
         path: '/',
-        // при необходимости добавьте другие значения по умолчанию
         ...options
     };
 
@@ -36,17 +35,20 @@ function deleteCookie(name) {
     })
 }
 
-function changeCookie(targetElement, closestLinkElem) {
+function changeCookie(targetElement, closestLinkElem, amount) {
     let productID = targetElement.closest(closestLinkElem).href.split('id=')[1];
-    changeQuantity(productID);
-    changeQuantity('totalQuantity');
+    changeQuantity(productID, amount);
+    changeQuantity('totalQuantity', amount);
 }
 
-function changeQuantity(cookie) {
+function changeQuantity(cookie, amount) {
     if (getCookie(cookie) == undefined) {
-        setCookie(cookie, 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+        setCookie(cookie, amount, { sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
     }
-    else setCookie(cookie, +getCookie(cookie) + 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+    else {
+        setCookie(cookie, +getCookie(cookie) + amount, { sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+        if (getCookie(cookie) == 0) deleteCookie(cookie);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {

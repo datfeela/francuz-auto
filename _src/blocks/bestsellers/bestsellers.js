@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speed: 500,
             slidesPerView: 1,
             spaceBetween: 50,
+            threshold: 30,
             loop: true,
             navigation: {
                 nextEl: '.controls-bestsellers__button_prev',
@@ -41,9 +42,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (targetElement.closest('.product__button_buy')) {
             event.preventDefault();
-            changeCookie(targetElement, '.bestsellers__item');
+            targetElement.closest('.product__button_buy').classList.add('onclick');
+            setTimeout(() => {
+                targetElement.closest('.product__button_buy').classList.remove('onclick');
+            }, 100);
+            targetElement.closest('.product__button_buy').setAttribute('disabled', true);
+            changeCookie(targetElement, '.bestsellers__item', 1);
             document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
             if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+            targetElement.closest('.product__button_buy').removeAttribute('disabled');
         }
     })
 

@@ -139,7 +139,7 @@ body.dark-theme {
                 "PRICE"
                 "QUANTITY"
                 "CART";
-                grid-row-gap: 10px;
+            grid-row-gap: 10px;
         }
     }
 
@@ -177,6 +177,18 @@ body.dark-theme {
 
     @media screen and (max-width: 450px) {
         padding: 6px 8px;
+    }
+
+    &:active {
+        .button-buy__icon {
+            height: 27px;
+            width: 27px;
+
+            @media screen and (max-width: 450px) {
+                height: 22px;
+                width: 22px;
+            }
+        }
     }
 
     //.button-buy__icon

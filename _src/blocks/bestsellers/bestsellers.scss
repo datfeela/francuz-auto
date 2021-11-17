@@ -32,6 +32,11 @@ body.dark-theme {
         &__button {
             background-color: $redColor;
 
+            &.onclick {
+                box-shadow: -2.387607736693153e-16px -3.899259328842163px 3.899259328842163px 0px #ffffff59 inset,
+                    2.387607736693153e-16px 3.899259328842163px 3.899259328842163px 0px #be911daf inset;
+            }
+
             &:hover {
                 background-color: $yellowColor;
             }
@@ -160,6 +165,18 @@ body.dark-theme {
 
         &:hover {
             background-color: $redColor;
+        }
+
+        &.onclick {
+            box-shadow: -2.387607736693153e-16px -3.899259328842163px 3.899259328842163px 0px #ffffff59 inset,
+                2.387607736693153e-16px 3.899259328842163px 3.899259328842163px 0px #922b19ad inset;
+
+            .button__text {
+                font-size: 19px;
+                @media screen and (max-width: 1230px) {
+                    font-size: calc(14px + 5 * (100vw - 320px) / (1230 - 320));
+                }
+            }
         }
     }
 

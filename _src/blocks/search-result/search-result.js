@@ -6,17 +6,16 @@ document.addEventListener('DOMContentLoaded', () => {
     heading.insertAdjacentText('beforeend', searchRequest);
 
     getData();
-    // deleteCookie('products');
-    // deleteCookie('DAYCO_94785');
-    // deleteCookie('TORR_DV1431');
-    // deleteCookie('totalQuantity');
-    // deleteCookie('GATES_K015473XS');
 
     mainBlock.addEventListener('click', (event) => {
         const targetElement = event.target;
         if (targetElement.closest('.search-data__button_buy')) {
             event.preventDefault();
-            changeCookie(targetElement, '.search-data__row')
+            targetElement.closest('.search-data__button_buy').classList.add('onclick')
+            setTimeout(() => {
+                targetElement.closest('.search-data__button_buy').classList.remove('onclick');
+            }, 200);
+            changeCookie(targetElement, '.search-data__row', 1) 
             document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
             if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
         }

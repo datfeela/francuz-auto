@@ -2,7 +2,6 @@ function setCookie(name, value, options = {}) {
 
     options = {
         path: '/',
-        // при необходимости добавьте другие значения по умолчанию
         ...options
     };
 
@@ -36,17 +35,20 @@ function deleteCookie(name) {
     })
 }
 
-function changeCookie(targetElement, closestLinkElem) {
+function changeCookie(targetElement, closestLinkElem, amount) {
     let productID = targetElement.closest(closestLinkElem).href.split('id=')[1];
-    changeQuantity(productID);
-    changeQuantity('totalQuantity');
+    changeQuantity(productID, amount);
+    changeQuantity('totalQuantity', amount);
 }
 
-function changeQuantity(cookie) {
+function changeQuantity(cookie, amount) {
     if (getCookie(cookie) == undefined) {
-        setCookie(cookie, 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+        setCookie(cookie, amount, { sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
     }
-    else setCookie(cookie, +getCookie(cookie) + 1, { sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+    else {
+        setCookie(cookie, +getCookie(cookie) + amount, { sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+        if (getCookie(cookie) == 0) deleteCookie(cookie);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -92,7 +94,10 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
-        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
+        let currentTime = new Date();
+        currentTime.setHours(currentTime.getHours() + 1);
+        currentTime = currentTime.toUTCString();
+        setCookie('announcement', 'hidden', { sameSite: 'Strict', expires: currentTime});
     })
 
     //----------------------------CART-------------------------------//
@@ -195,10 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //dark-theme
     themeChangerButton.addEventListener('click', (event) => {
         if (body.classList.contains('dark-theme')) {
-            setCookie('theme', 'bright', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
+            setCookie('theme', 'bright', {sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
         }
         else {
-            setCookie('theme', 'dark', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+            setCookie('theme', 'dark', {sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
         }
         themeChangerButton.classList.toggle('_active');
         body.classList.toggle('dark-theme');
@@ -229,6 +234,15 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    const sliderBody = document.querySelector('.slider-main__body');
+
+    sliderBody.addEventListener('click', () => {
+        sliderBody.classList.add('_hover');
+    })
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.slider-main__body')) sliderBody.classList.remove('_hover');
+    })
 });;
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('.bestsellers__body'),
@@ -236,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
             speed: 500,
             slidesPerView: 1,
             spaceBetween: 50,
+            threshold: 30,
             loop: true,
             navigation: {
                 nextEl: '.controls-bestsellers__button_prev',
@@ -273,9 +288,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (targetElement.closest('.product__button_buy')) {
             event.preventDefault();
-            changeCookie(targetElement, '.bestsellers__item');
+            targetElement.closest('.product__button_buy').classList.add('onclick');
+            setTimeout(() => {
+                targetElement.closest('.product__button_buy').classList.remove('onclick');
+            }, 100);
+            targetElement.closest('.product__button_buy').setAttribute('disabled', true);
+            changeCookie(targetElement, '.bestsellers__item', 1);
             document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
             if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+            targetElement.closest('.product__button_buy').removeAttribute('disabled');
         }
     })
 

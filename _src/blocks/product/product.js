@@ -12,11 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
     productBlock.addEventListener('click', (event) => {
         const targetElement = event.target;
         if (targetElement.closest('.button-buy')) {
+            targetElement.closest('.button-buy').setAttribute('disabled', true);
             event.preventDefault();
-            changeQuantity(searchRequest);
-            changeQuantity('totalQuantity');
+            changeQuantity(searchRequest, 1);
+            changeQuantity('totalQuantity', 1);
             document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
             if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+            targetElement.closest('.button-buy').removeAttribute('disabled');
         }
     })
 

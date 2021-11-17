@@ -35,7 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
     closeButton.addEventListener('click', () => {
         closeButton.parentNode.classList.add('_hidden');
         header.classList.add('_no-announcement');
-        setCookie('announcement', 'hidden', { sameSite: 'Strict', secure: true});
+        let currentTime = new Date();
+        currentTime.setHours(currentTime.getHours() + 1);
+        currentTime = currentTime.toUTCString();
+        setCookie('announcement', 'hidden', { sameSite: 'Strict', expires: currentTime});
     })
 
     //----------------------------CART-------------------------------//
@@ -138,10 +141,10 @@ document.addEventListener('DOMContentLoaded', () => {
     //dark-theme
     themeChangerButton.addEventListener('click', (event) => {
         if (body.classList.contains('dark-theme')) {
-            setCookie('theme', 'bright', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
+            setCookie('theme', 'bright', {sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT'});
         }
         else {
-            setCookie('theme', 'dark', {sameSite: 'Strict', secure: true, expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
+            setCookie('theme', 'dark', {sameSite: 'Strict', expires: 'Tue, 19 Jan 2038 03: 14: 07 GMT' });
         }
         themeChangerButton.classList.toggle('_active');
         body.classList.toggle('dark-theme');

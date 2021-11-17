@@ -1,15 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     const requestSuccessInfo = document.querySelector('.redirect-info__text_success'),
         requestFailInfo = document.querySelector('.redirect-info__text_fail');
-    let redirectUrl = 'http://datfee3c.beget.tech';
+    redirectUrl = 'index.html';
+    let cookies = document.cookie.split('; ');
+    let cookiesSorted = [];
 
     switch (location.hash) {
-        case '#requestSuccess':
+        case '#cartRequestSuccess':
             requestSuccessInfo.style.display = 'block';
-            redirectUrl = 'http://datfee3c.beget.tech';
+            cookies.map(function (element) {
+                if (element.split('=')[0] != 'announcement' && element.split('=')[0] != 'theme') {
+                    deleteCookie(element.split('=')[0]);
+                }
+            })
             redirect(redirectUrl);
             break;
-        case '#requestFail':
+        case '#cartRequestFail':
+            requestFailInfo.style.display = 'block';
+            goBack();
+            break;
+        case '#vinRequestSuccess':
+            requestSuccessInfo.style.display = 'block';
+            redirect(redirectUrl);
+            break;
+        case '#vinRequestFail':
             requestFailInfo.style.display = 'block';
             goBack();
             break;

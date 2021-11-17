@@ -22,4 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+    const sliderBody = document.querySelector('.slider-main__body');
+
+    sliderBody.addEventListener('click', () => {
+        sliderBody.classList.add('_hover');
+    })
+
+    document.addEventListener('click', (event) => {
+        if (!event.target.closest('.slider-main__body')) sliderBody.classList.remove('_hover');
+    })
 });

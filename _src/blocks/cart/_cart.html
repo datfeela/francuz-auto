@@ -1,0 +1,33 @@
+<section class="main__cart cart">
+    <div class="cart__body">
+        <h1 class="cart__title title">Ваша корзина:</h1>
+        <div class="cart__data search-data"></div>
+        <div class="cart__total total">
+            <h2 class="total__title">Итого:</h2>
+            <span class="total__total-price"></span>
+        </div>
+        <form method="POST" action="php/cart-form.php" class="cart__form form-cart">
+            <textarea class="form-cart__input form-cart__input_hidden" name="spare-parts"> </textarea>
+            <div class="form-cart__input-group">
+                <h2 class="form-cart__title">Контактные данные</h2>
+                <input class="form-cart__input" type="text" name="name" placeholder="Ваше имя *" autocomplete="off" required />
+                <input
+                    class="form-cart__input"
+                    type="text"
+                    name="phone-num"
+                    placeholder="Телефон *"
+                    autocomplete="off"
+                    required
+                    pattern="^[0-9-+ ]{7,20}$"
+                    oninvalid="setCustomValidity('Пожалуйста, введите номер телефона в формате +7900-000-00-00')"
+                    oninput="setCustomValidity('')"
+                />
+                <input class="form-cart__input" type="text" name="e-mail" placeholder="E-mail" autocomplete="off" />
+            </div>
+            <button class="form-cart__submit-button button" type="submit">Оформить заказ</button>
+        </form>
+        <div class="cart__cover">
+            <img src="img/loading.gif" alt="cover." class="cart__cover-gif" />
+        </div>
+    </div>
+</section>
