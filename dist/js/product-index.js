@@ -214,11 +214,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchRequest = location.search.slice(4);
     const productBlock = document.querySelector('.main__product'),
         head = document.querySelector('head'),
-        title = document.querySelector('title'),
-        searchRequestBrand = searchRequest.split('_')[0],
-        searchRequestArticle = searchRequest.split('_')[1];
-    let cartCounter = document.querySelector('.search-header__counter');
+        title = document.querySelector('title');
+    let searchRequestBrand = searchRequest.split('_')[0],
+        searchRequestArticle = searchRequest.split('_')[1],
+        cartCounter = document.querySelector('.search-header__counter');
 
+    if (searchRequest.split('_')[2]) {
+        searchRequestBrand = searchRequest.split('_')[0] + ' ' + searchRequest.split('_')[1];
+        searchRequestArticle = searchRequest.split('_')[2];
+        console.log(searchRequestBrand, '+++', searchRequestArticle)
+    }
+
+    fixArticle();
     getData();
 
     productBlock.addEventListener('click', (event) => {
@@ -304,6 +311,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (productFound == true) productBlock.classList.add('_active');
+    }
+
+    function fixArticle() {
+        if (searchRequestArticle.indexOf('%20') != -1) {
+            let count = 0;
+            let newArticle = '';
+            while (searchRequestArticle.split('%20')[count]) {
+                newArticle += searchRequestArticle.split('%20')[count];
+                count++;
+                if (searchRequestArticle.split('%20')[count]) newArticle += ' ';
+            }
+            searchRequestArticle = newArticle;
+        }
     }
 });
 document.addEventListener('DOMContentLoaded', () => {

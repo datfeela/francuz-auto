@@ -1,0 +1,90 @@
+<section class="main__catalog catalog">
+    <div class="catalog__body">
+        <h1 class="catalog__title title"></h1>
+        <div class="catalog__container">
+            <div class="catalog__items items-catalog">
+                <div class="items-catalog__cover">
+                    <img src="img/loading.gif" alt="cover." class="items-catalog__cover-gif" />
+                </div>
+            </div>
+            <button class="catalog__load-more-button button">Показать еще</button>
+            <div class="catalog__sidebar sidebar">
+                <div class="sidebar__filters">
+                    <div class="sidebar__filter filter">
+                        <div class="filter__header">
+                            <h2 class="filter__title">Бренд</h2>
+                            <button class="filter__dropdown-button"></button>
+                        </div>
+                        <div class="filter__body">
+                            <div class="filter__search search-filter search">
+                                <input
+                                    class="search-filter__input search__input"
+                                    placeholder="Поиск по бренду"
+                                    aria-label=""
+                                    value=""
+                                    autocomplete="none"
+                                />
+                                <button class="search-filter__button search__button" type="button">
+                                    <svg class="search-filter__icon search__icon">
+                                        <use xlink:href="#search"></use>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div id="brands-filter" class="filter__options options-filter">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar__filter filter">
+                        <div class="filter__header">
+                            <h2 class="filter__title">Цена</h2>
+                            <button class="filter__dropdown-button"></button>
+                        </div>
+                        <div class="filter__body">
+                            <div class="filter__options options-filter">
+                                <div class="options-filter__item">
+                                    <input class="options-filter__radio" id="price-decrease" type="radio" name="price" value="decrease" />
+                                    <label class="options-filter__label" for="price-decrease"> По убыванию </label>
+                                </div>
+                                <div class="options-filter__item">
+                                    <input class="options-filter__radio" id="price-increase" type="radio" name="price" value="increase" />
+                                    <label class="options-filter__label" for="price-increase"> По возрастанию </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar__filter filter">
+                        <div class="filter__header">
+                            <h2 class="filter__title">Наличие</h2>
+                            <button class="filter__dropdown-button"></button>
+                        </div>
+                        <div class="filter__body">
+                            <div class="filter__options options-filter">
+                                <div class="options-filter__item">
+                                    <input
+                                        class="options-filter__radio"
+                                        id="availability-in-stock"
+                                        type="radio"
+                                        name="availability"
+                                        value="in-stock"
+                                    />
+                                    <label class="options-filter__label" for="availability-in-stock"> Только в наличии </label>
+                                </div>
+                                <div class="options-filter__item">
+                                    <input
+                                        class="options-filter__radio"
+                                        id="availability-for-order"
+                                        type="radio"
+                                        name="availability"
+                                        value="for-order"
+                                    />
+                                    <label class="options-filter__label" for="availability-for-order"> В наличии и под заказ </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

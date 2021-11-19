@@ -213,10 +213,13 @@ document.addEventListener('DOMContentLoaded', () => {
 ;
 
 document.addEventListener('DOMContentLoaded', () => {
-    let searchRequest = location.search.slice(8).toUpperCase();
     const mainBlock = document.querySelector('.main__search-result'),
         heading = document.querySelector('.search-result__title');
-    let cartCounter = document.querySelector('.search-header__counter');
+    let cartCounter = document.querySelector('.search-header__counter'),
+        searchRequest = location.search.slice(8).toUpperCase();
+
+    fixSearchRequest();
+
     heading.insertAdjacentText('beforeend', searchRequest);
 
     getData();
@@ -229,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 targetElement.closest('.search-data__button_buy').classList.remove('onclick');
             }, 200);
-            changeCookie(targetElement, '.search-data__row', 1) 
+            changeCookie(targetElement, '.search-data__row', 1)
             document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
             if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
         }
@@ -263,12 +266,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const productName = element.col4;
                 const productArticleNumber = element.col2;
                 const productPrice = element.col6;
-                let productQuantity;
+                let productQuantity,
+                    productLink = productBrand + '_' + productArticleNumber;
+
+                if (productBrand.split(' ')[1]) productLink = productBrand.split(' ')[0] + '_' + productBrand.split(' ')[1] + '_' + productArticleNumber;
+
                 if (element.col8 == 0) productQuantity = 'Под заказ';
                 else productQuantity = element.col8;
 
                 let productTemplate = `
-                <a href="product.html?id=${productBrand}_${productArticleNumber}" class="search-data__row">
+                <a href="product.html?id=${productLink}" class="search-data__row">
                     <div class="search-data__block search-data__block_brand">
                         <span class="search-data__text search-data__text_brand">${productBrand}</span>
                     </div>
@@ -319,6 +326,20 @@ document.addEventListener('DOMContentLoaded', () => {
             productSearchComplects.previousElementSibling.classList.add('_active');
         }
         searchResultCover.style.display = 'none';
+    }
+
+    function fixSearchRequest() {
+        if (searchRequest.indexOf('+') != -1) {
+            let count = 0;
+            let newSearchRequest = '';
+            while (searchRequest.split('+')[count]) {
+                newSearchRequest += searchRequest.split('+')[count];
+                count++;
+                if (searchRequest.split('+')[count]) newSearchRequest += ' ';
+            }
+            searchRequest = newSearchRequest;
+        }
+        console.log(searchRequest);
     }
 });
 

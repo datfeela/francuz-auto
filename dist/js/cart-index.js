@@ -304,7 +304,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fillTextarea();
             deleteCookie(elementID);
             changeQuantity('totalQuantity', -currentQuantity);
-            console.log(getCookie('totalQuantity'));
             if (getCookie('totalQuantity')) {
                 cartCounter.innerHTML = +getCookie('totalQuantity');
             }

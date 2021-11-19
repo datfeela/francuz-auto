@@ -318,6 +318,7 @@ body.dark-theme {
         // .search-data__text_quantity
 
         &_quantity {
+            font-weight: 500;
         }
 
         // .search-data__text_exclamation
@@ -364,12 +365,13 @@ body.dark-theme {
             font-weight: 500;
             padding-bottom: 1px;
             background-color: #fff;
-            border: 1px solid $greyColor;
+            color: $greyColor;
+            border: 2px solid rgb(117, 117, 117);
             margin-left: 7px;
 
             &:hover {
                 color: rgb(214, 126, 25);
-                border: 1px solid rgb(214, 126, 25);
+                border: 2px solid rgb(214, 126, 25);
             }
         }
 
@@ -380,12 +382,13 @@ body.dark-theme {
             font-weight: 500;
             padding-bottom: 1px;
             background-color: #fff;
-            border: 1px solid $greyColor;
+            color: $greyColor;
+            border: 2px solid rgb(117, 117, 117);
             margin-right: 7px;
 
             &:hover {
                 color: rgb(214, 126, 25);
-                border: 1px solid rgb(214, 126, 25);
+                border: 2px solid rgb(214, 126, 25);
             }
         }
 
