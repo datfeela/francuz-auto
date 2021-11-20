@@ -2,14 +2,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainBlock = document.querySelector('.main__search-result'),
         heading = document.querySelector('.search-result__title');
     let cartCounter = document.querySelector('.search-header__counter'),
-        searchRequest = location.search.slice(8).toUpperCase();
-
-    fixSearchRequest();
+        searchRequest = new URL(location.href).searchParams.get('search').toUpperCase();
 
     heading.insertAdjacentText('beforeend', searchRequest);
 
     getData();
 
+    //добавление товаров в корзину
     mainBlock.addEventListener('click', (event) => {
         const targetElement = event.target;
         if (targetElement.closest('.search-data__button_buy')) {
@@ -48,14 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         data.forEach(element => {
             if ((element.col1 != '') && (searchRequest.length > 3) && (element.col2 == searchRequest || element.col3.includes(searchRequest))) {
-                const productBrand = element.col1;
                 const productName = element.col4;
-                const productArticleNumber = element.col2;
                 const productPrice = element.col6;
-                let productQuantity,
-                    productLink = productBrand + '_' + productArticleNumber;
+                let productBrand = element.col1,
+                    productArticleNumber = element.col2,
+                    productQuantity,
+                    productLink = fixString(productBrand, ' ', '_') + '__' + fixString(productArticleNumber, ' ', '_');
 
-                if (productBrand.split(' ')[1]) productLink = productBrand.split(' ')[0] + '_' + productBrand.split(' ')[1] + '_' + productArticleNumber;
+                // if (productBrand.split(' ')[1]) productLink = productBrand.split(' ')[0] + '_' + productBrand.split(' ')[1] + '_' + productArticleNumber;
 
                 if (element.col8 == 0) productQuantity = 'Под заказ';
                 else productQuantity = element.col8;
@@ -112,19 +111,5 @@ document.addEventListener('DOMContentLoaded', () => {
             productSearchComplects.previousElementSibling.classList.add('_active');
         }
         searchResultCover.style.display = 'none';
-    }
-
-    function fixSearchRequest() {
-        if (searchRequest.indexOf('+') != -1) {
-            let count = 0;
-            let newSearchRequest = '';
-            while (searchRequest.split('+')[count]) {
-                newSearchRequest += searchRequest.split('+')[count];
-                count++;
-                if (searchRequest.split('+')[count]) newSearchRequest += ' ';
-            }
-            searchRequest = newSearchRequest;
-        }
-        console.log(searchRequest);
     }
 })

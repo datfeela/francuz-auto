@@ -57,6 +57,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelector('.theme-changer__button').classList.add('_active');
     }
 });;
+function fixString(string, symbol, newSymbol) {
+    if (string.indexOf(symbol) != -1) {
+        let count = 0;
+        let newString = '';
+        while (string.split(symbol)[count]) {
+            newString += string.split(symbol)[count];
+            count++;
+            if (string.split(symbol)[count]) newString += newSymbol;
+        }
+        string = newString;
+    }
+    return string;
+};
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
     header = document.querySelector('.header'),
@@ -211,21 +224,14 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 ;
 document.addEventListener('DOMContentLoaded', () => {
-    let searchRequest = location.search.slice(4);
+    let searchRequest = new URL(location.href).searchParams.get('id');
     const productBlock = document.querySelector('.main__product'),
         head = document.querySelector('head'),
         title = document.querySelector('title');
-    let searchRequestBrand = searchRequest.split('_')[0],
-        searchRequestArticle = searchRequest.split('_')[1],
+    let searchRequestBrand = fixString(searchRequest.split('__')[0], '_', ' '),
+        searchRequestArticle = fixString(searchRequest.split('__')[1], '_', ' '),
         cartCounter = document.querySelector('.search-header__counter');
 
-    if (searchRequest.split('_')[2]) {
-        searchRequestBrand = searchRequest.split('_')[0] + ' ' + searchRequest.split('_')[1];
-        searchRequestArticle = searchRequest.split('_')[2];
-        console.log(searchRequestBrand, '+++', searchRequestArticle)
-    }
-
-    fixArticle();
     getData();
 
     productBlock.addEventListener('click', (event) => {
@@ -257,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let productFound = false;
 
         data.forEach(element => {
-            if ((element.col1 != '') && (searchRequestArticle.length > 3) && (element.col1 == searchRequestBrand) && (element.col2 == searchRequestArticle)) {
+            if ((element.col1 != '') && (searchRequestArticle.length > 2) && (element.col1 == searchRequestBrand) && (element.col2 == searchRequestArticle)) {
                 productFound = true;
                 const productBrand = element.col1;
                 const productName = element.col4;
@@ -313,18 +319,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (productFound == true) productBlock.classList.add('_active');
     }
 
-    function fixArticle() {
-        if (searchRequestArticle.indexOf('%20') != -1) {
-            let count = 0;
-            let newArticle = '';
-            while (searchRequestArticle.split('%20')[count]) {
-                newArticle += searchRequestArticle.split('%20')[count];
-                count++;
-                if (searchRequestArticle.split('%20')[count]) newArticle += ' ';
-            }
-            searchRequestArticle = newArticle;
-        }
-    }
+    // function fixArticle() {
+    //     if (searchRequestArticle.indexOf('%20') != -1) {
+    //         let count = 0;
+    //         let newArticle = '';
+    //         while (searchRequestArticle.split('%20')[count]) {
+    //             newArticle += searchRequestArticle.split('%20')[count];
+    //             count++;
+    //             if (searchRequestArticle.split('%20')[count]) newArticle += ' ';
+    //         }
+    //         searchRequestArticle = newArticle;
+    //     }
+    // }
 });
 document.addEventListener('DOMContentLoaded', () => {
     $('.title-footer').click(function () {

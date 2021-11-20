@@ -57,6 +57,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelector('.theme-changer__button').classList.add('_active');
     }
 });;
+function fixString(string, symbol, newSymbol) {
+    if (string.indexOf(symbol) != -1) {
+        let count = 0;
+        let newString = '';
+        while (string.split(symbol)[count]) {
+            newString += string.split(symbol)[count];
+            count++;
+            if (string.split(symbol)[count]) newString += newSymbol;
+        }
+        string = newString;
+    }
+    return string;
+};
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
     header = document.querySelector('.header'),
@@ -214,12 +227,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchRequest = new URL(location.href).searchParams.get('cat'),
         productsSearchBlock = document.querySelector('.catalog__items'),
         documentTitle = document.querySelector('title'),
+        nothingFoundBlock = document.querySelector('.items-catalog__nothing-found');
         cartCounter = document.querySelector('.search-header__counter'),
         loadButton = document.querySelector('.catalog__load-more-button'),
         filters = document.querySelector('.sidebar__filters');
     let sortedData = [],
         filteredData = [],
         productsCount = 0,
+        availabilityIsChecking = 0,
+        numericSort = 0,
         filterParams = {};
 
     changeTitle();
@@ -233,21 +249,101 @@ document.addEventListener('DOMContentLoaded', () => {
         else if (productsCount < sortedData.length) loadData(sortedData);
     })
 
-    filters.addEventListener('click', (event) => {
+    //сортировка
+    filters.addEventListener('change', (event) => {
         const targetElement = event.target;
 
-        if (targetElement.className == 'options-filter__label') {
-            //сортировка по производителю
-            if (targetElement.parentNode.parentNode.id == 'brands-filter') {
-                if (!targetElement.previousElementSibling.checked) sortByBrand(1, targetElement.previousElementSibling.name);
-                else {
-                    sortByBrand(0, targetElement.previousElementSibling.name);
-                    if (productsSearchBlock.querySelectorAll('.items-catalog__row').length == 0) loadData(sortedData);
-                }
+        //по чекбоксам
+        if (targetElement.classList.contains('options-filter__checkbox')) {
+            //по производителю
+            if (targetElement.parentNode.parentNode.id == 'brands-filter') sortByBrand();
+        }
+
+        //по радио
+        if (targetElement.classList.contains('options-filter__radio')) {
+            //по цене
+            if (targetElement.id == 'price-decrease') {
+                // if (filterParams.brands && filterParams.brands.length > 0) {
+                //     sortedData.sort(compareNumericReverse);
+                //     filteredData.sort(compareNumericReverse);
+                //     loadFilteredData(filteredData);
+                // }
+                // else {
+                // sortedData.sort(compareNumericReverse);
+                // loadFilteredData(sortedData);
+                // }
+                numericSort = -1;
+                filterData();
+            }
+            if (targetElement.id == 'price-increase') {
+                // if (filterParams.brands && filterParams.brands.length > 0) {
+                //     sortedData.sort(compareNumeric);
+                //     filteredData.sort(compareNumeric);
+                //     loadFilteredData(filteredData);
+                // }
+                // else {
+                // sortedData.sort(compareNumeric);
+                // loadFilteredData(sortedData);
+                // }
+                numericSort = 1;
+                filterData();
+            }
+            //по наличию
+            if (targetElement.id == 'availability-in-stock') {
+                availabilityIsChecking = 1;
+                filterData();
+            }
+            if (targetElement.id == 'availability-for-order') {
+                availabilityIsChecking = 0;
+                filterData();
             }
         }
     })
 
+    //сворачивание фильтров
+    filters.addEventListener('click', (event) => {
+        const targetElement = event.target;
+
+        if (targetElement.closest('.filter__dropdown-button')) {
+            const parentContainer = targetElement.closest('.filter');
+
+            parentContainer.classList.toggle('_hidden');
+            $(parentContainer).children('.filter__body').slideToggle();
+        }
+    })
+
+    //поиск внутри фильтра
+    filters.addEventListener('input', (event) => {
+        const targetElement = event.target;
+
+        if (targetElement.classList.contains('search-filter__input')) {
+            const filtersArray = Array.from(targetElement.parentNode.nextElementSibling.children);
+            if (targetElement.value != '') {
+                filtersArray.forEach(element => {
+                    if (!element.firstElementChild.name.includes(targetElement.value.toUpperCase())) element.classList.add('_hidden');
+                    else element.classList.remove('_hidden');
+                })
+            }
+            else filtersArray.forEach(element => {
+                element.classList.remove('_hidden');
+            })
+        }
+    })
+
+    //добавление товара в корзину
+    productsSearchBlock.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement.closest('.product__button_buy')) {
+            event.preventDefault();
+            targetElement.closest('.product__button_buy').classList.add('onclick')
+            setTimeout(() => {
+                targetElement.closest('.product__button_buy').classList.remove('onclick');
+            }, 200);
+            changeCookie(targetElement, '.items-catalog__row', 1)
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
 
     //functions
 
@@ -294,18 +390,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         for (let arrCount = productsCount; arrCount < productsCount + productsToLoadCount; arrCount++) {
             let element = data[arrCount];
-            const productBrand = element.col1;
-            const productArticleNumber = element.col2;
             const productName = element.col4;
             const productPrice = element.col6;
-            let productLink = productBrand + '_' + productArticleNumber;
-
-            if (productBrand.split(' ')[1]) productLink = productBrand.split(' ')[0] + '_' + productBrand.split(' ')[1] + '_' + productArticleNumber;
+            let productBrand = element.col1,
+                productArticleNumber = element.col2,
+                productLink = fixString(productBrand, ' ', '_') + '__' + fixString(productArticleNumber, ' ', '_');           
 
             let productTemplate = `
                 <a href="product.html?id=${productLink}" class="items-catalog__row product">
                     <div class="product__block product__block_brand">
-                        <span class="product__text product__text_brand">${productBrand}_${productArticleNumber}</span>
+                        <span class="product__text product__text_brand">${productBrand} ${productArticleNumber}</span>
                     </div>
                     <div class="product__block product__block_description">
                         <span class="product__text product__text_description">${productName}</span>
@@ -324,13 +418,41 @@ document.addEventListener('DOMContentLoaded', () => {
         searchResultCover.classList.add('_hidden');
     }
 
-    function loadFilteredData() {
+    function filterData() {
+        filteredData = [];
+
+        sortedData.forEach(element => {
+            let brandsCheck = 0,
+                availabilityCheck = 0;
+            if (filterParams.brands && filterParams.brands.length > 0) {
+                filterParams.brands.forEach(brand => {
+                    if (brand == element.col1) brandsCheck = 1;
+                })
+            }
+            else brandsCheck = 1;
+            if (availabilityIsChecking == 1) {
+                if (element.col8 > 0) availabilityCheck = 1;
+            }
+            else availabilityCheck = 1;
+
+            if (brandsCheck == 1 && availabilityCheck == 1) filteredData.push(element);
+        })
+        if (numericSort == 1) filteredData.sort(compareNumeric);
+        else if (numericSort == -1) filteredData.sort(compareNumericReverse);
+
+        loadFilteredData(filteredData);
+    }
+
+    function loadFilteredData(data) {
         Array.from(productsSearchBlock.querySelectorAll('.items-catalog__row')).forEach(element => {
             element.remove();
         })
 
         productsCount = 0;
-        loadData(filteredData);
+        loadData(data);
+
+        if (data.length == 0) nothingFoundBlock.classList.add('_active');
+        else nothingFoundBlock.classList.remove('_active');
     }
 
     function changeTitle() {
@@ -374,10 +496,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    function sortByBrand(checked, name) {
+    function sortByBrand() {
         const brandsFilter = document.querySelector('#brands-filter');
         let brandsArray = [];
-        filteredData = [];
 
         Array.from(brandsFilter.children).forEach(element => {
             if (element.firstElementChild.checked == true) {
@@ -385,23 +506,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
 
-        //если чекбокс чекнут, добавляю в массив только что чекнутый, если чек снят, удаляю из массива
+        filterParams.brands = brandsArray;
 
-        if (checked == 1) brandsArray.push(name);
-        else {
-            let deleteIndex = brandsArray.findIndex(function (item, index, array) {
-                if (item == name) return item;
-            })
-            brandsArray.splice(deleteIndex, 1);
+        filterData();
+    }
+
+    function compareNumeric(a, b) {
+        let a1, b1;
+        if (a.col6.split(',')[1]) {
+            a1 = (a.col6.split(',')[0] + a.col6.split(',')[1]);
         }
+        else a1 = a.col6;
+        if (b.col6.split(',')[1]) {
+            b1 = (b.col6.split(',')[0] + b.col6.split(',')[1]);
+        }
+        else b1 = b.col6;
+        if (+a1 > +b1) return 1;
+        if (+a1 == +b1) return 0;
+        if (+a1 < +b1) return -1;
+    }
 
-        sortedData.forEach(element => {
-            brandsArray.forEach(brand => {
-                if (brand == element.col1) filteredData.push(element);
-            })
-        })
-
-        loadFilteredData();
+    function compareNumericReverse(a, b) {
+        let a1, b1;
+        if (a.col6.split(',')[1]) {
+            a1 = (a.col6.split(',')[0] + a.col6.split(',')[1]);
+        }
+        else a1 = a.col6;
+        if (b.col6.split(',')[1]) {
+            b1 = (b.col6.split(',')[0] + b.col6.split(',')[1]);
+        }
+        else b1 = b.col6;
+        if (+a1 < +b1) return 1;
+        if (+a1 == +b1) return 0;
+        if (+a1 > +b1) return -1;
     }
 });
 document.addEventListener('DOMContentLoaded', () => {

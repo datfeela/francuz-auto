@@ -1,14 +1,20 @@
 body.dark-theme {
-    .items-catalog__row {
-        color: #fff;
+    .items-catalog {
+        &__row {
+            color: #fff;
 
-        &:hover {
-            background-color: #2b2b31;
+            &:hover {
+                background-color: #2b2b31;
+            }
         }
-    }
 
-    .items-catalog__cover {
-        background-color: $darkBlueColor;
+        &__cover {
+            background-color: $darkBlueColor;
+        }
+
+        &__icon_fail {
+            fill: #fff;
+        }
     }
 }
 
@@ -87,7 +93,7 @@ body.dark-theme {
             font-size: 12px;
         }
 
-        &._blocked{
+        &._blocked {
             opacity: 0;
             visibility: hidden;
             position: absolute;
@@ -132,7 +138,7 @@ body.dark-theme {
         display: flex;
         justify-content: center;
 
-        &._hidden{
+        &._hidden {
             opacity: 0;
             visibility: hidden;
         }
@@ -142,6 +148,61 @@ body.dark-theme {
 
     &__cover-gif {
         margin-top: 100px;
+    }
+
+    //.items-catalog__nothing-found
+
+    &__nothing-found {
+        width: 100%;
+        position: absolute;
+        top: -9000px;
+        opacity: 0;
+        visibility: hidden;
+        padding: 40px 10px 0px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        &._active {
+            position: relative;
+            top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    // .items-catalog__title
+
+    &__title {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: 900px) {
+            font-size: 18px;
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 16px;
+        }
+    }
+
+    // .items-catalog__text
+
+    &__text {
+    }
+
+    // .items-catalog__icon
+
+    &__icon {
+        // .items-catalog__icon_fail
+
+        &_fail {
+            height: 120px;
+            width: 120px;
+            margin-bottom: 20px;
+        }
     }
 }
 
@@ -451,6 +512,13 @@ body.dark-theme {
 
     &__item {
         padding: 5px 0px;
+
+        &._hidden {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: -9999px;
+        }
     }
 
     // .options-filter__radio

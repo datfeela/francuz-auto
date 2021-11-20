@@ -57,6 +57,19 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelector('.theme-changer__button').classList.add('_active');
     }
 });;
+function fixString(string, symbol, newSymbol) {
+    if (string.indexOf(symbol) != -1) {
+        let count = 0;
+        let newString = '';
+        while (string.split(symbol)[count]) {
+            newString += string.split(symbol)[count];
+            count++;
+            if (string.split(symbol)[count]) newString += newSymbol;
+        }
+        string = newString;
+    }
+    return string;
+};
 document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
     header = document.querySelector('.header'),
@@ -245,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetElement.closest('.search-data__button').nextElementSibling.innerHTML = currentQuantity;
                 if (currentQuantity <= +parentRow.dataset.quantity) {
                     parentRow.querySelector('.search-data__block_quantity').classList.remove('_active-exclamation');
-                } 
+                }
             }
             else {
                 deleteRow(elementID, targetElement);
@@ -253,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             calcFullPrice();
             fillTextarea();
-            
+
             targetElement.closest('.search-data__button_minus').removeAttribute('disabled');
         }
 
@@ -334,12 +347,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const productsBlock = document.querySelector('.cart__data'),
             cartCover = document.querySelector('.cart__cover');
 
+        cookiesSorted.forEach(productCookie => {
+            let searchRequest = productCookie.split('=')[0],
+                searchRequestQuantity = productCookie.split('=')[1],
+                searchRequestArticle = fixString(productCookie.split('=')[0].split('__')[1], '_', ' '),
+                searchRequestBrand = fixString(productCookie.split('=')[0].split('__')[0], '_', ' ');
+
+            console.log(searchRequest, '        ', searchRequestBrand, searchRequestArticle, searchRequestQuantity);
+        })
         data.forEach(element => {
             cookiesSorted.forEach(productCookie => {
-                let searchRequest = productCookie.split('=')[0].split('_')[1];
-                let searchRequestQuantity = productCookie.split('=')[1];
-                let searchRequestArticle = productCookie.split('=')[0];
-                if ((element.col1 != '') && (searchRequest.length > 3) && (element.col2 == searchRequest)) {
+                let searchRequest = productCookie.split('=')[0],
+                    searchRequestQuantity = productCookie.split('=')[1],
+                    searchRequestArticle = fixString(productCookie.split('=')[0].split('__')[1], '_', ' '),
+                    searchRequestBrand = fixString(productCookie.split('=')[0].split('__')[0], '_', ' ');
+
+                if ((element.col1 != '') && (searchRequestArticle.length > 3) && (element.col2 == searchRequestArticle)) {
                     const productName = element.col4;
                     const productPrice = element.col6;
                     const productAvailibility = element.col8;
@@ -357,11 +380,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (productQuantity > productAvailibility) activeExclamation = '_active-exclamation';
 
                     let productTemplate = `
-                <div data-id="${searchRequestArticle}" data-quantity="${productAvailibility}" class="search-data__row">
+                <div data-id="${searchRequest}" data-quantity="${productAvailibility}" class="search-data__row">
                     <div class="search-data__block search-data__block_brand">
-                        <span class="search-data__text search-data__text_brand">${searchRequestArticle}</span>
+                        <span class="search-data__text search-data__text_brand">${searchRequestBrand} ${searchRequestArticle}</span>
                     </div>
-                    <a href="product.html?id=${searchRequestArticle}" class="search-data__block search-data__block_description">
+                    <a href="product.html?id=${searchRequest}" class="search-data__block search-data__block_description">
                         <span class="search-data__text search-data__text_description">${productName}</span>
                     </a>
                     <div class="search-data__block search-data__block_price">
