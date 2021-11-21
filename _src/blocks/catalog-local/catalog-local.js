@@ -149,6 +149,18 @@ document.addEventListener('DOMContentLoaded', () => {
         sortedData = data.filter(element => element.col9 == keyword);
         loadFilters(sortedData);
         loadData(sortedData);
+        // async function f() {
+
+        //     let promise = new Promise((resolve, reject) => {
+        //         setTimeout(() => resolve("готово!"), 1000)
+        //     });
+
+        //     let result = await promise; // будет ждать, пока промис не выполнится (*)
+
+        //     alert(result); // "готово!"
+        // }
+
+        // f();
     }
 
     function loadData(data) {

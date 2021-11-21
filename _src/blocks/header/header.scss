@@ -920,8 +920,7 @@ body.dark-theme {
 
     &__item {
         width: 100%;
-        padding: 7px 0;
-        text-align: center;
+        padding: 7px 20px;
         transition: background-color 0.3s ease 0s;
 
         &._hover {
@@ -1022,7 +1021,7 @@ body.dark-theme {
 .theme-changer {
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding: 7px 20px;
     // .theme-changer__text
 
     &._hover {

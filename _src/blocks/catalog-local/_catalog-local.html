@@ -2,6 +2,7 @@
     <div class="catalog__body">
         <h1 class="catalog__title title"></h1>
         <div class="catalog__container">
+            <h2 class="catalog__subtitle">Товары:</h2>
             <div class="catalog__items items-catalog">
                 <div class="items-catalog__cover">
                     <img src="img/loading.gif" alt="cover." class="items-catalog__cover-gif" />
@@ -10,19 +11,20 @@
                     <svg class="items-catalog__icon items-catalog__icon_fail">
                         <use xlink:href="#fail"></use>
                     </svg>
-                    <h2 class="items-catalog__title">По выбранным фильтрам не найдено ни одного товара</h2>
+                    <h3 class="items-catalog__title">По выбранным фильтрам не найдено ни одного товара</h3>
                     <span class="items-catalog__text">Попробуйте изменить фильтры</span>
                 </div>
             </div>
             <button class="catalog__load-more-button button">Показать еще</button>
             <div class="catalog__sidebar sidebar">
+                <h2 class="sidebar__title">Фильтры:</h2>
                 <div class="sidebar__filters">
-                    <div class="sidebar__filter filter">
+                    <div class="sidebar__filter filter _hidden">
                         <div class="filter__header">
-                            <h2 class="filter__title">Бренд</h2>
+                            <h3 class="filter__title">Бренд</h3>
                             <button class="filter__dropdown-button"></button>
                         </div>
-                        <div class="filter__body">
+                        <div class="filter__body filter__body_brands">
                             <div class="filter__search search-filter search">
                                 <input
                                     class="search-filter__input search__input"
@@ -44,7 +46,7 @@
                     </div>
                     <div class="sidebar__filter filter">
                         <div class="filter__header">
-                            <h2 class="filter__title">Цена</h2>
+                            <h3 class="filter__title">Цена</h3>
                             <button class="filter__dropdown-button"></button>
                         </div>
                         <div class="filter__body">
@@ -62,7 +64,7 @@
                     </div>
                     <div class="sidebar__filter filter">
                         <div class="filter__header">
-                            <h2 class="filter__title">Наличие</h2>
+                            <h3 class="filter__title">Наличие</h3>
                             <button class="filter__dropdown-button"></button>
                         </div>
                         <div class="filter__body">

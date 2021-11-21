@@ -784,8 +784,7 @@ body.dark-theme .dropdown-menu__link {
 
 .dropdown-menu__item {
   width: 100%;
-  padding: 7px 0;
-  text-align: center;
+  padding: 7px 20px;
   -webkit-transition: background-color 0.3s ease 0s;
   -o-transition: background-color 0.3s ease 0s;
   transition: background-color 0.3s ease 0s;
@@ -860,9 +859,7 @@ body.dark-theme .dropdown-menu__link {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+  padding: 7px 20px;
 }
 
 .theme-changer._hover .theme-changer__button._active::after {
