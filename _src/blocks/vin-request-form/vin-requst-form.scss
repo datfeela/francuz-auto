@@ -5,10 +5,10 @@
         width: calc(100vw - 60px);
         max-width: $maxContainerWidth;
         margin: 0 auto;
-        padding: 10px 30px;
+        padding: 30px 30px;
 
         @media screen and (max-width: 1230px) {
-            padding: 10px calc(15px + 15 * (100vw - 720px) / (1230 - 720));
+            padding: calc(10px + 20 * (100vw - 720px) / (1230 - 720)) calc(15px + 15 * (100vw - 720px) / (1230 - 720));
             width: calc(100vw - (30px + 30 * (100vw - 720px) / (1230 - 720)));
         }
 
@@ -21,7 +21,11 @@
     // .vin-request-form__title
 
     &__title {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+
+        @media screen and (max-width: 1230px) {
+            margin-bottom: calc(8px + 7 * (100vw - 320px) / (1230 - 320));
+        }
     }
 
     // .vin-request-form__form
@@ -34,12 +38,12 @@
     // .form-vin-request__title
 
     &__title {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 500;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
 
         @media screen and (max-width: 1230px) {
-            font-size: calc(19px + 3 * (100vw - 320px) / (1230 - 320));
+            font-size: calc(17px + 3 * (100vw - 320px) / (1230 - 320));
         }
     }
 
@@ -51,13 +55,13 @@
     // .form-vin-request__subtitle
 
     &__subtitle {
-        font-size: 19px;
+        font-size: 18px;
         font-weight: 500;
         margin-bottom: 5px;
         color: $greyColor;
 
         @media screen and (max-width: 1230px) {
-            font-size: calc(17px + 2 * (100vw - 320px) / (1230 - 320));
+            font-size: calc(16px + 2 * (100vw - 320px) / (1230 - 320));
         }
     }
 

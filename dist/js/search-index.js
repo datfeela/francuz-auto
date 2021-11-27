@@ -273,7 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
             productFoundComplects = false;
 
         data.forEach(element => {
-            if ((element.col1 != '') && (searchRequest.length > 3) && (element.col2 == searchRequest || element.col3.includes(searchRequest))) {
+            if ((element.col1 != '') && ((searchRequest.length > 2) && (element.col2 == searchRequest || element.col3.includes(`; ${searchRequest} `) ||
+                element.col3.indexOf(`${searchRequest} `) == 0)) || (searchRequest.length > 5) && (element.col4.toUpperCase().includes(searchRequest))) {
                 const productName = element.col4;
                 const productPrice = element.col6;
                 let productBrand = element.col1,
@@ -308,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </button>
                 </a>
                 `;
-                if (element.col2 == searchRequest) {
+                if (element.col2 == searchRequest || (searchRequest.length > 5) && (element.col4.toUpperCase().includes(searchRequest))) {
                     productFoundMain = true;
                     productsSearchBlock.insertAdjacentHTML('beforeend', productTemplate);
                 }

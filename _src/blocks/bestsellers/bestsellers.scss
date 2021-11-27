@@ -49,7 +49,7 @@ body.dark-theme {
 }
 
 .bestsellers {
-    width: calc(100vw - 30px);
+    width: 100vw;
     max-width: calc($maxContainerWidth - 30px);
     margin: 45px auto;
     background-color: $yellowColor;
@@ -172,9 +172,9 @@ body.dark-theme {
                 2.387607736693153e-16px 3.899259328842163px 3.899259328842163px 0px #922b19ad inset;
 
             .button__text {
-                font-size: 19px;
+                font-size: 18px;
                 @media screen and (max-width: 1230px) {
-                    font-size: calc(14px + 5 * (100vw - 320px) / (1230 - 320));
+                    font-size: calc(14px + 4 * (100vw - 320px) / (1230 - 320));
                 }
             }
         }

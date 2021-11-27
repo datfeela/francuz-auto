@@ -16,6 +16,10 @@ body.dark-theme {
             fill: #fff;
         }
     }
+
+    .filter__dropdown-icon {
+        fill: #fff;
+    }
 }
 
 .main {
@@ -42,11 +46,27 @@ body.dark-theme {
     // .catalog__title
 
     &__title {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         padding: 0px 10px;
 
         @media screen and (max-width: 1230px) {
-            margin-bottom: calc(10px + 10 * (100vw - 320px) / (1230 - 320));
+            margin-bottom: calc(5px + 5 * (100vw - 320px) / (1230 - 320));
+        }
+
+        @media screen and (max-width: 600px) {
+            margin-bottom: 0;
+        }
+    }
+
+    //.catalog__announcement
+
+    &__announcement{
+        display: block;
+        margin-bottom: 10px;
+        padding: 0px 10px;
+
+        @media screen and (max-width: 1230px) {
+            margin-bottom: calc(5px + 5 * (100vw - 320px) / (1230 - 320));
         }
 
         @media screen and (max-width: 600px) {
@@ -73,9 +93,9 @@ body.dark-theme {
         }
     }
 
-        //.catalog__subtitle
+    //.catalog__subtitle
 
-    &__subtitle{
+    &__subtitle {
         grid-area: SUBTITLE;
         font-size: 17px;
         font-weight: 600;
@@ -233,7 +253,7 @@ body.dark-theme {
         "BRAND PRICE"
         "DESCRIPTION PRICE"
         "DESCRIPTION BUTTON";
-    padding: 12px 10px 7px 10px;
+    padding: 9px 10px 7px 10px;
     border-top: 1px solid $greyColor;
     color: $mainFontColor;
 
@@ -284,46 +304,55 @@ body.dark-theme {
     // .product__text
 
     &__text {
+        font-size: 14px;
+        @media screen and (max-width: 1230px) {
+            font-size: calc(12px + 2 * (100vw - 900px) / (1230 - 900));
+        }
+
+        @media screen and (max-width: 900px) {
+            font-size: 12px;
+        }
+
         // .product__text_brand
 
         &_brand {
             align-self: start;
-            font-size: 17px;
+            font-size: 15px;
             font-weight: 500;
 
             @media screen and (max-width: 1230px) {
-                font-size: calc(15px + 2 * (100vw - 900px) / (1230 - 900));
+                font-size: calc(13px + 2 * (100vw - 900px) / (1230 - 900));
             }
 
             @media screen and (max-width: 900px) {
-                font-size: 15px;
+                font-size: 13px;
             }
         }
 
         // .product__text_description
 
         &_description {
-            padding-top: 15px;
+            padding-top: 10px;
             align-self: start;
 
             @media screen and (max-width: 800px) {
-                padding: 15px 0px;
+                padding: 10px 0px;
             }
         }
 
         // .product__text_price
 
         &_price {
-            font-size: 22px;
+            font-size: 16px;
             font-weight: 500;
-            padding-bottom: 20px;
+            padding-bottom: 10px;
 
             @media screen and (max-width: 1230px) {
-                font-size: calc(18px + 4 * (100vw - 900px) / (1230 - 900));
+                font-size: calc(14px + 2 * (100vw - 900px) / (1230 - 900));
             }
 
             @media screen and (max-width: 900px) {
-                font-size: 17px;
+                font-size: 14px;
             }
 
             @media screen and (max-width: 800px) {
@@ -331,9 +360,8 @@ body.dark-theme {
             }
 
             @media screen and (max-width: 600px) {
-                font-size: 16px;
+                font-size: 14px;
                 padding: 0;
-                font-size: 16px;
             }
         }
     }
@@ -341,7 +369,7 @@ body.dark-theme {
     // .product__button
 
     &__button {
-        width: 140px;
+        width: 128px;
         padding: 7px 10px;
         justify-self: end;
         grid-area: BUTTON;
@@ -360,9 +388,9 @@ body.dark-theme {
                 2.387607736693153e-16px 3.899259328842163px 3.899259328842163px 0px #b3881cbb inset;
 
             .search-data__button-text {
-                font-size: 15.5px;
+                font-size: 14.5px;
                 @media screen and (max-width: 1230px) {
-                    font-size: 15.5px;
+                    font-size: 14.5px;
                 }
 
                 @media screen and (max-width: 900px) {
@@ -378,9 +406,9 @@ body.dark-theme {
     // .product__button-text
 
     &__button-text {
-        font-size: 16px;
+        font-size: 15px;
         @media screen and (max-width: 1230px) {
-            font-size: 16px;
+            font-size: 15px;
         }
 
         @media screen and (max-width: 900px) {
@@ -495,8 +523,18 @@ body.dark-theme {
     }
 
     &._hidden {
-        .filter__dropdown-button::after {
-            opacity: 1;
+        .filter__dropdown-icon {
+            &_plus {
+                opacity: 1;
+                visibility: visible;
+                position: relative;
+            }
+
+            &_minus {
+                opacity: 0;
+                visibility: hidden;
+                position: absolute;
+            }
         }
     }
     // .filter__header
@@ -524,15 +562,15 @@ body.dark-theme {
     // .filter__title
 
     &__title {
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 500;
 
         @media screen and (max-width: 900px) {
-            font-size: 17px;
+            font-size: 16px;
         }
 
         @media screen and (max-width: 600px) {
-            font-size: 16px;
+            font-size: 15px;
         }
     }
 
@@ -542,32 +580,26 @@ body.dark-theme {
         position: relative;
         height: 20px;
         width: 20px;
-        border: 2px solid rgb(211, 211, 211);
-        border-radius: 50%;
-        // background-color: rgb(211, 211, 211);
+    }
 
-        &::before {
-            content: "";
-            width: 10px;
-            height: 2px;
+    // .filter__dropdown-icon
+
+    &__dropdown-icon {
+        height: 20px;
+        width: 20px;
+        fill: #000;
+
+        // .filter__dropdown-icon_plus
+
+        &_plus {
+            opacity: 0;
+            visibility: hidden;
             position: absolute;
-            left: 3.5px;
-            top: 7.5px;
-            z-index: 10;
-            background-color: rgb(211, 211, 211);
         }
 
-        &::after {
-            opacity: 0;
-            content: "";
-            width: 10px;
-            height: 2px;
-            position: absolute;
-            transform: rotateZ(90deg);
-            left: 3.5px;
-            top: 7.5px;
-            z-index: 10;
-            background-color: rgb(211, 211, 211);
+        // .filter__dropdown-icon_minus
+
+        &_minus {
         }
     }
 
@@ -670,7 +702,7 @@ body.dark-theme {
     // .options-filter__label
 
     &__label {
-        font-size: 16px;
+        font-size: 15px;
         position: relative;
         padding-left: 25px;
         cursor: pointer;

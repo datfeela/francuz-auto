@@ -1,6 +1,7 @@
 <section class="main__catalog catalog">
     <div class="catalog__body">
         <h1 class="catalog__title title"></h1>
+        <span class="catalog__announcement">*При заказе на сайте <strong>скидка 5%</strong> на все товары</span>
         <div class="catalog__container">
             <h2 class="catalog__subtitle">Товары:</h2>
             <div class="catalog__items items-catalog">
@@ -22,7 +23,14 @@
                     <div class="sidebar__filter filter _hidden">
                         <div class="filter__header">
                             <h3 class="filter__title">Бренд</h3>
-                            <button class="filter__dropdown-button"></button>
+                            <button class="filter__dropdown-button">
+                                <svg class="filter__dropdown-icon filter__dropdown-icon_plus">
+                                    <use xlink:href="#plus"></use>
+                                </svg>
+                                <svg class="filter__dropdown-icon filter__dropdown-icon_minus">
+                                    <use xlink:href="#minus"></use>
+                                </svg>
+                            </button>
                         </div>
                         <div class="filter__body filter__body_brands">
                             <div class="filter__search search-filter search">
@@ -39,15 +47,20 @@
                                     </svg>
                                 </button>
                             </div>
-                            <div id="brands-filter" class="filter__options options-filter">
-                                
-                            </div>
+                            <div id="brands-filter" class="filter__options options-filter"></div>
                         </div>
                     </div>
                     <div class="sidebar__filter filter">
                         <div class="filter__header">
                             <h3 class="filter__title">Цена</h3>
-                            <button class="filter__dropdown-button"></button>
+                            <button class="filter__dropdown-button">
+                                <svg class="filter__dropdown-icon filter__dropdown-icon_plus">
+                                    <use xlink:href="#plus"></use>
+                                </svg>
+                                <svg class="filter__dropdown-icon filter__dropdown-icon_minus">
+                                    <use xlink:href="#minus"></use>
+                                </svg>
+                            </button>
                         </div>
                         <div class="filter__body">
                             <div class="filter__options options-filter">
@@ -65,7 +78,14 @@
                     <div class="sidebar__filter filter">
                         <div class="filter__header">
                             <h3 class="filter__title">Наличие</h3>
-                            <button class="filter__dropdown-button"></button>
+                            <button class="filter__dropdown-button">
+                                <svg class="filter__dropdown-icon filter__dropdown-icon_plus">
+                                    <use xlink:href="#plus"></use>
+                                </svg>
+                                <svg class="filter__dropdown-icon filter__dropdown-icon_minus">
+                                    <use xlink:href="#minus"></use>
+                                </svg>
+                            </button>
                         </div>
                         <div class="filter__body">
                             <div class="filter__options options-filter">

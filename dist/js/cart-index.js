@@ -227,6 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainBlock = document.querySelector('.main__cart');
     const cartCounter = document.querySelector('.search-header__counter');
     const submitForm = document.querySelector('.form-cart');
+    const cartCover = document.querySelector('.cart__cover');
     let cookies = document.cookie.split('; ');
     let cookiesSorted = [];
 
@@ -236,7 +237,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    getData();
+    if (cookiesSorted.length > 0 && cookiesSorted[0] != '') getData();
+    else cartCover.style.display = 'none';
 
     mainBlock.addEventListener('click', (event) => {
         const targetElement = event.target;
@@ -344,16 +346,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function loadData(data) {
-        const productsBlock = document.querySelector('.cart__data'),
-            cartCover = document.querySelector('.cart__cover');
+        const productsBlock = document.querySelector('.cart__data');
 
         cookiesSorted.forEach(productCookie => {
             let searchRequest = productCookie.split('=')[0],
                 searchRequestQuantity = productCookie.split('=')[1],
                 searchRequestArticle = fixString(productCookie.split('=')[0].split('__')[1], '_', ' '),
                 searchRequestBrand = fixString(productCookie.split('=')[0].split('__')[0], '_', ' ');
-
-            console.log(searchRequest, '        ', searchRequestBrand, searchRequestArticle, searchRequestQuantity);
         })
         data.forEach(element => {
             cookiesSorted.forEach(productCookie => {
@@ -362,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     searchRequestArticle = fixString(productCookie.split('=')[0].split('__')[1], '_', ' '),
                     searchRequestBrand = fixString(productCookie.split('=')[0].split('__')[0], '_', ' ');
 
-                if ((element.col1 != '') && (searchRequestArticle.length > 3) && (element.col2 == searchRequestArticle)) {
+                if ((element.col1 != '') && (searchRequestArticle.length > 2) && (element.col2 == searchRequestArticle)) {
                     const productName = element.col4;
                     const productPrice = element.col6;
                     const productAvailibility = element.col8;
@@ -437,7 +436,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function calcFullPrice() {
         const products = Array.from(document.querySelectorAll('.search-data__row'));
         let totalProductsPrice = 0;
-        let cartTotalPriceSpan = document.querySelector('.total__total-price');
+        let totalProductsPriceNew = 0;
+        let cartTotalPriceSpan = document.querySelector('.total__price-old'),
+            cartTotalPriceNewSpan = document.querySelector('.total__price-new');
         products.forEach(product => {
             let price = product.querySelector('.search-data__text_price').innerHTML.split('₽')[0],
                 quantity = product.querySelector('.search-data__text_quantity').innerHTML;
@@ -445,21 +446,28 @@ document.addEventListener('DOMContentLoaded', () => {
             let totalPrice = +price * +quantity;
             totalProductsPrice += totalPrice;
         })
+        totalProductsPriceNew = (totalProductsPrice * 0.95).toFixed(2);
         totalProductsPrice = numberCommas(`${totalProductsPrice}`);
+        totalProductsPriceNew = numberCommas(`${totalProductsPriceNew}`);
         cartTotalPriceSpan.innerHTML = `${totalProductsPrice}₽`;
+        cartTotalPriceNewSpan.innerHTML = `${totalProductsPriceNew}₽`;
     }
 
     function fillTextarea() {
         const products = Array.from(document.querySelectorAll('.search-data__row'));
         const textArea = document.querySelector('.form-cart__input_hidden');
+        const fullPrice = document.querySelector('.total__price-old').innerHTML;
+        const fullPriceNew = document.querySelector('.total__price-new').innerHTML;
         textArea.innerHTML = '';
 
         products.forEach(product => {
             const productArticleNumber = product.querySelector('.search-data__text_brand').innerHTML;
             const productQuantity = product.querySelector('.search-data__text_quantity').innerHTML;
 
-            textArea.insertAdjacentText('beforeend', `Товар: ${productArticleNumber}, количество: ${productQuantity};   `);
+            textArea.insertAdjacentText('afterbegin', `Товар: ${productArticleNumber}, количество: ${productQuantity};\n`);
         })
+        textArea.insertAdjacentText('beforeend', `Общая цена: ${fullPrice}; \n`);
+        textArea.insertAdjacentText('beforeend', `Общая цена со скидкой: ${fullPriceNew};`);
     }
 
     function numberCommas(price) {

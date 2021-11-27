@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         filterParams = {};
 
     changeTitle();
+    resetRadio();
     getData();
 
     //подгрузка новых товаров
@@ -149,18 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sortedData = data.filter(element => element.col9 == keyword);
         loadFilters(sortedData);
         loadData(sortedData);
-        // async function f() {
-
-        //     let promise = new Promise((resolve, reject) => {
-        //         setTimeout(() => resolve("готово!"), 1000)
-        //     });
-
-        //     let result = await promise; // будет ждать, пока промис не выполнится (*)
-
-        //     alert(result); // "готово!"
-        // }
-
-        // f();
     }
 
     function loadData(data) {
@@ -259,6 +248,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         title.insertAdjacentText('beforeend', titleText);
         documentTitle.insertAdjacentText('beforeend', `${titleText} | Француз-Авто`);
+    }
+
+    function resetRadio() {
+        Array.from(document.querySelectorAll('input[type=radio]')).forEach(element => {
+            element.checked = false;
+        })
     }
 
     function loadFilters(data) {

@@ -75,6 +75,14 @@ body.dark-theme {
     &__data {
     }
 
+    //.cart__discount
+
+    &__discount{
+        display: flex;
+        justify-content: end;
+        padding: 15px 10px 0px 10px;
+    }
+
     // .cart__total
 
     &__total {
@@ -108,7 +116,6 @@ body.dark-theme {
 }
 
 .search-data {
-
     font-size: 16px;
 
     @media screen and (max-width: 900px) {
@@ -140,7 +147,7 @@ body.dark-theme {
         }
 
         &:last-child {
-            border-bottom: 1px solid $greyColor;   
+            border-bottom: 1px solid $greyColor;
         }
 
         &._delete {
@@ -278,20 +285,24 @@ body.dark-theme {
     // .search-data__text
 
     &__text {
+        font-size: 16px;
+        @media screen and (max-width: 1230px) {
+            font-size: 16px;
+        }
+
+        @media screen and (max-width: 900px) {
+            font-size: 15px;
+        }
+
+        @media screen and (max-width: 600px) {
+            font-size: 14px;
+        }
+
         // .search-data__text_brand
 
         &_brand {
             align-self: start;
-            font-size: 18px;
             font-weight: 500;
-
-            @media screen and (max-width: 900px) {
-                font-size: 16px;
-            }
-
-            @media screen and (max-width: 600px) {
-                font-size: 15px;
-            }
         }
 
         // .search-data__text_description
@@ -300,6 +311,19 @@ body.dark-theme {
             color: $mainFontColor;
             padding-top: 15px;
             align-self: start;
+            font-size: 15px;
+
+            @media screen and (max-width: 1230px) {
+                font-size: 15px;
+            }
+
+            @media screen and (max-width: 900px) {
+                font-size: 14px;
+            }
+
+            @media screen and (max-width: 600px) {
+                font-size: 13px;
+            }
         }
 
         // .search-data__text_price
@@ -308,6 +332,13 @@ body.dark-theme {
             padding: 0px 10px;
             font-size: 18px;
             font-weight: 500;
+            @media screen and (max-width: 1230px) {
+                font-size: 17px;
+            }
+
+            @media screen and (max-width: 900px) {
+                font-size: 16px;
+            }
 
             @media screen and (max-width: 600px) {
                 padding: 15px 0 0 0;
@@ -443,9 +474,14 @@ body.dark-theme {
         //.search-data__icon_delete
 
         &_delete {
-            height: 30px;
-            width: 30px;
+            height: 25px;
+            width: 25px;
             fill: $mainFontColor;
+
+            @media screen and (max-width: 900px) {
+                height: 20px;
+                width: 20px;
+            }
 
             &:hover {
                 fill: rgb(214, 126, 25);
@@ -489,6 +525,23 @@ body.dark-theme {
     &__total-price {
         font-weight: 500;
     }
+
+    // .total__price-old
+
+    &__price-old {
+        display: inline-block;
+        margin-right: 10px;
+        text-decoration: line-through;
+
+        @media screen and (max-width: 1230px) {
+            margin-right: calc(5px + 5 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    // .total__price-new
+
+    &__price-new {
+    }
 }
 
 .form-cart {
@@ -517,6 +570,7 @@ body.dark-theme {
         // .form-cart__input_hidden
 
         &_hidden {
+            width: 100%;
             position: absolute;
             top: -5000px;
             left: -5000px;

@@ -2,9 +2,13 @@
     <div class="cart__body">
         <h1 class="cart__title title">Ваша корзина:</h1>
         <div class="cart__data search-data"></div>
+        <span class="cart__discount">Скидка 5% за заказ на сайте</span>
         <div class="cart__total total">
             <h2 class="total__title">Итого:</h2>
-            <span class="total__total-price"></span>
+            <div class="total__total-price">
+                <span class="total__price-old"></span>
+                <span class="total__price-new"></span>
+            </div>
         </div>
         <form method="POST" action="php/cart-form.php" class="cart__form form-cart">
             <textarea class="form-cart__input form-cart__input_hidden" name="spare-parts"> </textarea>

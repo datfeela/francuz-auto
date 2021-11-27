@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     const requestSuccessInfo = document.querySelector('.redirect-info__text_success'),
         requestFailInfo = document.querySelector('.redirect-info__text_fail');
-    redirectUrl = 'index.html';
+    redirectUrl = 'https://fra174.ru/';
     let cookies = document.cookie.split('; ');
     let cookiesSorted = [];
 
@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             break;
         case '#cartRequestFail':
             requestFailInfo.style.display = 'block';
+            deleteCookie('cartRequestSent');
             goBack();
             break;
         case '#vinRequestSuccess':

@@ -63,12 +63,8 @@ body.dark-theme {
         grid-gap: 20px;
 
         @media screen and (max-width: 900px) {
-            margin: calc(10px + 20 * (100vw - 320px) / (900 - 320)) 0px 0px 0px;
+            margin: calc(10px + 8 * (100vw - 320px) / (900 - 320)) 0px 0px 0px;
             grid-gap: calc(0px + 20 * (100vw - 320px) / (900 - 320));
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        @media screen and (max-width: 520px) {
             grid-template-columns: 1fr;
         }
 
@@ -98,8 +94,13 @@ body.dark-theme {
     padding: 15px 5px;
     transition: all 0.3s ease 0s;
 
+    @media screen and (max-width: 900px) {
+        padding: calc(5px + 5 * (100vw - 520px) / (900 - 520)) calc(5px + 5 * (100vw - 520px) / (900 - 520));
+    }
+
     @media screen and (max-width: 520px) {
-        padding: calc(7px + 8 * (100vw - 320px) / (520 - 320)) calc(15px + 10 * (100vw - 320px) / (520 - 320));
+        // padding: calc(7px + 8 * (100vw - 320px) / (520 - 320)) calc(15px + 10 * (100vw - 320px) / (520 - 320));
+        padding: 5px;
     }
 
     &:hover {
@@ -122,8 +123,8 @@ body.dark-theme {
         transition: all 0.3s ease 0s;
 
         @media screen and (max-width: 900px) {
-            height: calc(50px + 45 * (100vw - 320px) / (900 - 320));
-            width: calc(50px + 45 * (100vw - 320px) / (900 - 320));
+            height: calc(50px + 25 * (100vw - 320px) / (900 - 320));
+            width: calc(50px + 25 * (100vw - 320px) / (900 - 320));
         }
 
         @media screen and (max-width: 520px) {
@@ -134,13 +135,13 @@ body.dark-theme {
     // .category__description
 
     &__description {
-        font-size: 24px;
+        font-size: 22px;
         line-height: 140%;
         font-weight: 600;
         color: $mainFontColor;
 
         @media screen and (max-width: 1230px) {
-            font-size: calc(17px + 7 * (100vw - 320px) / (1230 - 320));
+            font-size: calc(16px + 6 * (100vw - 320px) / (1230 - 320));
         }
     }
 }

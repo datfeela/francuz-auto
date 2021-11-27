@@ -1,24 +1,26 @@
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(211, 211, 211) rgb(231, 231, 231);
-}
+@media (any-hover: hover) {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(211, 211, 211) rgb(231, 231, 231);
+    }
 
-// /* для Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-    height: 12px;
-    width: 12px;
-}
-*::-webkit-scrollbar-track {
-    background: rgb(231, 231, 231);
-}
-*::-webkit-scrollbar-thumb {
-    background-color: rgb(211, 211, 211);
-    border-radius: 5px;
-    border: 3px solid rgbrgb(231, 231, 231);
+    // /* для Chrome/Edge/Safari */
+    *::-webkit-scrollbar {
+        height: 12px;
+        width: 12px;
+    }
+    *::-webkit-scrollbar-track {
+        background: rgb(231, 231, 231);
+    }
+    *::-webkit-scrollbar-thumb {
+        background-color: rgb(211, 211, 211);
+        border-radius: 5px;
+        border: 3px solid rgbrgb(231, 231, 231);
+    }
 }
 
 ::selection {
-    background-color: #FF9B28;
+    background-color: #ff9b28;
 }
 
 html,
@@ -45,7 +47,7 @@ body {
 
 .main {
     margin-top: 91px;
-    flex: 1 1 auto;   
+    flex: 1 1 auto;
 
     @media screen and (min-width: 721px) and (max-width: 1230px) {
         margin-top: calc(45px + 46 * (100vw - 720px) / (1230 - 720));
@@ -63,12 +65,12 @@ body {
 //
 
 .title {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
     line-height: 125%;
 
     @media screen and (max-width: 1230px) {
-        font-size: calc(20px + 20 * (100vw - 320px) / (1230 - 320));
+        font-size: calc(20px + 10 * (100vw - 320px) / (1230 - 320));
     }
 }
 

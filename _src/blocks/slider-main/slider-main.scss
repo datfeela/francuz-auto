@@ -15,7 +15,7 @@ body.dark-theme {
 
     &__body {
         position: relative;
-        width: calc(100vw - 30px);
+        width: 100vw;
         max-width: 1200px;
         margin: 0 auto;
         padding: 10px 0px;
@@ -61,9 +61,11 @@ body.dark-theme {
     // .page-slider-main__image
 
     &__image {
-        @media screen and (max-width: 1230px) {
-            width: calc(290px + 910 * (100vw - 320px) / (1230 - 320));
-        }
+        width: 100vw;
+        max-width: 1200px;
+        // @media screen and (max-width: 1230px) {
+        //     width: calc(290px + 910 * (100vw - 320px) / (1230 - 320));
+        // }
     }
 
     // .page-slider-main__content
