@@ -63,9 +63,6 @@ body.dark-theme {
     &__image {
         width: 100vw;
         max-width: 1200px;
-        // @media screen and (max-width: 1230px) {
-        //     width: calc(290px + 910 * (100vw - 320px) / (1230 - 320));
-        // }
     }
 
     // .page-slider-main__content
@@ -123,7 +120,7 @@ body.dark-theme {
     align-items: center;
 
     @media screen and (max-width: 600px) {
-        height: calc(100px + 97 * (100vw - 320px) / (600 - 320));
+        height: calc(100% - (90px + 85 * (100vw - 320px) / (1230 - 320)));
     }
 
     // .controls-slider-main__button

@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     if (cookiesSorted.length > 0 && cookiesSorted[0] != '') getData();
-    else cartCover.style.display = 'none';
+    else {
+        cartCover.style.display = 'none';
+        mainBlock.classList.add('_empty');
+    }
 
     mainBlock.addEventListener('click', (event) => {
         const targetElement = event.target;
@@ -98,7 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartCounter.innerHTML = +getCookie('totalQuantity');
             }
             else {
-                cartCounter.innerHTML = '0';
+                cartCounter.innerHTML = '';
+                cartCounter.style.display = 'none';
+                mainBlock.classList.add('_empty');
             }
         }
     })

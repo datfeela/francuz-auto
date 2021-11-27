@@ -2373,7 +2373,7 @@ body.dark-theme ::selection {
   }
 
   .controls-slider-main {
-    height: calc(100px + 97 * (100vw - 320px) / 280);
+    height: calc(100% - (90px + 85 * (100vw - 320px) / 910));
   }
 
   .advantages__body {

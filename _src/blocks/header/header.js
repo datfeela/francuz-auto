@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
         headerSearchLowres = document.querySelector('.search-header__button_lowres'),
         headerSearchForm = document.querySelector('.search-header__item'),
         headerSearchInput = document.querySelector('.search-header__input'),
-        themeChangerButton = document.querySelector('.theme-changer__button');
+        themeChangerButton = document.querySelector('.theme-changer__button'),
+        headerCart = document.querySelector('.search-header__button_buy');
 
     //observer за шапкой
 
@@ -77,10 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     })
-
-    // if (document.documentElement.clientWidth <= 720) {
-    //     body.classList.remove('_no-scroll');
-    // }
 
     //снимаю с body no-scroll при изменении разрешения на > 720
     window.addEventListener('resize', (event) => {

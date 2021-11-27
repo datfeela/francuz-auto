@@ -965,6 +965,22 @@ body.dark-theme .cart__cover {
   position: relative;
 }
 
+.cart._empty .cart__discount {
+  display: none;
+}
+
+.cart._empty .cart__total {
+  display: none;
+}
+
+.cart._empty .cart__form {
+  display: none;
+}
+
+.cart._empty .cart__empty-warning {
+  display: block;
+}
+
 .cart__body {
   width: 100vw;
   max-width: 1230px;
@@ -975,6 +991,16 @@ body.dark-theme .cart__cover {
 .cart__title {
   margin-bottom: 20px;
   padding: 0px 10px;
+}
+
+.cart__empty-warning {
+  display: none;
+  padding: 0px 10px;
+}
+
+.cart__text {
+  display: block;
+  margin-bottom: 30px;
 }
 
 .cart__discount {
@@ -1652,6 +1678,10 @@ body.dark-theme ::selection {
 
   .cart__title {
     margin-bottom: calc(10px + 10 * (100vw - 320px) / 910);
+  }
+
+  .cart__text {
+    margin-bottom: calc(15px + 15 * (100vw - 320px) / 910);
   }
 
   .search-data__text {

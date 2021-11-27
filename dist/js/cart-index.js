@@ -79,7 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
         headerSearchLowres = document.querySelector('.search-header__button_lowres'),
         headerSearchForm = document.querySelector('.search-header__item'),
         headerSearchInput = document.querySelector('.search-header__input'),
-        themeChangerButton = document.querySelector('.theme-changer__button');
+        themeChangerButton = document.querySelector('.theme-changer__button'),
+        headerCart = document.querySelector('.search-header__button_buy');
 
     //observer за шапкой
 
@@ -149,10 +150,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     })
-
-    // if (document.documentElement.clientWidth <= 720) {
-    //     body.classList.remove('_no-scroll');
-    // }
 
     //снимаю с body no-scroll при изменении разрешения на > 720
     window.addEventListener('resize', (event) => {
@@ -238,7 +235,10 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     if (cookiesSorted.length > 0 && cookiesSorted[0] != '') getData();
-    else cartCover.style.display = 'none';
+    else {
+        cartCover.style.display = 'none';
+        mainBlock.classList.add('_empty');
+    }
 
     mainBlock.addEventListener('click', (event) => {
         const targetElement = event.target;
@@ -323,7 +323,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 cartCounter.innerHTML = +getCookie('totalQuantity');
             }
             else {
-                cartCounter.innerHTML = '0';
+                cartCounter.innerHTML = '';
+                cartCounter.style.display = 'none';
+                mainBlock.classList.add('_empty');
             }
         }
     })

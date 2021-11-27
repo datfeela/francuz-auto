@@ -17,19 +17,21 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <!-- основные стили -->
-        <link rel="stylesheet" href="css/catalog-index.min.css?v1.1" />
+        <link rel="stylesheet" href="css/catalog-index.min.css?v1.11" />
         @@include('_favicon.html',{})
     </head>
 
     <body>
-        @@include('_icons.html',{}) 
-        @@include('blocks/header/_header.html',{})
-        <main class="main">
-            <iframe class="main__catalog" id="acat-frame" src="https://feela.acat.online"></iframe>
-        </main>
-        @@include('blocks/footer/_footer.html',{})
+        @@include('_icons.html',{})
+        <div class="wrapper">
+            @@include('blocks/header/_header.html',{})
+            <main class="main">
+                <iframe class="main__catalog" id="acat-frame" src="https://feela.acat.online"></iframe>
+            </main>
+            @@include('blocks/footer/_footer.html',{})
+        </div>
         <!-- jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="js/catalog-index.min.js?v1.1>"></script>
+        <script src="js/catalog-index.min.js?v1.11>"></script>
     </body>
 </html>
