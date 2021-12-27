@@ -1,0 +1,144 @@
+body {
+    background-color: #f6f6f6;
+
+    &.dark-theme {
+    }
+}
+
+.catalogs-nav {
+    // .catalog__body
+
+    &__body {
+        max-width: $maxContainerWidth;
+        margin: 0px auto;
+        padding: 10px 15px 20px 15px;
+
+        @media screen and (max-width: 1230px) {
+        }
+
+        @media screen and (max-width: 720px) {
+        }
+    }
+
+    // .catalogs-nav__breadcrumbs
+
+    &__breadcrumbs {
+    }
+
+    // .catalogs-nav__categories
+
+    &__categories {
+        margin: 20px 0px 0px 0px;
+    }
+}
+.categories {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+
+    @media screen and (max-width: 1230px) {
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: calc(10px + 10 * (100vw - 320px) / (1230 - 320));
+    }
+
+    @media screen and (max-width: 800px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media screen and (max-width: 540px) {
+        grid-template-columns: 1fr;
+    }
+
+    // .categories__item
+
+    &__item {
+    }
+}
+.category {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    overflow: hidden;
+
+    @media screen and (max-width: 540px) {
+        flex-direction: row;
+        justify-content: start;
+        align-items: center;
+        padding: 8px 16px;
+    }
+
+    // .category__image
+
+    &__image {
+        height: 150px;
+        padding: 15px 0px 5px 0px;
+
+        @media screen and (max-width: 1230px) {
+            height: calc(75px + 75 * (100vw - 320px) / (1230 - 320));
+        }
+
+        @media screen and (max-width: 540px) {
+            padding: 7px 0px;
+            margin-right: 15px;
+            width: 75px;
+            height: auto;
+        }
+    }
+
+    // .category__icon
+
+    &__icon {
+        height: 150px;
+        width: 100px;
+        stroke: $mainFontColor;
+        fill: $mainFontColor;
+
+        @media screen and (max-width: 1230px) {
+            height: calc(75px + 75 * (100vw - 320px) / (1230 - 320));
+            width: calc(50px + 50 * (100vw - 320px) / (1230 - 320));
+        }
+
+        @media screen and (max-width: 540px) {
+            height: 42px;
+            width: 28px;
+            margin-right: 15px;
+        }
+    }
+
+    // .category__title
+
+    &__title {
+        text-align: center;
+        color: $mainFontColor;
+        font-size: 17px;
+        font-weight: 500;
+        padding: 10px 0px 20px 0px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(13px + 4 * (100vw - 320px) / (1230 - 320));
+            padding: 10px 0px calc(10px + 10 * (100vw - 320px) / (1230 - 320)) 0px;
+        }
+
+        @media screen and (max-width: 540px) {
+            padding: 0;
+        }
+
+        &_default {
+            @media screen and (max-width: 540px) {
+                display: none;
+            }
+        }
+
+        &_lowres {
+            display: none;
+
+            @media screen and (max-width: 540px) {
+                display: block;
+            }
+        }
+    }
+}

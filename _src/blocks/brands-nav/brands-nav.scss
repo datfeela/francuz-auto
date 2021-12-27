@@ -1,0 +1,165 @@
+body.dark-theme {
+    .brands-nav {
+        &__title {
+            background-color: $redColor;
+        }
+
+        &__link {
+            color: #fff;
+
+            &:hover {
+                color: $redColor;
+            }
+        }
+    }
+
+    .tabs-brands-nav {
+        &__tab {
+            background-color: #30384f;
+            color: #fff;
+
+            &:hover {
+                color: $redColor;
+            }
+        }
+    }
+}
+
+.brands-nav {
+    margin: 15px auto 25px auto;
+    max-width: $maxContainerWidth;
+    padding: 0px 15px;
+
+    @media screen and (max-width: 900px) {
+        margin: calc(5px + 10 * (100vw - 320px) / (900 - 320)) auto;
+        padding: 0px calc(0px + 15 * (100vw - 320px) / (900 - 320));
+    }
+
+    // .brands-nav__title
+
+    &__title {
+        display: block;
+        padding: 10px 0px;
+        line-height: 150%;
+        // width: 55%;
+        text-align: center;
+        background-color: $yellowColor;
+        color: $redColor;
+
+        @media screen and (max-width: 900px) {
+            width: 75%;
+        }
+
+        @media screen and (max-width: 600px) {
+            width: 100%;
+        }
+    }
+
+    // .brands-nav__body
+
+    &__body {
+        margin: 30px 0px 0px 0px;
+
+        @media screen and (max-width: 900px) {
+            padding: 0px 5px;
+        }
+    }
+
+    // .brands-nav__tabs
+
+    &__tabs {
+    }
+
+    // .brands-nav__pages
+
+    &__pages {
+        border: 2px solid rgba($color: #a3a3a3, $alpha: 0.5);
+        position: relative;
+        top: -2px;
+    }
+
+    // .brands-nav__page
+
+    &__page {
+        display: none;
+        padding: 15px 0px 15px 35px;
+
+        @media screen and (max-width: 1230px) {
+            padding: calc(7px + 8 * (100vw - 320px) / (1230 - 320)) 0px calc(7px + 8 * (100vw - 320px) / (1230 - 320))
+                calc(15px + 20 * (100vw - 320px) / (1230 - 320));
+        }
+
+        &._active {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+
+            @media screen and (max-width: 1050px) {
+                grid-template-columns: repeat(5, 1fr);
+            }
+
+            @media screen and (max-width: 800px) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            @media screen and (max-width: 690px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media screen and (max-width: 480px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    }
+
+    // .brands-nav__item
+
+    &__item {
+        padding: 10px 0px;
+    }
+
+    // .brands-nav__link
+
+    &__link {
+        color: $mainFontColor;
+        font-size: 18px;
+        transition: all .4s ease 0s;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(15px + 3 * (100vw - 320px) / 910);
+        }
+
+        &:hover {
+            color: $redColor;
+        }
+    }
+}
+
+.tabs-brands-nav {
+    // .tabs-brands-nav__tab
+
+    &__tab {
+        position: relative;
+        background-color: #fff;
+        font-size: 22px;
+        font-weight: 500;
+        padding: 10px 35px;
+        text-align: center;
+        transition: color .4s ease 0s;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(16px + 6 * (100vw - 320px) / (1230 - 320));
+            padding: calc(5px + 5 * (100vw - 320px) / (1230 - 320)) calc(15px + 20 * (100vw - 320px) / (1230 - 320));
+        }
+
+        &:hover {
+            color: $redColor;
+        }
+
+        &._active {
+            border: 2px solid rgba($color: #a3a3a3, $alpha: 0.5);
+            border-bottom: none;
+            border-radius: 5px 5px 0px 0px;
+            z-index: 5;
+        }
+    }
+}

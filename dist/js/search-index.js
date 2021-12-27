@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const headerObserver = new IntersectionObserver(callback);
     headerObserver.observe(header)
 
-    //закрываю announcement по нажатию на кнопку
+    //закрываю announcement
 
     const closeButton = document.querySelector('.announcement-header__close-button');
 
@@ -162,31 +162,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //вешаю на каталог итемы ._hover
     headerDropdownMenu.addEventListener('mouseover', (event) => {
-        const targetElement = event.target;
-        let hoverElemSiblings;
-        if (targetElement.closest('.dropdown-menu__item')) {
-            targetElement.closest('.dropdown-menu__item').classList.add('_hover');
-            hoverElemSiblings = Array.from(targetElement.closest('.dropdown-menu__item').parentNode.children);
-            hoverElemSiblings.forEach((elem) => {
-                if (targetElement.closest('.dropdown-menu__item') != elem && elem.classList.contains('_hover')) {
-                    removeHoverDropdownMenu(elem);
-                }
-            });
+        if (document.documentElement.clientWidth > 720) {
+            const targetElement = event.target;
+            let hoverElemSiblings;
+            if (targetElement.closest('.dropdown-menu__item')) {
+                targetElement.closest('.dropdown-menu__item').classList.add('_hover');
+                hoverElemSiblings = Array.from(targetElement.closest('.dropdown-menu__item').parentNode.children);
+                hoverElemSiblings.forEach((elem) => {
+                    if (targetElement.closest('.dropdown-menu__item') != elem && elem.classList.contains('_hover')) {
+                        removeHoverDropdownMenu(elem);
+                    }
+                });
+            }
         }
     });
 
-    //снимаю ._hover с каталог итемов при скрытии
-    function removeHoverDropdownMenu(elem) {
-        elem.classList.remove('_hover');
-        if (elem.lastElementChild.classList.contains('dropdown-menu__sublist')) {
-            Array.from(elem.lastElementChild.children).forEach((elemChild) => {
-                if (elemChild.classList.contains('_hover')) {
-                    removeHoverDropdownMenu(elemChild);
-                    elemChild.classList.remove('_hover');
-                }
-            });
+    //снимаю ._hover на <=720px
+
+    window.addEventListener('resize', (event) => {
+        if (document.documentElement.clientWidth < 721) {
+            let hoverElem = headerDropdownMenu.querySelector('._hover');
+            if (hoverElem) hoverElem.classList.remove('_hover');
         }
-    }
+    })
+
+    //вывод саблистов
+
+    header.addEventListener('click', (event) => {
+        const targetElement = event.target;
+        if (targetElement.closest('.dropdown-menu__expand-button')) {
+            const sublist = targetElement.closest('.dropdown-menu__item').querySelector('.dropdown-menu__sublist');
+            const button = targetElement.closest('.dropdown-menu__expand-button');
+
+            $(sublist).slideToggle();
+            button.classList.toggle('_active')
+        }
+    })
+
+    //display: block для саблистов на >720px
+    window.addEventListener('resize', (event) => {
+        if (document.documentElement.clientWidth > 720) {
+            sublistArr = Array.from(document.querySelectorAll('.dropdown-menu__sublist'));
+            sublistArr.forEach(sublist => {
+                if (getComputedStyle(sublist).display == 'none') {
+                    sublist.style.display = 'block';
+                }
+            })
+        }
+    })
+
 
     //открываю/закрываю поиск по нажатию на кнопку
     headerSearch.addEventListener('click', (event) => {
@@ -219,38 +243,37 @@ document.addEventListener('DOMContentLoaded', () => {
         themeChangerButton.classList.toggle('_active');
         body.classList.toggle('dark-theme');
     })
+
+    //functions
+    //снимаю ._hover при скрытии меню
+    function removeHoverDropdownMenu(elem) {
+        elem.classList.remove('_hover');
+        if (elem.lastElementChild.classList.contains('dropdown-menu__sublist')) {
+            Array.from(elem.lastElementChild.children).forEach((elemChild) => {
+                if (elemChild.classList.contains('_hover')) {
+                    removeHoverDropdownMenu(elemChild);
+                    elemChild.classList.remove('_hover');
+                }
+            });
+        }
+    }
 })
 ;
 
 document.addEventListener('DOMContentLoaded', () => {
     const mainBlock = document.querySelector('.main__search-result'),
-        heading = document.querySelector('.search-result__title');
+        heading = document.querySelector('.search-result__title'),
+        dataSrc = 'json/data.json';
     let cartCounter = document.querySelector('.search-header__counter'),
         searchRequest = new URL(location.href).searchParams.get('search').toUpperCase();
 
     heading.insertAdjacentText('beforeend', searchRequest);
 
-    getData();
-
-    //добавление товаров в корзину
-    mainBlock.addEventListener('click', (event) => {
-        const targetElement = event.target;
-        if (targetElement.closest('.search-data__button_buy')) {
-            event.preventDefault();
-            targetElement.closest('.search-data__button_buy').classList.add('onclick')
-            setTimeout(() => {
-                targetElement.closest('.search-data__button_buy').classList.remove('onclick');
-            }, 200);
-            changeCookie(targetElement, '.search-data__row', 1)
-            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
-            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
-        }
-    })
+    getData(dataSrc);
 
     //functions
-    async function getData() {
-        const file = 'json/data.json';
-        let response = await fetch(file, { method: 'GET' });
+    async function getData(src) {
+        let response = await fetch(src, { method: 'GET' });
         if (response.ok) {
             let result = await response.json();
             loadData(result);

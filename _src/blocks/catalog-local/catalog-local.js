@@ -39,28 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (targetElement.classList.contains('options-filter__radio')) {
             //по цене
             if (targetElement.id == 'price-decrease') {
-                // if (filterParams.brands && filterParams.brands.length > 0) {
-                //     sortedData.sort(compareNumericReverse);
-                //     filteredData.sort(compareNumericReverse);
-                //     loadFilteredData(filteredData);
-                // }
-                // else {
-                // sortedData.sort(compareNumericReverse);
-                // loadFilteredData(sortedData);
-                // }
                 numericSort = -1;
                 filterData();
             }
             if (targetElement.id == 'price-increase') {
-                // if (filterParams.brands && filterParams.brands.length > 0) {
-                //     sortedData.sort(compareNumeric);
-                //     filteredData.sort(compareNumeric);
-                //     loadFilteredData(filteredData);
-                // }
-                // else {
-                // sortedData.sort(compareNumeric);
-                // loadFilteredData(sortedData);
-                // }
                 numericSort = 1;
                 filterData();
             }

@@ -142,7 +142,6 @@ body.dark-theme {
     // .menu-footer__link
 
     &__link {
-        transition: all 0.4s ease 0s;
 
         &:hover {
             color: $redColor;
@@ -180,7 +179,6 @@ body.dark-theme {
         //contacts-footer__item_phone-num
 
         &_phone-num {
-            transition: all 0.4s ease 0s;
 
             &:hover {
                 color: $redColor;
@@ -260,7 +258,6 @@ body.dark-theme {
     // .social-networks__text
 
     &__text {
-        transition: all 0.4s ease 0s;
     }
 }
 .title-footer {

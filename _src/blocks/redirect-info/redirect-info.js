@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         case '#cartRequestSuccess':
             requestSuccessInfo.style.display = 'block';
             cookies.map(function (element) {
-                if (element.split('=')[0] != 'announcement' && element.split('=')[0] != 'theme') {
+                if (element.split('=')[0] != 'announcement' && element.split('=')[0] != 'totalQuantity' && element.split('=')[0] != 'theme' && element.split('=')[0] != '_ym_uid' && element.split('=')[0] != '_ym_d' && element.split('=')[0] != '_ym_isad') {
                     deleteCookie(element.split('=')[0]);
                 }
             })

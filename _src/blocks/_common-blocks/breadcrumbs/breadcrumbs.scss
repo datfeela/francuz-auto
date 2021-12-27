@@ -1,0 +1,47 @@
+body.dark-theme {
+    .breadcrumbs {
+        &__item {
+            color: rgba($color: #fff, $alpha: 0.7);
+
+            &:not(:first-child)::before {
+                color: rgba($color: #fff, $alpha: 0.7);
+            }
+        }
+
+        &__link {
+            color: #fff;
+
+            &:hover {
+                color: $redColor;
+            }
+        }
+    }
+}
+
+.breadcrumbs {
+    display: flex;
+
+    // .breadcrumbs__item
+
+    &__item {
+        position: relative;
+        font-weight: 500;
+        color: rgba($color: $greyColor, $alpha: 0.8);
+
+        &:not(:first-child)::before {
+            content: ">";
+            padding: 0 7px;
+            color: rgba($color: $greyColor, $alpha: 0.8);
+        }
+    }
+
+    // .breadcrumbs__link
+
+    &__link {
+        color: $mainFontColor;
+
+        &:hover {
+            color: $redColor;
+        }
+    }
+}

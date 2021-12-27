@@ -4,6 +4,12 @@
 
     &__catalog{
         width: 100%;
-        height: 1257px;
+        min-height: 1257px;
+    }
+}
+
+.catalog {
+    &__body{
+        background-color: #FFF8F5;
     }
 }

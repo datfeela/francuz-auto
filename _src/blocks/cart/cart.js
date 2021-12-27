@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cookiesSorted = [];
 
     cookies.map(function (element) {
-        if (element.split('=')[0] != 'announcement' && element.split('=')[0] != 'totalQuantity' && element.split('=')[0] != 'theme') {
+        if (element.split('=')[0] != 'announcement' && element.split('=')[0] != 'totalQuantity' && element.split('=')[0] != 'theme' && element.split('=')[0] != '_ym_uid' && element.split('=')[0] != '_ym_d' && element.split('=')[0] != '_ym_isad' ) {
             cookiesSorted.push(element);
         }
     })

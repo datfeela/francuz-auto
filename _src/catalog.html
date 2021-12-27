@@ -11,7 +11,7 @@
         <meta name="robots" content="all" />
         <meta name="yandex" content="all" />
         <meta name="googlebot" content="all" />
-        <base href="https://fra174.ru/">
+        <!-- <base href="https://fra174.ru/"> -->
         <!-- шрифты -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,11 +22,12 @@
     </head>
 
     <body>
+        @@include('_yandex-metric.html',{})
         @@include('_icons.html',{})
         <div class="wrapper">
             @@include('blocks/header/_header.html',{})
             <main class="main">
-                <iframe class="main__catalog" id="acat-frame" src="https://feela.acat.online"></iframe>
+                
             </main>
             @@include('blocks/footer/_footer.html',{})
         </div>

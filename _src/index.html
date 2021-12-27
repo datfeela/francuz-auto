@@ -11,7 +11,7 @@
         <meta name="robots" content="all" />
         <meta name="yandex" content="all" />
         <meta name="googlebot" content="all" />
-        <base href="https://fra174.ru/">
+        <!-- <base href="https://fra174.ru/"> -->
         <!-- шрифты -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,6 +24,7 @@
     </head>
 
     <body>
+        @@include('_yandex-metric.html',{})
         @@include('_icons.html',{})
         @@include('blocks/header/_header.html',{})
         <main class="main">
@@ -32,6 +33,7 @@
             @@include('blocks/advantages/_advantages.html',{})
             @@include('blocks/popular/_popular.html',{})
             @@include('blocks/bestsellers/_bestsellers.html',{})
+            @@include('blocks/brands-nav/_brands-nav.html',{})
             @@include('blocks/vin-request-proposal/_vin-request-proposal.html',{})
             @@include('blocks/map-main/_map-main.html',{})
         </main>

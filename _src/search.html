@@ -11,7 +11,7 @@
             name="description"
             content="Поиск автозапчастей по оргинальным каталогам производителей: запчасти для иномарок и отечественных автомобилей. Заказывайте запчасти в интернет-магазине Француз-Авто с доставкой по Челябинску и области!"
         />
-        <base href="https://fra174.ru/">
+        <!-- <base href="https://fra174.ru/"> -->
         <!-- шрифты -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,6 +22,7 @@
     </head>
 
     <body>
+        @@include('_yandex-metric.html',{})
         @@include('_icons.html',{})
         <div class="wrapper">
         @@include('blocks/header/_header.html',{})

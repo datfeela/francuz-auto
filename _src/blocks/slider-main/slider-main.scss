@@ -1,7 +1,17 @@
 body.dark-theme {
     .page-slider-main__content {
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 800px) {
             background-color: rgba($color: #2b2b31, $alpha: 0.5);
+        }
+    }
+
+    .page-slider-main__link{
+        @media screen and (max-width: 800px) {
+            background-color: $redColor;
+
+            &:hover{
+                background-color: $yellowColor;
+            }
         }
     }
 
@@ -69,19 +79,21 @@ body.dark-theme {
 
     &__content {
         position: absolute;
-        width: 40%;
-        height: 155px;
+        width: 50%;
+        height: 170px;
         left: 30%;
         top: 40%;
         padding: 0px 20px;
         background-color: rgba(32, 32, 32, 0.75);
         backdrop-filter: blur(1.5px);
         display: flex;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         text-align: center;
 
         @media screen and (max-width: 1230px) {
-            height: calc(70px + 85 * (100vw - 320px) / (1230 - 320));
+            height: calc(95px + 75 * (100vw - 320px) / (1230 - 320));
         }
 
         @media screen and (max-width: 900px) {
@@ -90,12 +102,12 @@ body.dark-theme {
             top: 35%;
         }
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: 800px) {
             position: relative;
             width: 100%;
             left: 0;
             background-color: rgba(20, 20, 20, 0.8);
-            padding: 0px calc(5px + 25 * (100vw - 320px) / (720 - 320));
+            padding: 0px calc(5px + 25 * (100vw - 320px) / (800 - 320));
         }
     }
 
@@ -110,6 +122,29 @@ body.dark-theme {
             font-size: calc(14px + 10 * (100vw - 320px) / (1230 - 320));
         }
     }
+
+    //.page-slider-main__link
+
+    &__link {
+        width: 35%;
+        font-size: 18px;
+        margin-top: 10px;
+        background-color: #f1af20;
+        
+        @media screen and (max-width: 1230px) {
+            font-size: calc(15px + 3 * (100vw - 320px) / (1230 - 320));
+            padding: calc(5px + 5 * (100vw - 320px) / (1230 - 320)) calc(8px + 12 * (100vw - 320px) / (1230 - 320)) !important;
+        }
+
+        @media screen and (max-width: 800px) {
+            width: calc(120px + 30 * (100vw - 320px) / (800 - 320));
+        }
+
+        &:hover {
+            background-color: $redColor;
+            // color: #fff;
+        }
+    }
 }
 
 .controls-slider-main {
@@ -119,8 +154,8 @@ body.dark-theme {
     justify-content: space-between;
     align-items: center;
 
-    @media screen and (max-width: 600px) {
-        height: calc(100% - (90px + 85 * (100vw - 320px) / (1230 - 320)));
+    @media screen and (max-width: 800px) {
+        height: calc(100% - calc(115px + 75 * (100vw - 320px) / (1230 - 320)));
     }
 
     // .controls-slider-main__button
