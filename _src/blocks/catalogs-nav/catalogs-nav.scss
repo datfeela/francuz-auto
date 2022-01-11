@@ -2,6 +2,18 @@ body {
     background-color: #f6f6f6;
 
     &.dark-theme {
+        .category {
+            background-color: #3b446180;
+
+            &__icon {
+                stroke: #fff;
+                fill: #fff;
+            }
+
+            &__title {
+                color: #fff;
+            }
+        }
     }
 }
 
@@ -55,30 +67,36 @@ body {
     }
 }
 .category {
+    min-height: 220px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.16);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
     align-items: center;
     overflow: hidden;
 
+    @media screen and (max-width: 1230px) {
+        min-height: calc(150px + 70 * (100vw - 320px) / (1230 - 320));
+    }
+
     @media screen and (max-width: 540px) {
+        min-height: 105px;
+        display: flex;
         flex-direction: row;
         justify-content: start;
-        align-items: center;
         padding: 8px 16px;
     }
 
     // .category__image
 
     &__image {
-        height: 150px;
+        height: 110px;
         padding: 15px 0px 5px 0px;
 
         @media screen and (max-width: 1230px) {
-            height: calc(75px + 75 * (100vw - 320px) / (1230 - 320));
+            height: calc(75px + 55 * (100vw - 320px) / (1230 - 320));
         }
 
         @media screen and (max-width: 540px) {
@@ -86,6 +104,17 @@ body {
             margin-right: 15px;
             width: 75px;
             height: auto;
+            max-height: 90px;
+        }
+
+        &_wide {
+            height: auto;
+            width: 160px;
+
+            @media screen and (max-width: 1230px) {
+                height: auto;
+                width: calc(100px + 60 * (100vw - 320px) / (1230 - 320));
+            }
         }
     }
 
@@ -113,9 +142,10 @@ body {
 
     &__title {
         text-align: center;
+        align-self: flex-end;
         color: $mainFontColor;
         font-size: 17px;
-        font-weight: 500;
+        font-weight: 600;
         padding: 10px 0px 20px 0px;
 
         @media screen and (max-width: 1230px) {
@@ -125,6 +155,7 @@ body {
 
         @media screen and (max-width: 540px) {
             padding: 0;
+            align-self: unset;
         }
 
         &_default {

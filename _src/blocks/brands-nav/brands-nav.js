@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const activeTab = document.querySelector('.tabs-brands-nav__tab._active'),
             activePage = document.querySelector('.brands-nav__page._active'),
             passCarsPage = document.querySelector('#passenger-cars-page'),
+            passCarsPageRu = document.querySelector('#passenger-cars-ru-page'),
             motoPage = document.querySelector('#moto-page');
 
         activePage.classList.remove('_active');
@@ -23,6 +24,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (tab.id == 'passenger-cars-button') {
             passCarsPage.classList.add('_active');
+            return
+        }
+        if (tab.id == 'passenger-cars-ru-button') {
+            passCarsPageRu.classList.add('_active');
             return
         }
         if (tab.id == 'moto-button') {

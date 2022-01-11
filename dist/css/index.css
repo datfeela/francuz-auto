@@ -979,6 +979,10 @@ body.dark-theme .dropdown-menu__expand-icon {
   justify-content: center;
 }
 
+.brands__image {
+  height: 120px;
+}
+
 body.dark-theme .controls-slider-main__icon {
   stroke: #fff;
 }
@@ -1574,7 +1578,7 @@ body.dark-theme .tabs-brands-nav__tab:hover {
 
 .brands-nav__link {
   color: #3a3a3a;
-  font-size: 18px;
+  font-size: 16px;
   -webkit-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
@@ -1587,9 +1591,9 @@ body.dark-theme .tabs-brands-nav__tab:hover {
 .tabs-brands-nav__tab {
   position: relative;
   background-color: #fff;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 500;
-  padding: 10px 35px;
+  padding: 10px 25px;
   text-align: center;
   -webkit-transition: color 0.4s ease 0s;
   -o-transition: color 0.4s ease 0s;
@@ -1984,12 +1988,12 @@ body.dark-theme ::selection {
   }
 
   .brands-nav__link {
-    font-size: calc(15px + 3 * (100vw - 320px) / 910);
+    font-size: calc(13px + 3 * (100vw - 320px) / 910);
   }
 
   .tabs-brands-nav__tab {
-    font-size: calc(16px + 6 * (100vw - 320px) / 910);
-    padding: calc(5px + 5 * (100vw - 320px) / 910) calc(15px + 20 * (100vw - 320px) / 910);
+    font-size: calc(15px + 3 * (100vw - 320px) / 910);
+    padding: calc(5px + 5 * (100vw - 320px) / 910) calc(10px + 15 * (100vw - 320px) / 910);
   }
 
   .map-main__body {

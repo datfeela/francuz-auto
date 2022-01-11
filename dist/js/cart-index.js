@@ -388,12 +388,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadData(data) {
         const productsBlock = document.querySelector('.cart__data');
 
-        cookiesSorted.forEach(productCookie => {
-            let searchRequest = productCookie.split('=')[0],
-                searchRequestQuantity = productCookie.split('=')[1],
-                searchRequestArticle = fixString(productCookie.split('=')[0].split('__')[1], '_', ' '),
-                searchRequestBrand = fixString(productCookie.split('=')[0].split('__')[0], '_', ' ');
-        })
         data.forEach(element => {
             cookiesSorted.forEach(productCookie => {
                 let searchRequest = productCookie.split('=')[0],
@@ -423,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="search-data__block search-data__block_brand">
                         <span class="search-data__text search-data__text_brand">${searchRequestBrand} ${searchRequestArticle}</span>
                     </div>
-                    <a href="product.html?id=${searchRequest}" class="search-data__block search-data__block_description">
+                    <a href="product?id=${searchRequest}" class="search-data__block search-data__block_description">
                         <span class="search-data__text search-data__text_description">${productName}</span>
                     </a>
                     <div class="search-data__block search-data__block_price">

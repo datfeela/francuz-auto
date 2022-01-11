@@ -271,6 +271,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     getData(dataSrc);
 
+    //добавление товара в корзину
+    mainBlock.addEventListener('click', (event) => {
+        const targetElement = event.target,
+            buyButton = targetElement.closest('.search-data__button_buy');
+        if (buyButton) {
+            event.preventDefault();
+            buyButton.classList.add('onclick')
+            setTimeout(() => {
+                buyButton.classList.remove('onclick');
+            }, 200);
+            changeCookie(targetElement, '.search-data__row', 1)
+            document.querySelector('.search-header__counter').innerHTML = +cartCounter.innerHTML + 1;
+            if (cartCounter.innerHTML != '0') cartCounter.classList.add('_active');
+        }
+    })
+
     //functions
     async function getData(src) {
         let response = await fetch(src, { method: 'GET' });
@@ -308,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 else productQuantity = element.col8;
 
                 let productTemplate = `
-                <a href="product.html?id=${productLink}" class="search-data__row">
+                <a href="product?id=${productLink}" class="search-data__row">
                     <div class="search-data__block search-data__block_brand">
                         <span class="search-data__text search-data__text_brand">${productBrand}</span>
                     </div>

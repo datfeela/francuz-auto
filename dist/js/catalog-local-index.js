@@ -415,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 productLink = fixString(productBrand, ' ', '_') + '__' + fixString(productArticleNumber, ' ', '_');           
 
             let productTemplate = `
-                <a href="product.html?id=${productLink}" class="items-catalog__row product">
+                <a href="product?id=${productLink}" class="items-catalog__row product">
                     <div class="product__block product__block_brand">
                         <span class="product__text product__text_brand">${productBrand} ${productArticleNumber}</span>
                     </div>

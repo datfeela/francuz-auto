@@ -25,6 +25,8 @@
     // .brands__image
 
     &__image {
+        height: 120px;
+        
         @media screen and (min-width: 721px) and (max-width: 1230px) {
             height: calc(100px + 20 * (100vw - 720px) / (1230 - 720));
         }
