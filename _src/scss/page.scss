@@ -29,11 +29,12 @@ body {
 }
 
 body {
-    background-color: #fff;
     color: $mainFontColor;
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
     line-height: 135%;
+
+    background-color: rgb(250, 250, 250);
 
     @media screen and (max-width: 1230px) {
         font-size: calc(14px + 2 * (100vw - 320px) / (1230 - 320));
@@ -52,6 +53,10 @@ body {
 
     @media screen and (min-width: 721px) and (max-width: 1230px) {
         margin-top: calc(45px + 46 * (100vw - 720px) / (1230 - 720));
+    }
+
+    @media screen and (min-width: 721px) and (max-width: 800px) {
+        margin-top: 0;
     }
 
     @media screen and (min-width: 481px) and (max-width: 720px) {

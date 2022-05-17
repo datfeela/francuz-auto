@@ -1,0 +1,23 @@
+.not-found {
+    // .not-found__title
+
+    &__title {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    // .not-found__text
+
+    &__text {
+        font-size: 27px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(15px + 12 * (100vw - 320px) / (1230 - 320));
+        }
+
+        & a {
+            color: $redColor;
+            text-decoration: underline;
+        }
+    }
+}

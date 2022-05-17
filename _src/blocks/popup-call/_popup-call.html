@@ -1,0 +1,29 @@
+<div class="popup-call">
+    <div class="popup-call__wrap">
+        <span class="popup-call__close-button">&times;</span>
+        <h2 class="popup-call__title">Нужна помощь?</h2>
+        <span class="popup-call__text">Закажи обратный звонок и мы перезвоним для консультации</span>
+        <form class="popup-call__form form-popup" method="POST" action="php/call-form.php">
+            <input
+                class="form-popup__input form-popup__input_phone"
+                type="text"
+                name="phone-num"
+                placeholder="Телефон *"
+                autocomplete="off"
+                required
+                pattern="^[0-9-+ ]{7,20}$"
+                oninvalid="setCustomValidity('Пожалуйста, введите номер телефона в формате +7900-000-00-00')"
+                oninput="setCustomValidity('')"
+            />
+            <button class="form-popup__button form-popup__button_submit button" type="submit">Жду звонка!</button>
+            <span class="form-popup__button form-popup__button_expand">Выбрать удобное время для звонка</span>
+            <input
+                type="text"
+                class="form-popup__input form-popup__input_expand"
+                name="time"
+                placeholder="Удобное время для звонка"
+                autocomplete="off"
+            />
+        </form>
+    </div>
+</div>

@@ -1,3 +1,20 @@
+body.dark-theme {
+    .brands {
+        &__item {
+            box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.16);
+
+            &:hover {
+                background-color: #3b446180;
+                box-shadow: 0 6px 12px 2px rgba(0, 0, 0, 0.16);
+            }
+        }
+
+        &__title {
+            color: #fff;
+        }
+    }
+}
+
 .brands {
     // .brands__body
 
@@ -5,13 +22,17 @@
         width: calc(100vw - 30px);
         max-width: $maxContainerWidth;
         margin: 0 auto;
-        padding: 10px 15px 0px 15px;
+        padding: 20px 15px 10px 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         @media screen and (max-width: 720px) {
-            padding: 5px 0px 0px 0px;
+            padding: 0px 0px 5px 0px;
+        }
+
+        @media screen and (max-width: 480px) {
+            padding: 7px 0px 0px 0px;
         }
     }
 
@@ -19,20 +40,50 @@
 
     &__item {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 8px;
+        padding: 10px 25px;
+        box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.16);
+
+        @media screen and (min-width: 720px) and (max-width: 1230px) {
+            padding: 10px calc(15px + 10 * (100vw - 720px) / (1230 - 720));
+        }
+
+        @media screen and (max-width: 720px) {
+            padding: 0px;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        &:hover {
+            box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.16);
+        }
     }
 
     // .brands__image
 
     &__image {
         height: 120px;
-        
+
         @media screen and (min-width: 721px) and (max-width: 1230px) {
-            height: calc(100px + 20 * (100vw - 720px) / (1230 - 720));
+            height: calc(85px + 35 * (100vw - 720px) / (1230 - 720));
         }
 
         @media screen and (max-width: 720px) {
             height: calc(50px + 50 * (100vw - 320px) / (720 - 320));
+        }
+    }
+
+    //.brands__title
+
+    &__title {
+        color: $mainFontColor;
+        margin-top: 10px;
+        font-weight: 500;
+
+        @media screen and (max-width: 720px) {
+            display: none;
         }
     }
 }

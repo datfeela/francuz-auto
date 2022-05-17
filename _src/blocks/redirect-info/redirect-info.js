@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const requestSuccessInfo = document.querySelector('.redirect-info__text_success'),
         requestFailInfo = document.querySelector('.redirect-info__text_fail');
-    redirectUrl = 'https://fra174.ru/';
+    redirectUrl = 'http://fra174.ru/';
     let cookies = document.cookie.split('; ');
     let cookiesSorted = [];
 

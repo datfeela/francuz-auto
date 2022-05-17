@@ -1,0 +1,25 @@
+.reviews {
+    width: calc(100vw - 30px);
+    max-width: $maxContainerWidth;
+    margin: 0px auto;
+    padding: 20px 30px;
+
+    @media screen and (max-width: 720px) {
+        width: 100vw;
+        padding: 20px 20px;
+    }
+    // .reviews__title
+
+    &__title {
+        margin: 15px 0px 25px 0px;
+        text-align: center;
+    }
+
+    // .reviews__item
+
+    &__item {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 760px;
+    }
+}

@@ -127,6 +127,29 @@ body.dark-theme {
     // .cart__total
 
     &__total {
+        
+    }
+
+    //.cart__warning
+
+    &__price-warning {
+        padding: 0px 10px 15px 10px;
+        margin-bottom: 15px;
+    }
+
+    &__warning-title {
+        color: $redColor;
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 5px;
+
+        @media screen and (max-width: 1230px) {
+            font-size: calc(16px + 6 * (100vw - 320px) / (1230 - 320));
+        }
+    }
+
+    &__warning-text{
+        color: $redColor;
     }
 
     // .cart__form

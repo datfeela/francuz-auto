@@ -1,0 +1,21 @@
+@import "fonts.scss";
+
+@import "reset.scss";
+@import "variables.scss";
+@import "page.scss";
+
+//_common.blocks
+@import "../blocks/_common-blocks/burger/burger.scss";
+@import "../blocks/_common-blocks/button/button.scss";
+
+//header
+@import "../blocks/header/header.scss";
+
+//main
+@import "../blocks/reviews/reviews.scss";
+
+//footer
+@import "../blocks/footer/footer.scss";
+
+//dark-theme
+@import "dark-theme.scss";

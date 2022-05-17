@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     const requestSuccessInfo = document.querySelector('.redirect-info__text_success'),
         requestFailInfo = document.querySelector('.redirect-info__text_fail');
-    redirectUrl = 'https://fra174.ru/';
+    redirectUrl = 'http://fra174.ru/';
     let cookies = document.cookie.split('; ');
     let cookiesSorted = [];
 
@@ -98,8 +98,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.querySelector('.popup-call'),
+        popupButtonHeader = document.querySelector('.menu-header__item_popup-call'),
+        popupButtonFooter = document.querySelector('.menu-footer__popup-button'),
+        popupButtonDropdown = document.querySelector('.dropdown-menu__popup-button'),
+        popupCloseButton = document.querySelector('.popup-call__close-button'),
+        expandButton = document.querySelector('.form-popup__button_expand'),
+        expandingInput = document.querySelector('.form-popup__input_expand');
+
+    popupCloseButton.addEventListener('click', () => {
+        popup.classList.toggle('_active');
+    })
+
+    popupButtonHeader.addEventListener('click', () => {
+        popup.classList.toggle('_active');
+    })
+
+    popupButtonDropdown.addEventListener('click', () => {
+        popup.classList.toggle('_active');
+    })
+
+    popupButtonFooter.addEventListener('click', () => {
+        popup.classList.toggle('_active');
+    })
+
+    expandButton.addEventListener('click', () => {
+        expandButton.classList.toggle('_hidden');
+        setTimeout(expandButton.style.position = 'absolute', 300);
+        expandingInput.classList.toggle('_active');
+    })
+});;
+
+document.addEventListener('DOMContentLoaded', () => {
     const body = document.querySelector('body');
     header = document.querySelector('.header'),
+        headerMenu = document.querySelector('.search-header__menu'),
         headerBurger = document.querySelector('.search-header__burger'),
         headerDropdownMenu = document.querySelector('.search-header__dropdown'),
         headerSearch = document.querySelector('.search-header'),
@@ -152,11 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //---------------------BURGER-DROPDOWN---------------------------//
 
     //открываю/закрываю меню по нажатию на бургер
-    headerBurger.addEventListener('click', (event) => {
+    headerMenu.addEventListener('click', (event) => {
         Array.from(headerDropdownMenu.querySelector('.dropdown-menu__list').children).forEach((elem) => {
             if (elem.classList.contains('_hover')) removeHoverDropdownMenu(elem);
         })
         headerBurger.classList.toggle('_active');
+        headerMenu.classList.toggle('_active');
         if (document.documentElement.clientWidth <= 720) {
             body.classList.add('_no-scroll');
         }
@@ -165,12 +199,13 @@ document.addEventListener('DOMContentLoaded', () => {
     //закрываю меню при нажатии вне меню/бургера
     document.addEventListener('click', (event) => {
         const targetElement = event.target;
-        if ((!targetElement.closest('.search-header__burger') && !targetElement.closest('.search-header__dropdown')) || targetElement.closest('.dropdown-menu__free-space-cover') || targetElement.closest('.dropdown-menu__close-button')) {
+        if ((!targetElement.closest('.search-header__menu') && !targetElement.closest('.search-header__dropdown')) || targetElement.closest('.dropdown-menu__free-space-cover') || targetElement.closest('.dropdown-menu__close-button')) {
             if (headerBurger.classList.contains('_active')) {
                 Array.from(headerDropdownMenu.querySelector('.dropdown-menu__list').children).forEach((elem) => {
                     if (elem.classList.contains('_hover')) removeHoverDropdownMenu(elem);
                 })
                 headerBurger.classList.remove('_active');
+                headerMenu.classList.remove('_active');
                 if (document.documentElement.clientWidth <= 720) {
                     body.classList.remove('_no-scroll');
                 }

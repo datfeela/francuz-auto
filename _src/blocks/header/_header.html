@@ -2,14 +2,21 @@
     <div class="header__container">
         <div class="header__contacts contacts-header">
             <div class="contacts-header__phone-numbers">
-                <span class="contacts-header__phone-number">+7 (351) 701-11-74</span>
-                <span class="contacts-header__phone-number">+7 (351) 225-47-53</span>
+                <svg class="contacts-header__icon">
+                    <use xlink:href="#phone"></use>
+                </svg>
+                <a href="tel:+73517011174" class="contacts-header__phone-number">
+                    <span>+7 (351) 701-11-74</span>
+                </a>
+                <a href="tel:+73512254753" class="contacts-header__phone-number">
+                    <span>+7 (351) 225-47-53</span>
+                </a>
             </div>
-            <span class="contacts-header__working-hours">
+            <!-- <span class="contacts-header__working-hours">
                 Время работы: <br />
                 пн-пт 10:00–19:00 <br />
                 сб 10:00–17:00
-            </span>
+            </span> -->
         </div>
         <div class="header__announcement announcement-header">
             <div class="announcement-header__container">
@@ -24,6 +31,31 @@
                 </svg>
             </button>
         </div>
+        <nav class="header__menu menu-header">
+            <ul class="menu-header__list">
+                <li class="menu-header__item">
+                    <a href="about" class="menu-header__link">О компании</a>
+                </li>
+                <li class="menu-header__item">
+                    <a href="contacts" class="menu-header__link">Контакты</a>
+                </li>
+                <li class="menu-header__item">
+                    <a href="payment" class="menu-header__link">Оплата</a>
+                </li>
+                <li class="menu-header__item">
+                    <a href="delivery" class="menu-header__link">Доставка</a>
+                </li>
+                <li class="menu-header__item">
+                    <a href="reviews" class="menu-header__link">Отзывы</a>
+                </li>
+                <li class="menu-header__item menu-header__item_popup-call">
+                    <svg class="menu-header__icon">
+                        <use xlink:href="#phone"></use>
+                    </svg>
+                    <button class="menu-header__button menu-header__button_popup-call">Обратный звонок</button>
+                </li>
+            </ul>
+        </nav>
         <div class="header__body">
             <a href="https://fra174.ru/" class="header__logo logo">
                 <svg class="logo__icon">
@@ -32,9 +64,13 @@
                 <span class="logo__text">ФРАНЦУЗ-АВТО</span>
             </a>
             <div class="header__search search-header">
-                <button type="button" class="search-header__burger burger">
-                    <span></span>
-                </button>
+                <div class="search-header__menu">
+                    <button type="button" class="search-header__burger burger">
+                        <span></span>
+                    </button>
+                    <span class="search-header__catalog-title">Каталог</span>
+                </div>
+
                 <button type="button" class="search-header__button search-header__button_lowres">
                     <svg class="search-header__icon">
                         <use xlink:href="#search"></use>
@@ -90,13 +126,31 @@
                                 <li class="dropdown-menu__item">
                                     <a href="catalog/moto" class="dropdown-menu__link">Каталоги мотозапчастей</a>
                                 </li>
-                                <!-- <li class="dropdown-menu__item">
-                                    <a href="#" class="dropdown-menu__link">Каталоги комплектов ТО</a>
-                                </li> -->
                             </ul>
                         </li>
                         <li class="dropdown-menu__item dropdown-menu__item_main">
                             <a href="vin-request" class="dropdown-menu__link dropdown-menu__link_main">VIN-запрос</a>
+                        </li>
+                        <li class="dropdown-menu__item dropdown-menu__item_mobile-only">
+                            <a href="about" class="dropdown-menu__link">О компании</a>
+                        </li>
+                        <li class="dropdown-menu__item dropdown-menu__item_mobile-only">
+                            <a href="contacts" class="dropdown-menu__link">Контакты</a>
+                        </li>
+                        <li class="dropdown-menu__item dropdown-menu__item_mobile-only">
+                            <a href="payment" class="dropdown-menu__link">Оплата</a>
+                        </li>
+                        <li class="dropdown-menu__item dropdown-menu__item_mobile-only">
+                            <a href="delivery" class="dropdown-menu__link">Доставка</a>
+                        </li>
+                        <li class="dropdown-menu__item dropdown-menu__item_mobile-only">
+                            <a href="reviews" class="dropdown-menu__link">Отзывы</a>
+                        </li>
+                        <li class="dropdown-menu__item dropdown-menu__item_mobile-only">
+                            <svg class="dropdown-menu__icon dropdown-menu__icon_phone">
+                                <use xlink:href="#phone"></use>
+                            </svg>
+                            <span class="dropdown-menu__link dropdown-menu__popup-button">Обратный звонок</span>
                         </li>
                         <li class="dropdown-menu__item theme-changer">
                             <span class="theme-changer__text">Темная тема</span>
@@ -119,4 +173,5 @@
             </div>
         </div>
     </div>
+    @@include('../popup-call/_popup-call.html',{})
 </header>

@@ -1,0 +1,23 @@
+@import "fonts.scss";
+
+@import "reset.scss";
+@import "variables.scss";
+@import "page.scss";
+
+//main
+body {
+    background-color: #fff;
+}
+
+.main{
+    height: 100vh;
+    margin: 0 30px !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+@import "../blocks/404/404.scss";
+
+//dark-theme
+@import "dark-theme.scss";

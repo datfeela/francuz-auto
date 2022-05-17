@@ -23,6 +23,10 @@ body.dark-theme {
 
     & a {
         color: $mainFontColor;
+
+        &:hover {
+            color: $redColor;
+        }
     }
 
     // .footer__wraper
@@ -133,6 +137,14 @@ body.dark-theme {
 
     &__item {
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            & > svg {
+                fill: $redColor;
+            }
+        }
 
         @media screen and (max-width: 1230px) {
             margin-bottom: calc(5px + 5 * (100vw - 320px) / (1230 - 320));
@@ -142,8 +154,8 @@ body.dark-theme {
     // .menu-footer__link
 
     &__link {
-
         &:hover {
+            cursor: pointer;
             color: $redColor;
         }
     }
@@ -171,6 +183,8 @@ body.dark-theme {
 
     &__item {
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
 
         @media screen and (max-width: 1230px) {
             margin-bottom: calc(5px + 5 * (100vw - 320px) / (1230 - 320));
@@ -179,7 +193,6 @@ body.dark-theme {
         //contacts-footer__item_phone-num
 
         &_phone-num {
-
             &:hover {
                 color: $redColor;
 
@@ -195,7 +208,7 @@ body.dark-theme {
     &__icon {
         height: 16px;
         width: 16px;
-        margin-right: 5px;
+        margin-right: 8px;
         fill: $mainFontColor;
         transition: all 0.4s ease 0s;
     }
